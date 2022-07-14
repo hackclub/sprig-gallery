@@ -4,12 +4,12 @@
 	import * as gridEngine from "../engine.js";
 	import { palette } from "../palette.js";
 
-	// onMount(() => {
-	// 	VanillaTilt.init(document.querySelectorAll('.gallery-item'), {
-	// 		max: 15,
-	// 		scale: 1.05
-	// 	});
-	// });
+	onMount(() => {
+		VanillaTilt.init(document.querySelectorAll('.gallery-item'), {
+			max: 15,
+			scale: 1.05
+		});
+	});
 
 	import { apiData, Data, imgData, Img } from '../data';
 
@@ -140,7 +140,7 @@
 					<!--hacky temp solution-->
 				{:else}
 					<div class="gallery-item">
-						<a href={`https://sprig.hackclub.dev/?file=https://hackclub.github.io/sprig/games/${data.name}`}>
+						<a href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${data.name}`}>
 							{#each $Img as img}
 								{#if img.name == data.name}
 									<div class="image-box">
@@ -156,11 +156,6 @@
 										.replace('-', ' ')
 										.replace('.', '')}
 								</h3>
-								<a
-									href={`https://sprig.hackclub.dev/?file=${data.html_url}`}
-									target="_blank"
-									class="button">Play &#9658;</a
-								>
 							</div>
 						</a>
 					</div>
@@ -258,7 +253,7 @@
 	}
 
 	.gallery-item:hover {
-		transform: scale(1.08);
+		transform: scale(1.12) rotate(3deg);
 		cursor: pointer;
 	}
 
