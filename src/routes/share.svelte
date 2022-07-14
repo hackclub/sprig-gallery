@@ -2,28 +2,20 @@
 	import { onMount } from 'svelte';
 
 	onMount(() => {
-		fetch('https://puzzlelab.hackclub.dev/?file=https://hackclub.github.io/puzzlelab/games/maze.js')
+		fetch('https://sprig.hackclub.dev/?file=https://hackclub.github.io/sprig/games/maze.js')
 			.then((resp) => resp.text())
 			.then((d) => {
 				console.log('d:' + d);
 			});
 	});
 
-	import VanillaTilt from 'vanilla-tilt';
-
-	onMount(() => {
-		VanillaTilt.init(document.querySelectorAll('.media'), {
-			max: 15,
-			scale: 1.05
-		});
-	});
 </script>
 
 <body>
 	<a class="logo" href="https://hackclub.com"
 		><img src="https://assets.hackclub.com/flag-orpheus-top.svg" alt="hack club logo" /></a
 	>
-	<a href="https://github.com/hackclub/puzzlelab" target="_blank"
+	<a href="https://github.com/hackclub/sprig" target="_blank"
 		><img src="./github.svg" alt="github logo" class="github-logo" /></a
 	>
 	<div class="outer">
@@ -31,7 +23,7 @@
 			<div class="heading-inner">
 				<h1>Share your game</h1>
 				<p>
-					After you <a href="https://puzzlelab.hackclub.dev/" target="_blank" class="link"
+					After you <a href="https://sprig.hackclub.dev/" target="_blank" class="link"
 						>create your own game</a
 					>, we'd love for you to <a href="/" class="link">share it with other makers</a> on the internet!
 				</p>
@@ -70,9 +62,9 @@
 					<p class="step-number">Step 3:</p>
 					<h2>
 						Fork the <a
-							href="https://github.com/hackclub/puzzlelab/fork"
+							href="https://github.com/hackclub/sprig/fork"
 							target="_blank"
-							class="link">PuzzleLab Repository</a
+							class="link">Sprig Repository</a
 						>
 					</h2>
 					<ul>
@@ -89,7 +81,7 @@
 			<div class="step">
 				<div>
 					<p class="step-number">Step 4:</p>
-					<h2>Upload your game to the your fork of the PuzzleLab Repository</h2>
+					<h2>Upload your game to the your fork of the Sprig Repository</h2>
 					<ul>
 						<li>Open the "Games" folder within your fork</li>
 						<li>Click "Add File"</li>
@@ -213,7 +205,7 @@
 		margin: 0;
 		margin-bottom: 5vh;
 		background: var(--pcb-base);
-		background-image: url(https://puzzlelab.hackclub.dev/assets/bg.12a2b49c.svg);
+		background-image: url(https://sprig.hackclub.dev/assets/bg.12a2b49c.svg);
 	}
 
 	.heading-inner {

@@ -1,98 +1,98 @@
 <script>
 	import { onMount } from 'svelte';
 	import VanillaTilt from 'vanilla-tilt';
-	// import * as gridEngine from "../../../engine/engine.js"
-	// import { palette } from "../../../palette.js"
+	import * as gridEngine from "../engine.js";
+	import { palette } from "../palette.js";
 
-	onMount(() => {
-		VanillaTilt.init(document.querySelectorAll('.gallery-item'), {
-			max: 15,
-			scale: 1.05
-		});
-	});
+	// onMount(() => {
+	// 	VanillaTilt.init(document.querySelectorAll('.gallery-item'), {
+	// 		max: 15,
+	// 		scale: 1.05
+	// 	});
+	// });
 
 	import { apiData, Data, imgData, Img } from '../data';
 
-	// async function drawGames(games) {
-	// 	const imgs = [];
+	async function drawGames(games) {
+		const imgs = [];
 
-	// 	for (const game of games) {
-	// 		if (game.name.split('.').pop() != 'js') continue;
-	// 		const src = await fetch(game.download_url).then(x => x.text());
+		for (const game of games) {
+			if (game.name.split('.').pop() != 'js') continue;
+			const src = await fetch(game.download_url).then(x => x.text());
 
-	// 		let screen, bitmaps;
-	// 		const setScreenSize = (w, h) => screen = new ImageData(w, h);
-	// 		const { api, state } = gridEngine.init({
-	// 			palette,
-	// 			setBitmaps: bm => bitmaps = bm,
-	// 			setScreenSize,
-	// 		});
-	// 		api.setScreenSize = setScreenSize;
-	// 		api.afterInput = () => {};
-	// 		api.onInput = () => {};
+			let screen, bitmaps;
+			const setScreenSize = (w, h) => screen = new ImageData(w, h);
+			const { api, state } = gridEngine.init({
+				palette,
+				setBitmaps: bm => bitmaps = bm,
+				setScreenSize,
+			});
+			api.setScreenSize = setScreenSize;
+			api.afterInput = () => {};
+			api.onInput = () => {};
 
-	// 		try {
-	// 			new Function(...Object.keys(api), src)(...Object.values(api));
+			try {
+				new Function(...Object.keys(api), src)(...Object.values(api));
 
-	// 			if (!screen) throw new Error("never set screen size");
-	// 			if (!bitmaps) throw new Error("never set legend");
-	// 		} catch(e) {
-	// 			console.error(`couldn't run ${game.name}: ${e}`);
-	// 			continue;
-	// 		}
+				if (!screen) throw new Error("never set screen size");
+				if (!bitmaps) throw new Error("never set legend");
+			} catch(e) {
+				console.error(`couldn't run ${game.name}: ${e}`);
+				continue;
+			}
 
-	// 		screen.data.fill(255);
-	// 		drawTiles(state, api, screen, bitmaps);
-	// 		const canvas = document.createElement("canvas");
-	// 		canvas.width = canvas.height = Math.max(screen.width, screen.height);
-	// 		canvas.imageSmoothingEnabled = false;
-	// 		canvas.getContext("2d").putImageData(screen, 0, 0);
-	// 		console.log(canvas);
-	// 		imgs.push({ name: game.name, download_url: canvas.toDataURL() });
-	// 	}
+			screen.data.fill(255);
+			drawTiles(state, api, screen, bitmaps);
+			const canvas = document.createElement("canvas");
+			canvas.width = canvas.height = Math.max(screen.width, screen.height);
+			canvas.imageSmoothingEnabled = false;
+			canvas.getContext("2d").putImageData(screen, 0, 0);
+			console.log(canvas);
+			imgs.push({ name: game.name, download_url: canvas.toDataURL() });
+		}
 
-	// 	console.log(imgs);
-	// 	imgData.set(imgs);
+		console.log(imgs);
+		imgData.set(imgs);
 
-	// 	function blitSprite(screen, sprite, tx, ty) {
-	// 		const [_, { imageData: { data: bitmap } }] = sprite;
-	// 		for (let x = 0; x < 16; x++)
-	// 			for (let y = 0; y < 16; y++) {
-	// 				const sx = tx*16 + x;
-	// 				const sy = ty*16 + y;
+		function blitSprite(screen, sprite, tx, ty) {
+			const [_, { imageData: { data: bitmap } }] = sprite;
+			for (let x = 0; x < 16; x++)
+				for (let y = 0; y < 16; y++) {
+					const sx = tx*16 + x;
+					const sy = ty*16 + y;
 
-	// 				if (bitmap[(y*16 + x)*4 + 3] < 255) continue;
+					if (bitmap[(y*16 + x)*4 + 3] < 255) continue;
 
-	// 				screen.data[(sy*screen.width + sx)*4 + 0] = bitmap[(y*16 + x)*4 + 0];
-	// 				screen.data[(sy*screen.width + sx)*4 + 1] = bitmap[(y*16 + x)*4 + 1];
-	// 				screen.data[(sy*screen.width + sx)*4 + 2] = bitmap[(y*16 + x)*4 + 2];
-	// 				screen.data[(sy*screen.width + sx)*4 + 3] = bitmap[(y*16 + x)*4 + 3];
-	// 			}
-	// 	}
+					screen.data[(sy*screen.width + sx)*4 + 0] = bitmap[(y*16 + x)*4 + 0];
+					screen.data[(sy*screen.width + sx)*4 + 1] = bitmap[(y*16 + x)*4 + 1];
+					screen.data[(sy*screen.width + sx)*4 + 2] = bitmap[(y*16 + x)*4 + 2];
+					screen.data[(sy*screen.width + sx)*4 + 3] = bitmap[(y*16 + x)*4 + 3];
+				}
+		}
 
-	// 	function drawTiles(state, api, screen, bitmaps) {
-	// 		const { dimensions, legend } = state;
-	// 		const { width, height, maxTileDim } = dimensions;
+		function drawTiles(state, api, screen, bitmaps) {
+			const { dimensions, legend } = state;
+			const { width, height, maxTileDim } = dimensions;
 
-	// 		const grid = api.getGrid();
+			const grid = api.getGrid();
 
-	// 		for (const cell of grid) {
-	// 			const zOrder = legend.map(x => x[0]);
-	// 			cell.sort((a, b) => zOrder.indexOf(a.type) - zOrder.indexOf(b.type));
+			for (const cell of grid) {
+				const zOrder = legend.map(x => x[0]);
+				cell.sort((a, b) => zOrder.indexOf(a.type) - zOrder.indexOf(b.type));
 
-	// 			for (const { x, y, type } of cell) {
-	// 				blitSprite(screen, bitmaps.find(x => x[0] == type), x, y);
-	// 			}
-	// 		}
-	// 	}
-	// }
+				for (const { x, y, type } of cell) {
+					blitSprite(screen, bitmaps.find(x => x[0] == type), x, y);
+				}
+			}
+		}
+	}
 
 	onMount(async () => {
-		fetch('https://api.github.com/repos/hackclub/puzzlelab/contents/games?recursive=1')
+		fetch('https://api.github.com/repos/hackclub/sprig/contents/games?recursive=1')
 			.then((res) => res.json())
 			.then((data) => {
 				apiData.set(data);
-				// drawGames(data);
+				drawGames(data);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -111,14 +111,14 @@
 	<div class="info-outer">
 		<div class="info-inner">
 			<div class="title">
-				<h1>PuzzleLab Gallery</h1>
+				<h1>Sprig Gallery</h1>
 				<p>
 					The best way to learn is by making things you care about and sharing them with others.
 					Check out games by other Hack Clubbers!
 				</p>
 			</div>
 			<div>
-				<a href="https://puzzle.hackclub.com" class="button big-button">Create Your Own</a>
+				<a href="https://sprig.hackclub.dev" class="button big-button">Create Your Own</a>
 				<a href="/share" class="button big-button">Share your game</a>
 			</div>
 		</div>
@@ -126,7 +126,7 @@
 	<a class="logo" href="https://hackclub.com"
 		><img src="https://assets.hackclub.com/flag-orpheus-top.svg" alt="hack club logo" /></a
 	>
-	<a href="https://github.com/hackclub/puzzlelab" target="_blank"
+	<a href="https://github.com/hackclub/sprig" target="_blank"
 		><img src="./github.svg" alt="github logo" class="github-logo" /></a
 	>
 	<div class="gallery-outer">
@@ -140,7 +140,7 @@
 					<!--hacky temp solution-->
 				{:else}
 					<div class="gallery-item">
-						<a href={`https://puzzlelab.hackclub.dev/?file=https://hackclub.github.io/puzzlelab/games/${data.name}`}>
+						<a href={`https://sprig.hackclub.dev/?file=https://hackclub.github.io/sprig/games/${data.name}`}>
 							{#each $Img as img}
 								{#if img.name == data.name}
 									<div class="image-box">
@@ -157,7 +157,7 @@
 										.replace('.', '')}
 								</h3>
 								<a
-									href={`https://puzzlelab.hackclub.dev/?file=${data.html_url}`}
+									href={`https://sprig.hackclub.dev/?file=${data.html_url}`}
 									target="_blank"
 									class="button">Play &#9658;</a
 								>
@@ -219,7 +219,7 @@
 
 	.info-outer {
 		background-color: var(--pcb-base);
-		background-image: url(https://puzzlelab.hackclub.dev/assets/bg.12a2b49c.svg);
+		background-image: url(https://sprig.hackclub.dev/assets/bg.12a2b49c.svg);
 		padding: 10vh 0;
 		width: 100vw;
 	}
@@ -258,7 +258,7 @@
 	}
 
 	.gallery-item:hover {
-		transform: scale(1.08) rotate(-1.5deg);
+		transform: scale(1.08);
 		cursor: pointer;
 	}
 
