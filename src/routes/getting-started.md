@@ -25,7 +25,7 @@ setLegend(
 
 Click on bitmap to open up the pixel editor and draw an image for our sprite.
 
-![GIF of opening bitmap editor.]()
+![Screen Recording 2022-07-18 at 12 24 08 PM](https://user-images.githubusercontent.com/27078897/179599823-be112b5d-3fe6-4c7f-b1ca-d741ef5b5bcb.gif)
 
 The bitmap is stored as a string. To take a look at it click on the little arrow next to the line number. You can minimize it by clicking the area again.
 
@@ -125,7 +125,7 @@ Right now we only have one level.
 Click on `map` to open up the map editor. 
 __Make sure you hit run__ to load the legend before editting the map.
 
-![GIF of opening bitmap editor.]()
+![Screen Recording 2022-07-18 at 3 17 36 PM](https://user-images.githubusercontent.com/27078897/179600230-f29db474-9fcb-4829-94e5-d2f283bd03ad.gif)
 
 To set the map use `setMap`.
 
@@ -180,6 +180,9 @@ onInput("right", () => {
 });
 ```
 
+![Screen Recording 2022-07-18 at 3 20 09 PM](https://user-images.githubusercontent.com/27078897/179600584-3d5de630-6a63-436c-9c39-e811b592be12.gif)
+
+
 ### Adding Behaviors
 
 We want our player to push boxes and not be able to move through walls.
@@ -192,7 +195,7 @@ setSolids([ player, box, wall ]);
 
 Now those sprites won't overlap.
 
-GIF OF SOLIDS
+![Screen Recording 2022-07-18 at 3 21 10 PM](https://user-images.githubusercontent.com/27078897/179600717-804753a6-4498-4432-b9f4-8bee9633adb3.gif)
 
 We want the player to push boxes though, we can set this behavior with `setPushables`.
 
@@ -206,7 +209,7 @@ The arguement passed to set pushables means that every sprite of type `player` o
 
 Let's see what that looks like now.
 
-GIF OF PUSHING
+![Screen Recording 2022-07-18 at 3 22 43 PM](https://user-images.githubusercontent.com/27078897/179601035-0e7b751c-2767-47ea-b2bd-5d0497b4547f.gif)
 
 ### Win Condition
 
@@ -248,7 +251,7 @@ p.w.
 ];
 ```
 
-GIF OF CHANGING LEVEL
+![Screen Recording 2022-07-18 at 3 24 08 PM](https://user-images.githubusercontent.com/27078897/179601256-55d6a5cd-7135-490a-bb46-1ed3d8537e06.gif)
 
 ### Polish
 
