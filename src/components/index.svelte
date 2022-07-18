@@ -1,8 +1,11 @@
 <script>
+	import '../styles/global.css';
 	import { onMount } from 'svelte';
 	import VanillaTilt from 'vanilla-tilt';
 	import * as gridEngine from "../engine.js";
 	import { palette } from "../palette.js";
+	import { apiData, Data, imgData, Img } from '../data';
+
 
 	onMount(() => {
 		VanillaTilt.init(document.querySelectorAll('.gallery-item'), {
@@ -10,8 +13,6 @@
 			scale: 1.05
 		});
 	});
-
-	import { apiData, Data, imgData, Img } from '../data';
 
 	async function drawGames(games) {
 		const imgs = [];

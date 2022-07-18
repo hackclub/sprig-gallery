@@ -1,4 +1,5 @@
 <script>
+	import '../styles/global.css';
 	import { onMount } from 'svelte';
 
 	onMount(() => {
