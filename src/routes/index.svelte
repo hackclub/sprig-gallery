@@ -118,7 +118,10 @@
 				</p>
 			</div>
 			<div>
-				<a href="https://sprig.hackclub.dev" class="button big-button">Create Your Own</a>
+				<a href="https://sprig.hackclub.dev" class="button big-button">
+					Create Your Own
+				</a>
+				<a href="/getting-started" class="button big-button">Getting Started</a>
 				<a href="/share" class="button big-button">Share your game</a>
 			</div>
 		</div>
