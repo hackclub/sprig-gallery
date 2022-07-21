@@ -88,7 +88,7 @@
 		<div class="gallery-inner">
 			{#each data as thumbnail}
 				<div class="gallery-item">
-					<a href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${thumbnail.name}`}>
+					<a href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${thumbnail.name}.js`}>
 
 						<div class="image-box">
 							<img src={thumbnail.imgURL} class="image" alt="game preview" />
