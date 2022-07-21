@@ -1,8 +1,8 @@
 <script>
 	import { onMount } from 'svelte';
 	import VanillaTilt from 'vanilla-tilt';
-	import * as gridEngine from "../engine.js";
-	import { palette } from "../palette.js";
+
+	let data = [];
 
 	onMount(() => {
 		VanillaTilt.init(document.querySelectorAll('.gallery-item'), {
@@ -11,100 +11,52 @@
 		});
 	});
 
-	import { apiData, Data, imgData, Img } from '../data';
+	const decode = ({ data, width }) => {
+    const decodedString = atob(data);
+    const l = decodedString.length;
+    const buf = new Uint8ClampedArray(l);
+    for (let i = 0; i < l; i++) {
+      const char = decodedString[i];
+      const byte = char.charCodeAt(0);
+      buf[i] = byte;
+    }
 
-	async function drawGames(games) {
-		const imgs = [];
-
-		for (const game of games) {
-			if (game.name.split('.').pop() != 'js') continue;
-			const src = await fetch(game.download_url).then(x => x.text());
-
-			let screen, bitmaps;
-			const setScreenSize = (w, h) => screen = new ImageData(w, h);
-			const { api, state } = gridEngine.init({
-				palette,
-				setBitmaps: bm => bitmaps = bm,
-				setScreenSize,
-			});
-			api.setScreenSize = setScreenSize;
-			api.afterInput = () => {};
-			api.onInput = () => {};
-
-			try {
-				new Function(...Object.keys(api), src)(...Object.values(api));
-
-				if (!screen) throw new Error("never set screen size");
-				if (!bitmaps) throw new Error("never set legend");
-			} catch(e) {
-				console.error(`couldn't run ${game.name}: ${e}`);
-				continue;
-			}
-
-			screen.data.fill(255);
-			drawTiles(state, api, screen, bitmaps);
-			const canvas = document.createElement("canvas");
-			canvas.width = canvas.height = Math.max(screen.width, screen.height);
-			canvas.imageSmoothingEnabled = false;
-			canvas.getContext("2d").putImageData(screen, 0, 0);
-			console.log(canvas);
-			imgs.push({ name: game.name, download_url: canvas.toDataURL() });
-		}
-
-		console.log(imgs);
-		imgData.set(imgs);
-
-		function blitSprite(screen, sprite, tx, ty) {
-			const [_, { imageData: { data: bitmap } }] = sprite;
-			for (let x = 0; x < 16; x++)
-				for (let y = 0; y < 16; y++) {
-					const sx = tx*16 + x;
-					const sy = ty*16 + y;
-
-					if (bitmap[(y*16 + x)*4 + 3] < 255) continue;
-
-					screen.data[(sy*screen.width + sx)*4 + 0] = bitmap[(y*16 + x)*4 + 0];
-					screen.data[(sy*screen.width + sx)*4 + 1] = bitmap[(y*16 + x)*4 + 1];
-					screen.data[(sy*screen.width + sx)*4 + 2] = bitmap[(y*16 + x)*4 + 2];
-					screen.data[(sy*screen.width + sx)*4 + 3] = bitmap[(y*16 + x)*4 + 3];
-				}
-		}
-
-		function drawTiles(state, api, screen, bitmaps) {
-			const { dimensions, legend } = state;
-			const { width, height, maxTileDim } = dimensions;
-
-			const grid = api.getGrid();
-
-			for (const cell of grid) {
-				const zOrder = legend.map(x => x[0]);
-				cell.sort((a, b) => zOrder.indexOf(a.type) - zOrder.indexOf(b.type));
-
-				for (const { x, y, type } of cell) {
-					blitSprite(screen, bitmaps.find(x => x[0] == type), x, y);
-				}
-			}
-		}
-	}
+    return new ImageData(buf, width);
+  }
 
 	onMount(async () => {
-		fetch('https://api.github.com/repos/hackclub/sprig/contents/games?recursive=1')
-			.then((res) => res.json())
-			.then((data) => {
-				apiData.set(data);
-				drawGames(data);
-			})
-			.catch((error) => {
-				console.log(error);
-				return [];
+		const gitFiles = await fetch('https://api.github.com/repos/hackclub/sprig/contents/games?recursive=1').then(res => res.json());
+
+		const makeURL = x => `https://sprig.hackclub.dev/api/thumbnail/${x}`
+
+		const names = gitFiles
+			.map(async x => {
+				try {
+					const res = await fetch(makeURL(x.name.slice(0, -3), { mode: "no-cors" }));
+					const json = await res.json();
+
+					json.image = decode(json.image);
+					const c = document.createElement("canvas");
+					c.width = json.image.width;
+					c.height = json.image.height;
+					c.getContext("2d").putImageData(json.image, 0, 0);
+					// const factor = 200/c.width;
+					// c.style.width = c.width*factor + "px";
+					// c.style.height = c.height*factor + "px";
+					c.style["image-rendering"] = "pixelated";
+					json.imgURL = c.toDataURL();
+					return json;
+				} catch (err) {
+					console.log(err);
+				}
 			});
 
-		// var iframe = document.getElementsByTagName('iframe');
-		// for (let i = 0; i < iframe.length; i++) {
-		// 	var elmnt = iframe.contentWindow.document.getElementsByClassName('run')[0];
-		// }
-		// console.log('element:' + elmnt);
-	});
+		const result = await Promise.all(names);
+
+		data = result.filter(x => x);
+	})
+
+
 </script>
 
 <body>
@@ -134,39 +86,28 @@
 	>
 	<div class="gallery-outer">
 		<div class="gallery-inner">
-			{#each $Data as data}
-				{#if data.name == '.DS_Store'}
-					<h1 style="display: none;">hi</h1>
-					<!--hacky temp solution-->
-				{:else if data.name == 'img'}
-					<h1 style="display: none;">hi</h1>
-					<!--hacky temp solution-->
-				{:else}
-					<div class="gallery-item">
-						<a href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${data.name}`}>
-							{#each $Img as img}
-								{#if img.name == data.name}
-									<div class="image-box">
-										<img src={img.download_url} class="image" alt="game preview" />
-									</div>
-								{/if}
-							{/each}
-							<div class="text">
-								<h3>
-									{data.name
-										.replace('.js', '')
-										.replace('_', ' ')
-										.replace('-', ' ')
-										.replace('.', '')}
-								</h3>
-							</div>
-						</a>
-					</div>
-				{/if}
+			{#each data as thumbnail}
+				<div class="gallery-item">
+					<a href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${thumbnail.name}`}>
+
+						<div class="image-box">
+							<img src={thumbnail.imgURL} class="image" alt="game preview" />
+						</div>
+
+						<div class="text">
+							<h3> {thumbnail.name} </h3>
+						</div>
+						
+					</a>
+				</div>
 			{/each}
 		</div>
 	</div>
 </body>
+
+
+
+
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=B612+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
@@ -326,6 +267,7 @@
 		border-radius: 3px;
 		object-fit: cover;
 		transform: translateZ(20px);
+		background: white;
 	}
 
 	.logo {
