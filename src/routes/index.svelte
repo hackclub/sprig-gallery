@@ -25,14 +25,15 @@
   }
 
 	onMount(async () => {
-		const gitFiles = await fetch('https://api.github.com/repos/hackclub/sprig/contents/games?recursive=1').then(res => res.json());
+		const gitFiles = await fetch('https://api.github.com/repos/hackclub/sprig/contents/games?recursive=1')
+			.then(res => res.json());
 
 		const makeURL = x => `https://sprig.hackclub.dev/api/thumbnail/${x}`
 
 		const names = gitFiles
 			.map(async x => {
 				try {
-					const res = await fetch(makeURL(x.name.slice(0, -3), { mode: "no-cors" }));
+					const res = await fetch(makeURL(x.name.slice(0, -3)));
 					const json = await res.json();
 
 					json.image = decode(json.image);
@@ -81,7 +82,7 @@
 	<a class="logo" href="https://hackclub.com"
 		><img src="https://assets.hackclub.com/flag-orpheus-top.svg" alt="hack club logo" /></a
 	>
-	<a href="https://github.com/hackclub/sprig" target="_blank"
+	<a href="https://github.com/hackclub/sprig/tree/main/games" target="_blank"
 		><img src="./github.svg" alt="github logo" class="github-logo" /></a
 	>
 	<div class="gallery-outer">
