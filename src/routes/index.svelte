@@ -67,14 +67,17 @@
 				<h1>Sprig Gallery</h1>
 				<p>
 					The best way to learn is by making things you care about and sharing them with others.
+				</p>
+				<p>
 					Check out games by other Hack Clubbers!
+
+					Click to play each game and to hack on the code.
 				</p>
 			</div>
 			<div>
 				<a href="https://sprig.hackclub.dev" class="button big-button">
 					Create Your Own
 				</a>
-				<a href="https://github.com/hackclub/sprig-gallery/blob/main/src/routes/getting-started.md#lets-make-our-first-game-in-sprig" class="button big-button">Getting Started</a>
 				<a href="/share" class="button big-button">Share your game</a>
 			</div>
 		</div>
