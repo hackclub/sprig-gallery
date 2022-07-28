@@ -7,60 +7,11 @@
    viewBox="0 0 152.87192 21.168491"
    version="1.1"
    id="svg5"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
-   sodipodi:docname="gallery.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview7"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
-     showgrid="false"
-     inkscape:zoom="1"
-     inkscape:cx="472"
-     inkscape:cy="58"
-     inkscape:window-width="1920"
-     inkscape:window-height="974"
-     inkscape:window-x="-11"
-     inkscape:window-y="-11"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
   <defs
-     id="defs2">
-    <linearGradient
-       inkscape:collect="always"
-       id="linearGradient1290">
-      <stop
-         style="stop-color:#000000;stop-opacity:1;"
-         offset="0"
-         id="stop1286" />
-      <stop
-         style="stop-color:#000000;stop-opacity:0;"
-         offset="1"
-         id="stop1288" />
-    </linearGradient>
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient1290"
-       id="linearGradient1292"
-       x1="7.6546383"
-       y1="108.50621"
-       x2="202.38791"
-       y2="108.50621"
-       gradientUnits="userSpaceOnUse" />
-  </defs>
+     id="defs2" />
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-23.206915,-76.214833)">
     <text
@@ -69,7 +20,6 @@
        x="25.206915"
        y="95.383324"
        id="text113"><tspan
-         sodipodi:role="line"
          id="tspan111"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;font-family:AddLGBitmap09;-inkscape-font-specification:'AddLGBitmap09, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;stroke:#000000;stroke-width:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
          x="25.206915"
@@ -80,7 +30,6 @@
        x="25.206915"
        y="94.324989"
        id="text1296"><tspan
-         sodipodi:role="line"
          id="tspan1294"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;font-family:AddLGBitmap09;-inkscape-font-specification:'AddLGBitmap09, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;stroke:#000000;stroke-width:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
          x="25.206915"
@@ -91,7 +40,6 @@
        x="25.206915"
        y="93.266655"
        id="text1310"><tspan
-         sodipodi:role="line"
          id="tspan1308"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;font-family:AddLGBitmap09;-inkscape-font-specification:'AddLGBitmap09, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffde4d;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
          x="25.206915"
