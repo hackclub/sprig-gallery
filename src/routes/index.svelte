@@ -63,7 +63,7 @@
     <div class="info-outer">
       <div class="info-inner">
         <div class="title">
-          <h1>Sprig Gallery</h1>
+          <h1>Gallery</h1>
           <p>
             The best way to learn is by making things you care about and sharing
             them with others.
@@ -74,10 +74,12 @@
           </p>
         </div>
         <div>
-          <a href="https://sprig.hackclub.dev" class="button big-button">
-            Create Your Own
-          </a>
-          <a href="/share" class="button big-button">Share your game</a>
+          <button class="button">
+				Create
+		</button>
+          <button class="button">
+				Add
+		</button>
         </div>
       </div>
     </div>
@@ -96,13 +98,18 @@
           <div class="gallery-item">
             <a
               href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${thumbnail.name}.js`}
+
             >
               <div class="image-box">
                 <img src={thumbnail.imgURL} class="image" alt="game preview" />
               </div>
 
               <div class="text">
-                <h3>{thumbnail.name}</h3>
+                <h3>{thumbnail.name}
+					<!-- <br />
+					by Name -->
+				</h3>
+
               </div>
             </a>
           </div>
@@ -113,8 +120,23 @@
 </body>
 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=B612+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+	@import url('https://fonts.googleapis.com/css2?family=JetBrains-Mono&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+  @font-face {
+    font-family: 'AddLGBitmap09';
+	src: url('/fonts/AddLGBitmap09.ttf');
+	font-weight: 400;
+	font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Pixeboy';
+	src: url('/fonts/Pixeboy.ttf');
+	font-weight: 400;
+	font-style: normal;
+  }
   :root {
     --pcb-lighter: #04a356;
     --pcb-base: #016e3d;
@@ -123,10 +145,11 @@
   }
 
   body {
-    font-family: "B612 Mono", monospace;
+    font-family: "JetBrains Mono", monospace;
     font-weight: 400;
     color: white;
-    margin: auto;
+    margin: 0;
+	padding: 0;
 	background-color: var(--pcb-base);
 	/* background-image: url(https://sprig.hackclub.dev/assets/bg.12a2b49c.svg); */
 	background-size: cover;
@@ -143,6 +166,13 @@
   h1 {
     font-size: 24px;
     margin: 0;
+	text-transform: uppercase;
+	font-family: 'AddLGBitmap09', monospace;
+	/* letter-spacing: -3px; */
+	text-shadow:
+		-3px -3px 0 #000, 0 -3px 0 #000, 3px -3px 0 #000, 3px 0 0 #000,
+		3px 10px 0 #000, 0 10px 0 #000, -3px 10px 0 #000, -3px 0 0 #000;
+	/* text-shadow: -4px 6px 0 black; */
   }
 
   h3 {
@@ -150,7 +180,8 @@
     text-transform: capitalize;
     color: black;
     margin-top: 10px;
-    font-size: 15px;
+    font-size: 20px;
+	font-weight: 400;
     transform: translateZ(20px);
   }
 
@@ -159,11 +190,11 @@
   }
 
   p {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .wrapper {
-	width: 100%;
+	width: 100vw;
 	z-index: -1;
 	display: flex;
 	padding-top: 5em;
@@ -172,19 +203,21 @@
   .info-outer {
     /* background-color: var(--pcb-base); */
     padding: 10vh 0;
-    max-width: 40vw;
+    width: 40%;
+	position: relative;
   }
 
   .info-inner {
-    width: 85%;
+    width: 80%;
     margin: auto;
   }
 
   .title {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
   .gallery-outer {
-    /* width: 100vw; */
+    width: 60%;
+	position: relative;
     /* background-color: #014a27; */
     height: fit-content;
     min-height: 100vh;
@@ -193,66 +226,115 @@
   }
   .gallery-inner {
     /* width: 85vw; */
-    width: 95%;
     margin: auto;
     display: grid;
-    column-gap: 20px;
-    row-gap: 20px;
+    column-gap: 15px;
+    row-gap: 15px;
   }
 
   .gallery-item {
-    background: #fffd94;
-    padding: 5px 3px;
+    background: white;
+    /* padding: 5px 3px; */
     /* border-radius: 5px; */
-	border: 2px solid black;
+	border-image-repeat: stretch;
+	border-image-slice: 3;
+	border-image-width: 3;
+	border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(33,37,41)" /></svg>');
+	border-image-outset: 2;
+	padding: 1rem 1.5rem;
+	margin: 4px;
+	border-style: solid;
+	border-width: 4px;
     /* border-bottom: var(--pcb-darker) 10px solid; */
-    transition-duration: 0.5s;
-    transform-style: preserve-3d;
-    transform: perspective(1000px);
   }
 
   .gallery-item:hover {
-    transform: scale(1.05) rotate(2deg);
+    /* transform: scale(1.05) rotate(2deg); */
     cursor: pointer;
   }
 
+  /* .front {
+    display: inline-block;
+    padding: 4px 16px;
+    border-radius: 4px;
+    background: hsl(345deg 100% 47%);
+    color: white;
+    transform: translateY(-6px);
+	letter-spacing: 1px;
+  } */
+
   .button {
-    background-color: var(--pcb-trace);
-    padding: 5px 10px;
-    font-size: 0.8em;
-    color: var(--pcb-lighter);
-    text-decoration: none;
-    font-weight: 700;
-    border-radius: 3px;
-    margin-left: auto;
-    transition-duration: 0.5s;
-    margin-top: 10px;
-    transform: translateZ(20px);
+	font-family: 'Press Start 2P';
+    font-size: 16px;
+	margin: 4px;
+	display: inline-block;
+    /* background: hsl(340deg 100% 32%); */
+    /* border: none; */
+	color: #212529;
+	background: #f7d51d;
+
+    padding: 6px 10px;
+    cursor: pointer;
+	text-align: center;
+	vertical-align: middle;
+	user-select: none;
+	border-style: solid;
+	position: relative;
+	border-width: 4px;
+
+	border-image-slice: 2;
+	border-image-width: 2;
+	border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="rgb(33,37,41)" /></svg>');
+	border-image-outset: 2;
+  }
+
+  .button::after {
+	position: absolute;
+	top: -4px;
+	left: -4px;
+	right: -4px;
+	bottom: -4px;
+	content: '';
+	box-shadow: inset -4px -4px #e59400;
+	box-sizing: border-box;
   }
 
   .button:hover {
-    transform: scale(1.12) rotate(3deg);
+	background: #f2c409;
+	text-decoration: none;
+	
   }
 
-  .big-button {
+  .button:hover::after {
+	box-shadow: inset -6px -6px #e59400;
+  }
+
+/*   
+  .button:active .front {
+    transform: translateY(-2px);
+  } */
+
+  /* .big-button {
     position: relative;
     font-size: 16px;
-    background-color: transparent;
+	letter-spacing: 1px;
+    background-color: rgb(224, 155, 26);
     color: white;
-    border: white 2px dotted;
   }
 
   .big-button:hover {
     background-color: white;
     color: var(--pcb-base);
-    border: white 2px solid;
-  }
+  } */
 
   .text {
+	/* font-family: 'Press Start 2P'; */
     padding: 10px 0;
     display: flex;
     flex: 60% 40%;
     flex-wrap: wrap;
+	width: 100%;
+	
   }
 
   .github-logo {
@@ -270,11 +352,10 @@
   }
 
   .image-box {
-    width: 200px;
-    height: 200px;
+	height: 180px;
     overflow: hidden;
 	border: 2px solid black;
-    transform: translateZ(20px);
+	visibility: hidden;
   }
 
   .image {
@@ -282,8 +363,8 @@
     height: 100%;
     border-radius: 3px;
     object-fit: cover;
-    transform: translateZ(20px);
     background: white;
+	/* display: none; */
   }
 
   .logo {
@@ -332,10 +413,6 @@
       font-size: 26px;
     }
 
-    h3 {
-      font-size: 18px;
-    }
-
     p {
       font-size: 14px;
     }
@@ -348,11 +425,6 @@
       width: 36px;
     }
 
-    .big-button {
-      position: relative;
-      font-size: 20px;
-    }
-
     /* .image-box {
       height: 200px;
     } */
@@ -363,21 +435,12 @@
       font-size: 42px;
     }
 
-    h3 {
-      font-size: 20px;
-    }
-
     .gallery-inner {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 
     .github-logo {
       width: 38px;
-    }
-
-    .big-button {
-      position: relative;
-      font-size: 20px;
     }
 
     /* .image-box {
@@ -387,15 +450,15 @@
 
   @media (min-width: 920px) {
     h1 {
-      font-size: 54px;
+      font-size: 68px;
     }
 
     p {
-      font-size: 18px;
+      font-size: 20px;
     }
 
     .gallery-item {
-      padding: 15px;
+      padding: 10px;
     }
 
     .logo img {
