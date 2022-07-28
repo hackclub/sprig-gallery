@@ -73,7 +73,7 @@
         </div>
         <div class="button-container">
           <button class="button"> Create </button>
-          <button class="button"> Add A Game </button>
+          <button class="button"> Add Your Game </button>
         </div>
       </div>
     </div>
@@ -145,8 +145,8 @@
     color: white;
     margin: 0;
     padding: 0;
-    background-color: var(--pcb-base);
     /* background-image: url(https://sprig.hackclub.dev/assets/bg.12a2b49c.svg); */
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/pixelart_ruins_girl_trees.png');
     background-size: cover;
   }
 
@@ -187,7 +187,7 @@
 
   p {
     font-family: 'OS X Darwin', 'JetBrains Mono', monospace;
-    /* text-shadow: 0 1px 0 #000; */
+    /* text-shadow: 0 1px 0px #000; */
     /* line-height: 1.5; */
   }
 
@@ -275,7 +275,7 @@
     /* background: hsl(340deg 100% 32%); */
     /* border: none; */
     color: #212529;
-    background: #f7d51d;
+    background: #ffde4d;
 
     padding: 6px 12px;
     cursor: pointer;
