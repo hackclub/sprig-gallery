@@ -89,8 +89,9 @@
     >
     <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
     <div class="gallery-outer">
-      <div class="gallery-item start-from-scratch">
+      <div id="start-from-scratch" class="gallery-item">
         <a href="/">
+          <img class="novice-tag" src="/novice.png" alt="novice">
           <div class="image-box">
             <div class="gallery-image">
               <span>Start<br />From<br />Scratch</span>
@@ -222,13 +223,13 @@
     width: 100vw;
     z-index: -1;
     display: flex;
-    padding: 4rem 9rem;
+    padding: 4rem 6rem;
   }
 
   .info-outer {
     /* background-color: var(--pcb-base); */
     padding: 10vh 0;
-    width: calc(50% - 9rem);
+    width: calc(50% - 6rem);
     position: relative;
   }
 
@@ -311,14 +312,12 @@
     padding: 0;
   }
 
-  .start-from-scratch .gallery-text {
+  #start-from-scratch .gallery-text {
     visibility: hidden;
   }
-
-  .gallery-item {
-    display: flex;
-    flex-direction: column;
-    background: #ffde4d67;
+  
+  #start-from-scratch {
+    background: rgba(255, 222, 77, 0.5);
     border-style: solid;
     border-width: 4px;
     border-image-repeat: stretch;
@@ -326,8 +325,33 @@
     border-image-width: 3;
     border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(229, 148, 0)" /></svg>');
     border-image-outset: 2;
+  }
+  #start-from-scratch a {
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(242, 196, 9)" /></svg>');
+  }
+
+  .gallery-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: rgba(48, 69, 86, 0.7);
+    border-style: solid;
+    border-width: 4px;
+    border-image-repeat: stretch;
+    border-image-slice: 3;
+    border-image-width: 3;
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(84, 101, 117)" /></svg>');
+    border-image-outset: 2;
 
     backdrop-filter: blur(3px);
+  }
+
+  .novice-tag {
+    position: absolute;
+    width: 130%;
+    top: 8%;
+    left: -15%;
+    transform: rotate(-3deg);
   }
   .gallery-item a {
     border-style: solid;
@@ -335,7 +359,7 @@
     border-image-repeat: stretch;
     border-image-slice: 3;
     border-image-width: 3;
-    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(242, 196, 9)" /></svg>');
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(118, 136, 156)" /></svg>');
     border-image-outset: 2;
   }
 
@@ -344,14 +368,18 @@
     cursor: url('/cursor-click.png'), pointer;
   }
 
+  #start-from-scratch:hover {
+    background: #f2c3099b;
+  }
+
   .gallery-item:hover {
     transform: scale(1.05);
-    background: #f2c3099b;
+    background: rgba(72, 96, 125, 0.8);
   }
 
   .sprig-dino {
     position: fixed;
-    right: 30px;
+    left: 30px;
     bottom: -3.8rem;
     width: 4rem;
     transition: all 0.5s linear;
@@ -378,7 +406,7 @@
   .gallery-outer {
     padding: 10vh 0;
     margin: 0;
-    width: calc(50% - 4rem);
+    width: calc(50%);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

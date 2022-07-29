@@ -1,10 +1,12 @@
 - [X] Add NES cursor
-- [ ] Add preloader that lets you in after github pulls are done
-- [ ] Add sprig logo
+- [ ] Add preloader that lets you in after it's done fetching from gh
+- [X] Add sprig logo
+- [ ] Get rid of the first card animation somehow
 - [ ] Revamp cards
 - [ ] Make infinite parallax scroll dirt background
 - [ ] Add filter by tag section
     - [ ] Display "Good for beginners", other tags (?) on the actual cards
-- [ ] Add game authors
+- [ ] Fetch game authors from gh
+- [ ] Fix the card width
 - [X] Add "Start from scratch" card
 - [ ] Make responsive
