@@ -63,10 +63,10 @@
     <div class="info-outer">
       <div class="info-inner">
         <div class="title">
-			<div class="gallery-title">
-				<!-- <img src="/spriglogotext.png" alt="sprig logo" class="sprig-logo"> -->
-				<img class="gallery-header" src="/gallery.svg" alt="gallery header" draggable="false"/>
-			</div>
+          <div class="gallery-title">
+            <!-- <img src="/spriglogotext.png" alt="sprig logo" class="sprig-logo"> -->
+            <img class="gallery-header" src="/gallery.svg" alt="gallery header" draggable="false" />
+          </div>
           <p>
             The best way to learn is by making things you care about and sharing them with others.
           </p>
@@ -75,7 +75,7 @@
           </p>
         </div>
         <div class="button-container">
-          <button class="button"> Create </button>
+          <!-- <button class="button"> Create </button> -->
           <button class="button"> Add Your Game </button>
         </div>
       </div>
@@ -87,20 +87,33 @@
       ><img src="./github.svg" alt="github logo" class="github-logo" /></a
     >
     <div class="gallery-outer">
-        {#each data as thumbnail}
-          <div class="gallery-item">
-            <a href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${thumbnail.name}.js`} style="margin:0;padding:0;">
-				<div class="image-box">
-					<img src={thumbnail.imgURL} class="gallery-image" alt="game preview" />
-				</div>
-				<div class="gallery-text">
-                <h3>
-                  {thumbnail.name}
-                </h3>
-              </div>
-            </a>
+      <div class="gallery-item start-from-scratch">
+        <a href="/">
+          <div class="image-box">
+            <div class="gallery-image"></div>
           </div>
-        {/each}
+          <div class="gallery-text">
+          </div>
+        </a>
+      </div>
+      {#each data as thumbnail}
+        <div class="gallery-item">
+          <a
+            href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${thumbnail.name}.js`}
+            style="margin:0;padding:0;"
+          >
+            <div class="image-box">
+              <img src={thumbnail.imgURL} class="gallery-image" alt="game preview" />
+            </div>
+            <div class="gallery-text">
+              <h3>
+                {thumbnail.name}<br />
+                <span>by Author</span>
+              </h3>
+            </div>
+          </a>
+        </div>
+      {/each}
     </div>
   </div>
 </body>
@@ -138,7 +151,7 @@
   }
 
   * {
-	cursor: url('/cursor.png'), auto;
+    cursor: url('/cursor.png'), auto;
   }
 
   body {
@@ -146,12 +159,13 @@
     color: white;
     margin: 0;
     padding: 0;
-	overflow-x: hidden;
-	/* background-color: var(--pcb-base);
+    overflow-x: hidden;
+    /* background-color: var(--pcb-base);
     background-image: url(https://sprig.hackclub.dev/assets/bg.12a2b49c.svg); */
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/pixelart_ruins_girl_trees.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url('/pixelart_ruins_girl_trees.png');
     background-size: cover;
-	background-attachment: fixed;
+    background-attachment: fixed;
   }
 
   h3::selection,
@@ -171,10 +185,9 @@
       4px 0 0 #000, 4px 11px 0 #000, 0 11px 0 #000, -4px 11px 0 #000, -4px 0 0 #000;
   } */
 
-
   .gallery-title {
     width: 90%;
-	position: relative;
+    position: relative;
   }
 
   h3 {
@@ -264,7 +277,7 @@
 
   .button:hover {
     background: #f2c409;
-	transform: scale(1.05);
+    transform: scale(1.05);
     text-decoration: none;
   }
 
@@ -277,30 +290,35 @@
     display: flex;
     flex: 60% 40%;
     flex-wrap: wrap;
-    width: 100%;
-	padding: .8rem;
+    padding: 0 0.8rem 0.8rem 0.8rem;
+  }
+
+  .gallery-text span {
+    font-size: 1.2rem;
+    padding: 0;
   }
 
   .gallery-item {
-	background: #ffde4d;
-	/* background: linear-gradient(0deg, rgba(93,50,9,1) 0%, rgba(175,90,4,1) 100%); */
+    background: #ffde4d;
+    /* background: linear-gradient(0deg, rgba(93,50,9,1) 0%, rgba(175,90,4,1) 100%); */
     border-style: solid;
     border-width: 4px;
-	border-image-repeat: stretch;
-	/* padding: 1rem 1.5rem; */
+    border-image-repeat: stretch;
+    /* padding: 1rem 1.5rem; */
     border-image-slice: 3;
     border-image-width: 3;
     border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(229, 148, 0)" /></svg>');
     border-image-outset: 2;
   }
 
-  .gallery-item, .gallery-item * {
+  .gallery-item,
+  .gallery-item * {
     cursor: url('/cursor-click.png'), pointer;
   }
 
   .gallery-item:hover {
-	transform: scale(1.05);
-	background: #f2c409;
+    transform: scale(1.05);
+    background: #f2c409;
   }
 
   .github-logo {
@@ -319,30 +337,29 @@
   }
 
   .gallery-outer {
-	padding: 10vh 0;
-	margin: 0;
-	width: 50%;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: flex-start;
-	gap: 2.2rem;
+    padding: 10vh 0;
+    margin: 0;
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 2.2rem;
   }
 
   .image-box {
-	width: 13rem;
-	height: 13rem;
-	border: 4px solid black;
-	margin: .8rem;
-
+    width: 13rem;
+    height: 13rem;
+    border: 4px solid black;
+    margin: 0.8rem;
   }
 
   .gallery-image {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
     background: white;
-	/* border: 4px solid #000; */
+    /* border: 4px solid #000; */
   }
 
   .logo {
@@ -356,9 +373,9 @@
     transform-origin: top left;
   }
 
-  .logo, .logo * {
+  .logo,
+  .logo * {
     cursor: url('/cursor-click.png'), pointer;
-
   }
 
   .logo img {
@@ -381,7 +398,6 @@
   }
 
   @media (min-width: 320px) {
-
     .github-logo {
       width: 24px;
     }
@@ -399,7 +415,6 @@
     .github-logo {
       width: 36px;
     }
-
   }
 
   @media (min-width: 760px) {
@@ -414,7 +429,7 @@
     } */
 
     p {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
 
     .button {
