@@ -4,8 +4,9 @@
 - [ ] Get rid of the first card animation somehow
 - [ ] Revamp cards
 - [ ] Make infinite parallax scroll dirt background
-- [ ] Add filter by tag section
-    - [ ] Display "Good for beginners", other tags (?) on the actual cards
+- [X] Add filter by tag section
+    - [X] Display "Good for beginners", other tags (?) on the actual cards
+    - [ ] Give each one a designated color
 - [ ] Fetch game authors from gh
 - [ ] Fix the card width
 - [X] Add "Start from scratch" card

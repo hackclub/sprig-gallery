@@ -75,7 +75,19 @@
             </p>
           </div>
         </div>
+
+        <div class="tag-container">
+          <fieldset>
+            <legend>Sort By Tag</legend>
+            <button class="btn-green button"> New Creations </button>
+            <button class="btn-red button"> For Beginners </button>
+            <button class="btn-blue button"> Tutorials </button>
+        </fieldset>
+        </div>
         <div class="button-container">
+          <p>
+            Want to join in on the fun? If you have a Sprig game to share with the community, add it here!
+          </p>
           <!-- <button class="button"> Create </button> -->
           <button class="button"> Add Your Game </button>
         </div>
@@ -242,6 +254,24 @@
     margin-bottom: 30px;
   }
 
+  .tag-container {
+    margin: 2rem 0;
+    position: relative;
+    width: 90%;
+  }
+
+  .tag-container fieldset {
+    border: 4px solid white;
+    padding: .8rem;
+  }
+
+  .tag-container fieldset legend {
+    font-family: 'Pixel Emulator', monospace;
+    font-size: 1rem;
+    padding: 0 .5rem;
+    margin-left: 1rem;
+  }
+
   .button-container .button:not(:last-child) {
     margin-right: 1rem;
   }
@@ -293,6 +323,56 @@
   .button:hover::after {
     box-shadow: inset 4px 4px #fbf7b178, inset -6px -6px #e59400;
   }
+
+.btn-red {
+  color: white;
+  background: #ff1744;
+}
+
+.btn-red::after {
+  box-shadow: inset 4px 4px #f56e8a, inset -4px -4px #b91740;
+}
+
+.btn-red:hover {
+  background: #d40f37;
+}
+
+.btn-red:hover::after {
+  box-shadow: inset 4px 4px #f56e897c, inset -6px -6px #940f30;
+}
+
+.btn-green {
+  color: white;
+  background: #7ab73a;
+}
+
+.btn-green::after {
+  box-shadow: inset 4px 4px #b3ec8c, inset -4px -4px #4aa52e;
+}
+
+.btn-green:hover {
+  background: #63c125;
+}
+
+.btn-green:hover::after {
+  box-shadow: inset 4px 4px #b2ec8c83, inset -6px -6px #4aa52e;
+}
+.btn-blue {
+  color: white;
+  background: #209cee;
+}
+
+.btn-blue::after {
+  box-shadow: inset 4px 4px #78c4f7, inset -4px -4px #006bb3;
+}
+
+.btn-blue:hover {
+  background: #108de0;
+}
+
+.btn-blue:hover::after {
+  box-shadow: inset 4px 4px #78c4f77e, inset -6px -6px #006bb3;
+}
 
   .gallery-text {
     font-family: 'OS X Darwin';
