@@ -1,9 +1,10 @@
 - [X] Add NES cursor
+- [ ] Add preloader that lets you in after github pulls are done
 - [ ] Add sprig logo
-- [ ] Make button vector
-- [ ] Make card vector
+- [ ] Revamp cards
 - [ ] Make infinite parallax scroll dirt background
-- [ ] Add tags
+- [ ] Add filter by tag section
+    - [ ] Display "Good for beginners", other tags (?) on the actual cards
 - [ ] Add game authors
-- [ ] Add "Start from scratch" card
-- [ ] Make gallery responsive
+- [X] Add "Start from scratch" card
+- [ ] Make responsive

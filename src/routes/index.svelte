@@ -66,13 +66,14 @@
           <div class="gallery-title">
             <!-- <img src="/spriglogotext.png" alt="sprig logo" class="sprig-logo"> -->
             <img class="gallery-header" src="/gallery.svg" alt="gallery header" draggable="false" />
+            <p>
+              The best way to learn is by making things you care about and sharing them with others.
+            </p>
+            <p>
+              Check out games by other Hack Clubbers! Click to play each game and to hack on the
+              code.
+            </p>
           </div>
-          <p>
-            The best way to learn is by making things you care about and sharing them with others.
-          </p>
-          <p>
-            Check out games by other Hack Clubbers! Click to play each game and to hack on the code.
-          </p>
         </div>
         <div class="button-container">
           <!-- <button class="button"> Create </button> -->
@@ -84,7 +85,7 @@
       ><img src="https://assets.hackclub.com/flag-orpheus-top.svg" alt="hack club logo" /></a
     >
     <a href="https://github.com/hackclub/sprig/tree/main/games" target="_blank"
-      ><img src="./github.svg" alt="github logo" class="github-logo" /></a
+      ><img src="./spriglogotext.png" alt="sprig logo" class="sprig-logo" /></a
     >
     <div class="gallery-outer">
       <div class="gallery-item start-from-scratch">
@@ -188,13 +189,14 @@
       4px 0 0 #000, 4px 11px 0 #000, 0 11px 0 #000, -4px 11px 0 #000, -4px 0 0 #000;
   } */
 
-  .gallery-title {
-    width: 90%;
-    position: relative;
+  .gallery-header {
+    width: 20rem;
+    padding: 0;
+    margin: 0;
   }
 
-  .gallery-header {
-    width: 22rem;
+  .gallery-title {
+    width: 90%;
   }
 
   h3 {
@@ -219,20 +221,20 @@
     width: 100vw;
     z-index: -1;
     display: flex;
-    padding-top: 4rem;
+    padding: 4rem 6rem;
   }
 
   .info-outer {
     /* background-color: var(--pcb-base); */
     padding: 10vh 0;
-    width: 50%;
+    width: calc(50% - 6rem);
     position: relative;
   }
 
-  .info-inner {
+  /* .info-inner {
     width: 70%;
     margin: auto;
-  }
+  } */
 
   .title {
     margin-bottom: 30px;
@@ -280,7 +282,6 @@
     box-sizing: border-box;
   }
 
-
   .button:hover {
     background: #f2c409;
     transform: scale(1.05);
@@ -319,7 +320,6 @@
     border-image-width: 3;
     border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(229, 148, 0)" /></svg>');
     border-image-outset: 2;
-
   }
 
   .gallery-item,
@@ -332,25 +332,23 @@
     background: #f2c409;
   }
 
-  .github-logo {
-    color: white;
+  .sprig-logo {
     position: absolute;
     right: 30px;
     top: 30px;
-    fill: white;
-    width: 24px;
-    transition-duration: 0.5s;
+    width: 8rem;
+    /* transition-duration: 0.5s; */
     cursor: url('/cursor-click.png'), pointer;
   }
 
-  .github-logo:hover {
-    transform: rotate(9deg);
+  .sprig-logo:hover {
+    transform: scale(1.05);
   }
 
   .gallery-outer {
     padding: 10vh 0;
     margin: 0;
-    width: 50%;
+    width: calc(50%);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -378,7 +376,7 @@
     font-size: 1.8rem;
     text-transform: lowercase;
     display: block;
-    padding: .4rem;
+    padding: 0.4rem;
   }
 
   .logo {
@@ -417,9 +415,9 @@
   }
 
   @media (min-width: 320px) {
-    .github-logo {
+    /* .sprig-logo {
       width: 24px;
-    }
+    } */
   }
 
   @media (min-width: 480px) {
@@ -431,15 +429,15 @@
       font-size: 1rem;
     }
 
-    .github-logo {
+    /* .sprig-logo {
       width: 36px;
-    }
+    } */
   }
 
   @media (min-width: 760px) {
-    .github-logo {
+    /* .sprig-logo {
       width: 38px;
-    }
+    } */
   }
 
   @media (min-width: 920px) {
