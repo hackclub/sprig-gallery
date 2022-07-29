@@ -1,0 +1,8 @@
+- [ ] Add sprig logo
+- [ ] Make button vector
+- [ ] Make card vector
+- [ ] Make infinite parallax scroll dirt background
+- [ ] Add tags
+- [ ] Add game authors
+- [ ] Add "Start from scratch" card
+- [ ] Make gallery responsive
