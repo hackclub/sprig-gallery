@@ -136,6 +136,11 @@
     --pcb-trace: #014a27;
     --pcb-darker: #03321b;
   }
+
+  * {
+	cursor: url('/cursor.png'), auto;
+  }
+
   body {
     font-size: 62.5%;
     color: white;
@@ -216,7 +221,7 @@
   }
 
   .button-container .button:not(:last-child) {
-    margin-right: 10px;
+    margin-right: 1rem;
   }
 
   .button {
@@ -231,13 +236,13 @@
     background: #ffde4d;
 
     padding: 6px 12px;
-    cursor: pointer;
     text-align: center;
     display: inline-flex;
     align-items: center;
     user-select: none;
     border-style: solid;
     position: relative;
+    cursor: url('/cursor-click.png'), pointer;
     border-width: 4px;
 
     border-image-slice: 2;
@@ -259,6 +264,7 @@
 
   .button:hover {
     background: #f2c409;
+	transform: scale(1.05);
     text-decoration: none;
   }
 
@@ -286,7 +292,15 @@
     border-image-width: 3;
     border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(229, 148, 0)" /></svg>');
     border-image-outset: 2;
+  }
 
+  .gallery-item, .gallery-item * {
+    cursor: url('/cursor-click.png'), pointer;
+  }
+
+  .gallery-item:hover {
+	transform: scale(1.05);
+	background: #f2c409;
   }
 
   .github-logo {
@@ -297,6 +311,7 @@
     fill: white;
     width: 24px;
     transition-duration: 0.5s;
+    cursor: url('/cursor-click.png'), pointer;
   }
 
   .github-logo:hover {
@@ -335,11 +350,15 @@
     top: 0;
     left: 30px;
     background-size: contain;
-    cursor: pointer;
     flex-shrink: 0;
     z-index: 333;
     transition: cubic-bezier(0.375, 0, 0.675, 1) transform;
     transform-origin: top left;
+  }
+
+  .logo, .logo * {
+    cursor: url('/cursor-click.png'), pointer;
+
   }
 
   .logo img {
