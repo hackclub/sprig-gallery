@@ -1,3 +1,4 @@
+- [X] Add NES cursor
 - [ ] Add sprig logo
 - [ ] Make button vector
 - [ ] Make card vector
