@@ -90,9 +90,12 @@
       <div class="gallery-item start-from-scratch">
         <a href="/">
           <div class="image-box">
-            <div class="gallery-image"></div>
+            <div class="gallery-image">
+              <span>Start<br />From<br />Scratch</span>
+            </div>
           </div>
           <div class="gallery-text">
+            <h3>Title<br /> <span>by Author</span></h3>
           </div>
         </a>
       </div>
@@ -190,6 +193,10 @@
     position: relative;
   }
 
+  .gallery-header {
+    width: 22rem;
+  }
+
   h3 {
     margin: 0;
     text-transform: capitalize;
@@ -197,9 +204,7 @@
     margin-top: 10px;
     font-size: 1.6rem;
     font-weight: 400;
-    transform: translateZ(20px);
   }
-
   a {
     text-decoration: none;
   }
@@ -271,9 +276,10 @@
     right: -4px;
     bottom: -4px;
     content: '';
-    box-shadow: inset -4px -4px #e59400;
+    box-shadow: inset 4px 4px #fbf7b1, inset -4px -4px #e59400;
     box-sizing: border-box;
   }
+
 
   .button:hover {
     background: #f2c409;
@@ -282,7 +288,7 @@
   }
 
   .button:hover::after {
-    box-shadow: inset -6px -6px #e59400;
+    box-shadow: inset 4px 4px #fbf7b178, inset -6px -6px #e59400;
   }
 
   .gallery-text {
@@ -298,17 +304,22 @@
     padding: 0;
   }
 
+  .start-from-scratch .gallery-text {
+    visibility: hidden;
+  }
+
   .gallery-item {
+    display: flex;
+    flex-direction: column;
     background: #ffde4d;
-    /* background: linear-gradient(0deg, rgba(93,50,9,1) 0%, rgba(175,90,4,1) 100%); */
     border-style: solid;
     border-width: 4px;
     border-image-repeat: stretch;
-    /* padding: 1rem 1.5rem; */
     border-image-slice: 3;
     border-image-width: 3;
     border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(229, 148, 0)" /></svg>');
     border-image-outset: 2;
+
   }
 
   .gallery-item,
@@ -342,7 +353,7 @@
     width: 50%;
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    justify-content: center;
     gap: 2.2rem;
   }
 
@@ -360,6 +371,14 @@
     padding: 0;
     background: white;
     /* border: 4px solid #000; */
+  }
+  .gallery-image span {
+    font-family: 'OS X Darwin', 'JetBrains Mono', monospace;
+    color: black;
+    font-size: 1.8rem;
+    text-transform: lowercase;
+    display: block;
+    padding: .4rem;
   }
 
   .logo {
@@ -448,8 +467,20 @@
       padding-bottom: 0.8rem;
     } */
 
+    .image-box {
+      width: 10rem;
+      height: 10rem;
+    }
+
     p {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+    }
+    .gallery-text span {
+      font-size: 1rem;
     }
 
     .button {
