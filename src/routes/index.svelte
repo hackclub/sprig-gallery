@@ -82,11 +82,12 @@
             <button class="btn-green button"> New Creations </button>
             <button class="btn-red button"> For Beginners </button>
             <button class="btn-blue button"> Tutorials </button>
-        </fieldset>
+          </fieldset>
         </div>
         <div class="button-container">
           <p>
-            Want to join in on the fun? If you have a Sprig game to share with the community, add it here!
+            Want to join in on the fun? If you have a Sprig game to share with the community, add it
+            here!
           </p>
           <!-- <button class="button"> Create </button> -->
           <button class="button"> Add Your Game </button>
@@ -103,7 +104,6 @@
     <div class="gallery-outer">
       <div id="start-from-scratch" class="gallery-item">
         <a href="/">
-          <img class="novice-tag" src="/novice.png" alt="novice">
           <div class="image-box">
             <div class="gallery-image">
               <span>Start<br />From<br />Scratch</span>
@@ -120,6 +120,8 @@
             href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${thumbnail.name}.js`}
             style="margin:0;padding:0;"
           >
+            <img class="novice-tag" src="/novice.png" alt="novice" />
+
             <div class="image-box">
               <img src={thumbnail.imgURL} class="gallery-image" alt="game preview" />
             </div>
@@ -204,7 +206,6 @@
   } */
 
   .gallery-header {
-    width: 20rem;
     padding: 0;
     margin: 0;
   }
@@ -235,7 +236,7 @@
     width: 100vw;
     z-index: -1;
     display: flex;
-    padding: 4rem 6rem;
+    padding: 3rem 6rem;
   }
 
   .info-outer {
@@ -245,10 +246,6 @@
     position: relative;
   }
 
-  /* .info-inner {
-    width: 70%;
-    margin: auto;
-  } */
 
   .title {
     margin-bottom: 30px;
@@ -256,19 +253,21 @@
 
   .tag-container {
     margin: 2rem 0;
-    position: relative;
     width: 90%;
+    position: relative;
   }
 
   .tag-container fieldset {
     border: 4px solid white;
-    padding: .8rem;
+    padding: 0.8rem;
+    max-width: 100%;
+    width: fit-content;
   }
 
   .tag-container fieldset legend {
     font-family: 'Pixel Emulator', monospace;
     font-size: 1rem;
-    padding: 0 .5rem;
+    padding: 0 0.5rem;
     margin-left: 1rem;
   }
 
@@ -324,55 +323,55 @@
     box-shadow: inset 4px 4px #fbf7b178, inset -6px -6px #e59400;
   }
 
-.btn-red {
-  color: white;
-  background: #ff1744;
-}
+  .btn-red {
+    color: white;
+    background: #ff1744;
+  }
 
-.btn-red::after {
-  box-shadow: inset 4px 4px #f56e8a, inset -4px -4px #b91740;
-}
+  .btn-red::after {
+    box-shadow: inset 4px 4px #f56e8a, inset -4px -4px #b91740;
+  }
 
-.btn-red:hover {
-  background: #d40f37;
-}
+  .btn-red:hover {
+    background: #d40f37;
+  }
 
-.btn-red:hover::after {
-  box-shadow: inset 4px 4px #f56e897c, inset -6px -6px #940f30;
-}
+  .btn-red:hover::after {
+    box-shadow: inset 4px 4px #f56e897c, inset -6px -6px #940f30;
+  }
 
-.btn-green {
-  color: white;
-  background: #7ab73a;
-}
+  .btn-green {
+    color: white;
+    background: #7ab73a;
+  }
 
-.btn-green::after {
-  box-shadow: inset 4px 4px #b3ec8c, inset -4px -4px #4aa52e;
-}
+  .btn-green::after {
+    box-shadow: inset 4px 4px #b3ec8c, inset -4px -4px #4aa52e;
+  }
 
-.btn-green:hover {
-  background: #63c125;
-}
+  .btn-green:hover {
+    background: #63c125;
+  }
 
-.btn-green:hover::after {
-  box-shadow: inset 4px 4px #b2ec8c83, inset -6px -6px #4aa52e;
-}
-.btn-blue {
-  color: white;
-  background: #209cee;
-}
+  .btn-green:hover::after {
+    box-shadow: inset 4px 4px #b2ec8c83, inset -6px -6px #4aa52e;
+  }
+  .btn-blue {
+    color: white;
+    background: #209cee;
+  }
 
-.btn-blue::after {
-  box-shadow: inset 4px 4px #78c4f7, inset -4px -4px #006bb3;
-}
+  .btn-blue::after {
+    box-shadow: inset 4px 4px #78c4f7, inset -4px -4px #006bb3;
+  }
 
-.btn-blue:hover {
-  background: #108de0;
-}
+  .btn-blue:hover {
+    background: #108de0;
+  }
 
-.btn-blue:hover::after {
-  box-shadow: inset 4px 4px #78c4f77e, inset -6px -6px #006bb3;
-}
+  .btn-blue:hover::after {
+    box-shadow: inset 4px 4px #78c4f77e, inset -6px -6px #006bb3;
+  }
 
   .gallery-text {
     font-family: 'OS X Darwin';
@@ -388,14 +387,14 @@
 
   .gallery-text span {
     font-size: 1.2rem;
-    color: white;
+    color: rgb(151, 178, 187);
     padding: 0;
   }
 
   #start-from-scratch .gallery-text {
     visibility: hidden;
   }
-  
+
   #start-from-scratch {
     background: rgba(255, 222, 77, 0.5);
     border-style: solid;
@@ -428,9 +427,9 @@
 
   .novice-tag {
     position: absolute;
-    width: 130%;
+    width: 120%;
     top: 8%;
-    left: -15%;
+    left: -10%;
     transform: rotate(-3deg);
   }
   .gallery-item a {
@@ -587,12 +586,16 @@
       font-size: 1.8rem;
     }
 
-    .button {
-      font-size: 1.6rem;
+    .button,
+    .tag-container fieldset legend {
+      font-size: 1rem;
     }
     .logo img {
       width: 128px;
       height: auto;
+    }
+    .gallery-header {
+      width: 25rem;
     }
   }
 
@@ -618,9 +621,8 @@
     .gallery-text span {
       font-size: 1rem;
     }
-
-    .button {
-      font-size: 1rem;
+    .gallery-header {
+      width: 20rem;
     }
   }
 </style>
