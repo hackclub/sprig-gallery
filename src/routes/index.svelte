@@ -87,6 +87,7 @@
     <a href="https://github.com/hackclub/sprig/tree/main/games" target="_blank"
       ><img src="./spriglogotext.png" alt="sprig logo" class="sprig-logo" /></a
     >
+    <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
     <div class="gallery-outer">
       <div class="gallery-item start-from-scratch">
         <a href="/">
@@ -221,13 +222,13 @@
     width: 100vw;
     z-index: -1;
     display: flex;
-    padding: 4rem 6rem;
+    padding: 4rem 9rem;
   }
 
   .info-outer {
     /* background-color: var(--pcb-base); */
     padding: 10vh 0;
-    width: calc(50% - 6rem);
+    width: calc(50% - 9rem);
     position: relative;
   }
 
@@ -300,8 +301,13 @@
     padding: 0 0.8rem 0.8rem 0.8rem;
   }
 
+  .gallery-text h3 {
+    color: white;
+  }
+
   .gallery-text span {
     font-size: 1.2rem;
+    color: white;
     padding: 0;
   }
 
@@ -312,13 +318,24 @@
   .gallery-item {
     display: flex;
     flex-direction: column;
-    background: #ffde4d;
+    background: #ffde4d67;
     border-style: solid;
     border-width: 4px;
     border-image-repeat: stretch;
     border-image-slice: 3;
     border-image-width: 3;
     border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(229, 148, 0)" /></svg>');
+    border-image-outset: 2;
+
+    backdrop-filter: blur(3px);
+  }
+  .gallery-item a {
+    border-style: solid;
+    border-width: 4px;
+    border-image-repeat: stretch;
+    border-image-slice: 3;
+    border-image-width: 3;
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(242, 196, 9)" /></svg>');
     border-image-outset: 2;
   }
 
@@ -329,7 +346,20 @@
 
   .gallery-item:hover {
     transform: scale(1.05);
-    background: #f2c409;
+    background: #f2c3099b;
+  }
+
+  .sprig-dino {
+    position: fixed;
+    right: 30px;
+    bottom: -3.8rem;
+    width: 4rem;
+    transition: all 0.5s linear;
+    cursor: url('/cursor-click.png'), pointer;
+  }
+
+  .sprig-dino:hover {
+    bottom: 0;
   }
 
   .sprig-logo {
@@ -348,7 +378,7 @@
   .gallery-outer {
     padding: 10vh 0;
     margin: 0;
-    width: calc(50%);
+    width: calc(50% - 4rem);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -356,10 +386,10 @@
   }
 
   .image-box {
-    width: 13rem;
-    height: 13rem;
+    width: 14rem;
+    height: 14rem;
     border: 4px solid black;
-    margin: 0.8rem;
+    margin: 0.6rem;
   }
 
   .gallery-image {
