@@ -62,18 +62,15 @@
   <div class="wrapper">
     <div class="info-outer">
       <div class="info-inner">
-        <div class="title">
-          <div class="gallery-title">
-            <!-- <img src="/spriglogotext.png" alt="sprig logo" class="sprig-logo"> -->
-            <img class="gallery-header" src="/gallery.svg" alt="gallery header" draggable="false" />
-            <p>
-              The best way to learn is by making things you care about and sharing them with others.
-            </p>
-            <p>
-              Check out games by other Hack Clubbers! Click to play each game and to hack on the
-              code.
-            </p>
-          </div>
+        <div class="gallery-title">
+          <!-- <img src="/spriglogotext.png" alt="sprig logo" class="sprig-logo"> -->
+          <img class="gallery-header" src="/gallery.svg" alt="gallery header" draggable="false" />
+          <p>
+            The best way to learn is by making things you care about and sharing them with others.
+          </p>
+          <p>
+            Check out games by other Hack Clubbers! Click to play each game and to hack on the code.
+          </p>
         </div>
 
         <div class="tag-container">
@@ -150,8 +147,11 @@
     --pcb-darker: #03321b;
   }
 
-  * {
+  *,
+  *::before,
+  *::after {
     cursor: $cursor-inactive;
+    box-sizing: border-box;
   }
 
   body {
@@ -159,7 +159,6 @@
     color: white;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
       url('/pixelart_ruins_girl_trees.png');
     background-size: cover;
@@ -185,6 +184,7 @@
 
   .wrapper {
     width: 100vw;
+    height: auto;
     z-index: -1;
     display: flex;
     padding: 3rem 6rem;
@@ -192,12 +192,12 @@
 
   .info-outer {
     padding: 10vh 0;
-    width: calc(50% - 6rem);
+    flex: 1;
+    // width: calc(50% - 6rem);
     position: relative;
-  }
-
-  .title {
-    margin-bottom: 30px;
+    p {
+      width: 85%;
+    }
   }
 
   .tag-container {
@@ -268,7 +268,8 @@
     &-outer {
       padding: 10vh 0;
       margin: 0;
-      width: calc(50%);
+      // width: 50%;
+      flex: 1;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -281,7 +282,7 @@
       margin: 0;
     }
     &-title {
-      width: 90%;
+      margin-bottom: 30px;
     }
     &-item {
       position: relative;
@@ -330,7 +331,7 @@
           width: 100%;
           overflow: hidden;
           color: white;
-          white-space: nowrap; 
+          white-space: nowrap;
           margin: 0.8rem 0 0.8rem 0;
           font-size: 1.6rem;
           font-weight: 400;
@@ -345,7 +346,7 @@
       }
 
       .image-box {
-        width: calc(100% - 0.6rem);
+        width: 100%;
         padding-bottom: 100%;
         border: 4px solid $gallery-border-dark;
         margin: 0;
@@ -357,7 +358,7 @@
           content: '';
           position: absolute;
           top: 0;
-          height: calc(100%);
+          height: 100%;
           width: 8px;
           background-image: linear-gradient($gallery-border-light 5px, $gallery-border-light 5px),
             linear-gradient($gallery-border-light 5px, $gallery-border-light 5px);
@@ -508,46 +509,72 @@
     }
   }
 
-  @media (max-width: 320px) {
-    /* .sprig-logo {
-      width: 24px;
-    } */
-  }
-
-  @media (max-width: 480px) {
-    p {
-      font-size: 1rem;
-    }
-  }
-
   @media (max-width: 760px) {
   }
 
   @media (max-width: 920px) {
     .wrapper {
       flex-direction: column;
+      padding: 3rem;
     }
-    .gallery-outer {
-      width: 100%;
+    .gallery {
+      &-outer {
+        width: 100%;
+      }
+      &-item {
+        width: 15rem;
+      }
+
+      &-header {
+        width: 20rem;
+      }
     }
     .info-outer {
-      width: calc(100% - 6rem);
-    }
+      width: 100%;
 
-    p {
-      font-size: 1rem;
+      p {
+        font-size: 1.6rem;
+        width: 100%;
+      }
     }
 
     .btn,
     .tag-container fieldset legend {
-      font-size: 1rem;
+      font-size: 1.6rem;
     }
+
+    .tag-container {
+      width: 100%;
+    }
+
     .logo img {
       width: 128px;
       height: auto;
     }
     .gallery-header {
       width: 25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery-header {
+      width: 18rem;
+    }
+
+    .info-outer p,
+    .btn,
+    .tag-container fieldset legend {
+      font-size: 1.4rem;
+    }
+
+    .wrapper {
+      padding: 3rem 2rem;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .wrapper {
+      padding: 3rem 1rem;
     }
   }
 
