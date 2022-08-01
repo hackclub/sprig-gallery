@@ -162,6 +162,25 @@
     font-style: normal;
   }
 
+  @font-face {
+    font-family: 'Billy';
+    src: url('/fonts/Billy-Regular.otf');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Billy';
+    src: url('/fonts/Billy-Light.otf');
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Billy';
+    src: url('/fonts/Billy-Regular.otf');
+    font-weight: 700;
+    font-style: normal;
+  }
+
   :root {
     --pcb-lighter: #04a356;
     --pcb-base: #016e3d;
@@ -214,13 +233,14 @@
   }
 
   h3 {
-    margin: 0;
     text-transform: capitalize;
     color: black;
-    margin-top: 10px;
+    margin: 0.8rem 0 0.8rem 0;
     font-size: 1.6rem;
     font-weight: 400;
+    line-height: 0.9;
   }
+
   a {
     text-decoration: none;
   }
@@ -376,7 +396,7 @@
     display: flex;
     flex: 60% 40%;
     flex-wrap: wrap;
-    padding: 0 0.8rem 0.8rem 0.8rem;
+    /* padding: 0 0.8rem 0.8rem 0.8rem; */
   }
 
   .gallery-text h3 {
@@ -395,13 +415,7 @@
 
   #start-from-scratch {
     background: rgba(255, 222, 77, 0.5);
-    border-style: solid;
-    border-width: 4px;
-    border-image-repeat: stretch;
-    border-image-slice: 3;
-    border-image-width: 3;
     border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(211, 151, 20)" /></svg>');
-    border-image-outset: 2;
   }
   #start-from-scratch a {
     border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(242, 196, 9)" /></svg>');
@@ -411,7 +425,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    /* background: rgba(48, 55, 86, 0.75); */
+    width: 15rem;
     background: rgba(42, 45, 90, 0.75);
     border-style: solid;
     border-width: 4px;
@@ -419,8 +433,7 @@
     border-image-repeat: stretch;
     border-image-slice: 3;
     border-image-width: 3;
-    /* border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(117,121,135)" /></svg>'); */
-    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(117,121,135)" /></svg>');
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(118, 118, 143)" /></svg>');
     border-image-outset: 2;
 
     backdrop-filter: blur(0.2rem);
@@ -437,6 +450,7 @@
   .gallery-item a {
     border-style: solid;
     border-width: 4px;
+    padding: 0.6rem 0.6rem 0 0.6rem !important;
     border-image-repeat: stretch;
     border-image-slice: 3;
     border-image-width: 3;
@@ -496,11 +510,10 @@
   }
 
   .image-box {
-    width: 13rem;
-    height: 13rem;
-    /* border: 4px solid rgb(167,171,185); */
-    border: 4px solid rgb(117,121,135);
-    margin: 0.6rem;
+    width: calc(100% - 0.6rem);
+    padding-bottom: 100%;
+    border: 4px solid rgb(118, 118, 143);
+    margin: 0;
     position: relative;
     box-shadow: 0 4px 0px rgba(0, 0, 0, 0.1);
   }
@@ -522,13 +535,12 @@
     top: 0;
     height: calc(100%);
     width: 8px;
-    background-image: linear-gradient(rgb(167,171,185) 5px, rgb(167,171,185) 5px),
-      linear-gradient(rgb(167,171,185) 5px, rgb(167,171,185) 5px);
-    /* background-image: linear-gradient(rgb(117,121,135) 5px, rgb(117,121,135) 5px),
-      linear-gradient(rgb(117,121,135) 5px, rgb(117,121,135) 5px); */
+    background-image: linear-gradient(rgb(167, 171, 185) 5px, rgb(167, 171, 185) 5px),
+      linear-gradient(rgb(167, 171, 185) 5px, rgb(167, 171, 185) 5px);
     background-size: 8px 8px;
     background-position: top center, bottom center;
     background-repeat: no-repeat;
+    z-index: 2;
   }
 
   .image-box::before {
@@ -540,12 +552,17 @@
   }
 
   .gallery-image {
+    position: absolute; /* Take your picture out of the flow */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    object-fit: fill;
+    object-position: center;
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
     background: white;
-    /* border: 4px solid #000; */
   }
   .gallery-image span {
     font-family: 'OS X Darwin', 'JetBrains Mono', monospace;
