@@ -79,17 +79,17 @@
         <div class="tag-container">
           <fieldset>
             <legend>Sort By Tag</legend>
-            <button class="button"> New Creations </button>
-            <button class="button"> For Beginners </button>
-            <button class="button"> Tutorials </button>
+            <button class="btn"> New Creations </button>
+            <button class="btn"> For Beginners </button>
+            <button class="btn"> Tutorials </button>
           </fieldset>
         </div>
-        <div class="button-container">
+        <div class="btn-container">
           <p>
             Want to join in on the fun? If you have a Sprig game to share with the community, add it
             here!
           </p>
-          <button class="button"> Add Your Game </button>
+          <button class="btn"> Add Your Game </button>
         </div>
       </div>
     </div>
@@ -108,7 +108,7 @@
               <span>Start<br />From<br />Scratch</span>
             </div>
           </div>
-          <div class="gallery-text">
+          <div class="text">
             <h3>Title<br /> <span>by Author</span></h3>
           </div>
         </a>
@@ -124,7 +124,7 @@
             <div class="image-box">
               <img src={thumbnail.imgURL} class="gallery-image" alt="game preview" />
             </div>
-            <div class="gallery-text">
+            <div class="text">
               <h3>
                 {thumbnail.name}<br />
                 <span>by Author</span>
@@ -137,49 +137,11 @@
   </div>
 </body>
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+<style type="text/scss">
+  // ============= IMPORTS ============
 
-  @font-face {
-    font-family: 'AddLGBitmap09';
-    src: url('/fonts/AddLGBitmap09.ttf');
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Pixel Emulator';
-    src: url('/fonts/Pixel Emulator.otf');
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'OS X Darwin';
-    src: url('/fonts/OS X Darwin.ttf');
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Billy';
-    src: url('/fonts/Billy-Regular.otf');
-    font-weight: 400;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'Billy';
-    src: url('/fonts/Billy-Light.otf');
-    font-weight: 300;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'Billy';
-    src: url('/fonts/Billy-Regular.otf');
-    font-weight: 700;
-    font-style: normal;
-  }
+  @import '../styles/_variables.scss';
+  @import '../styles/_fonts.scss';
 
   :root {
     --pcb-lighter: #04a356;
@@ -189,7 +151,7 @@
   }
 
   * {
-    cursor: url('/cursor.png'), auto;
+    cursor: $cursor-inactive;
   }
 
   body {
@@ -198,8 +160,6 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    /* background-color: var(--pcb-base);
-    background-image: url(https://sprig.hackclub.dev/assets/bg.12a2b49c.svg); */
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
       url('/pixelart_ruins_girl_trees.png');
     background-size: cover;
@@ -213,42 +173,14 @@
     background-color: white;
   }
 
-  /* h1 {
-    margin: 0;
-    text-transform: uppercase;
-    font-family: 'AddLGBitmap09', monospace;
-    letter-spacing: 2px;
-    color: white;
-    text-shadow: -4px -4px 0 #000, 0 -4px 0 #000, 4px -4px 0 #000,
-      4px 0 0 #000, 4px 11px 0 #000, 0 11px 0 #000, -4px 11px 0 #000, -4px 0 0 #000;
-  } */
-
-  .gallery-header {
-    padding: 0;
-    margin: 0;
-  }
-
-  .gallery-title {
-    width: 90%;
-  }
-
-  h3 {
-    text-transform: capitalize;
-    color: black;
-    margin: 0.8rem 0 0.8rem 0;
-    font-size: 1.6rem;
-    font-weight: 400;
-    line-height: 0.9;
-  }
-
   a {
     text-decoration: none;
   }
 
   p {
-    font-family: 'OS X Darwin', 'JetBrains Mono', monospace;
-    /* text-shadow: 0 1px 0px #000; */
-    /* line-height: 1.5; */
+    font-family: $text-font;
+    font-size: 1.8rem;
+    // text-transform: lowercase;
   }
 
   .wrapper {
@@ -259,7 +191,6 @@
   }
 
   .info-outer {
-    /* background-color: var(--pcb-base); */
     padding: 10vh 0;
     width: calc(50% - 6rem);
     position: relative;
@@ -273,36 +204,28 @@
     margin: 2rem 0;
     width: 90%;
     position: relative;
+    fieldset {
+      border: 4px solid white;
+      padding: 0.8rem;
+      max-width: 100%;
+      width: fit-content;
+      legend {
+        font-family: $subheading-font;
+        text-transform: lowercase;
+        font-size: 1.6rem;
+        padding: 0 0.5rem;
+        margin-left: 1rem;
+      }
+    }
   }
-
-  .tag-container fieldset {
-    border: 4px solid white;
-    padding: 0.8rem;
-    max-width: 100%;
-    width: fit-content;
-  }
-
-  .tag-container fieldset legend {
-    font-family: 'Pixel Emulator', monospace;
-    font-size: 1rem;
-    padding: 0 0.5rem;
-    margin-left: 1rem;
-  }
-
-  .button-container .button:not(:last-child) {
-    margin-right: 1rem;
-  }
-
-  .button {
-    font-family: 'Pixel Emulator';
-    font-size: 1.2rem;
-    text-transform: uppercase;
+  .btn {
+    font-family: $subheading-font;
+    font-size: 1.6rem;
+    text-transform: lowercase;
     margin: 4px;
     display: inline-block;
-    /* background: hsl(340deg 100% 32%); */
-    /* border: none; */
-    color: #212529;
-    background: #ffde4d;
+    color: $button-text-border;
+    background: $button-background;
 
     padding: 6px 12px;
     text-align: center;
@@ -311,133 +234,207 @@
     user-select: none;
     border-style: solid;
     position: relative;
-    cursor: url('/cursor-click.png'), pointer;
+    cursor: $cursor-active;
     border-width: 4px;
 
     border-image-slice: 2;
     border-image-width: 2;
-    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="rgb(33,37,41)" /></svg>');
-    border-image-outset: 2;
-  }
-
-  .button::after {
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    content: '';
-    box-shadow: inset 4px 4px #fbf7b1, inset -4px -4px #e59400;
-    box-sizing: border-box;
-  }
-
-  .button:hover {
-    background: #f2c409;
-    transform: scale(1.05);
-    text-decoration: none;
-  }
-
-  .button:hover::after {
-    box-shadow: inset 4px 4px #fbf7b178, inset -6px -6px #e59400;
-  }
-  /* 
-  .btn-red {
-    color: white;
-    background: #ff1744;
-  }
-
-  .btn-red::after {
-    box-shadow: inset 4px 4px #f56e8a, inset -4px -4px #b91740;
-  }
-
-  .btn-red:hover {
-    background: #d40f37;
-  }
-
-  .btn-red:hover::after {
-    box-shadow: inset 4px 4px #f56e897c, inset -6px -6px #940f30;
-  }
-
-  .btn-green {
-    color: white;
-    background: #7ab13c;
-  }
-
-  .btn-green::after {
-    box-shadow: inset 4px 4px #b1d389, inset -4px -4px #5e943b;
-  }
-
-  .btn-green:hover {
-    background: #63c125;
-  }
-
-  .btn-green:hover::after {
-    box-shadow: inset 4px 4px #b2ec8c83, inset -6px -6px #4aa52e;
-  }
-  .btn-blue {
-    color: white;
-    background: #209cee;
-  }
-
-  .btn-blue::after {
-    box-shadow: inset 4px 4px #78c4f7, inset -4px -4px #006bb3;
-  }
-
-  .btn-blue:hover {
-    background: #108de0;
-  }
-
-  .btn-blue:hover::after {
-    box-shadow: inset 4px 4px #78c4f77e, inset -6px -6px #006bb3;
-  } */
-
-  .gallery-text {
-    font-family: 'OS X Darwin';
-    display: flex;
-    flex: 60% 40%;
-    flex-wrap: wrap;
-    /* padding: 0 0.8rem 0.8rem 0.8rem; */
-  }
-
-  .gallery-text h3 {
-    color: white;
-  }
-
-  .gallery-text span {
-    font-size: 1.2rem;
-    color: rgb(151, 166, 187);
-    padding: 0;
-  }
-
-  #start-from-scratch .gallery-text {
-    visibility: hidden;
-  }
-
-  #start-from-scratch {
-    background: rgba(255, 222, 77, 0.5);
-    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(211, 151, 20)" /></svg>');
-  }
-  #start-from-scratch a {
-    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(242, 196, 9)" /></svg>');
-  }
-
-  .gallery-item {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 15rem;
-    background: rgba(42, 45, 90, 0.75);
-    border-style: solid;
-    border-width: 4px;
-    box-sizing: border-box;
-    border-image-repeat: stretch;
-    border-image-slice: 3;
-    border-image-width: 3;
-    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(118, 118, 143)" /></svg>');
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="' + $button-text-border + '" /></svg>');
     border-image-outset: 2;
 
-    backdrop-filter: blur(0.2rem);
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+    &::after {
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      content: '';
+      box-shadow: inset 4px 4px $button-highlight, inset -4px -4px $button-shadow;
+      box-sizing: border-box;
+    }
+
+    &:hover {
+      background: #f2c409;
+      transform: scale(1.05);
+      text-decoration: none;
+
+      &::after {
+        box-shadow: inset 4px 4px $button-hover-highlight, inset -6px -6px $button-shadow;
+      }
+    }
+  }
+
+  .gallery {
+    &-outer {
+      padding: 10vh 0;
+      margin: 0;
+      width: calc(50%);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.2rem;
+    }
+
+    &-header {
+      width: 28rem;
+      padding: 0;
+      margin: 0;
+    }
+    &-title {
+      width: 90%;
+    }
+    &-item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 16rem;
+      background: $gallery-background;
+      border-style: solid;
+      border-width: 4px;
+      box-sizing: border-box;
+      border-image-repeat: stretch;
+      border-image-slice: 3;
+      border-image-width: 3;
+      border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="' + $gallery-border-dark + '" /></svg>');
+      border-image-outset: 2;
+
+      backdrop-filter: blur(0.2rem);
+      box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        transform: scale(1.05);
+        background: $gallery-background-hover;
+      }
+
+      a {
+        border-style: solid;
+        border-width: 4px;
+        padding: 0.6rem 0.6rem 0 0.6rem !important;
+        border-image-repeat: stretch;
+        border-image-slice: 3;
+        border-image-width: 3;
+        /* border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(167,171,185)" /></svg>'); */
+        border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="' + $gallery-border-light + '" /></svg>');
+        border-image-outset: 2;
+      }
+
+      .text {
+        font-family: $text-font;
+        display: flex;
+        flex: 60% 40%;
+        flex-wrap: wrap;
+        /* padding: 0 0.8rem 0.8rem 0.8rem; */
+        h3 {
+          text-transform: lowercase;
+          text-overflow: ellipsis;
+          width: 100%;
+          overflow: hidden;
+          color: white;
+          white-space: nowrap; 
+          margin: 0.8rem 0 0.8rem 0;
+          font-size: 1.6rem;
+          font-weight: 400;
+          // line-height: 0.9;
+          span {
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: rgb(151, 166, 187);
+            padding: 0;
+          }
+        }
+      }
+
+      .image-box {
+        width: calc(100% - 0.6rem);
+        padding-bottom: 100%;
+        border: 4px solid $gallery-border-dark;
+        margin: 0;
+        position: relative;
+        box-shadow: 0 4px 0px rgba(0, 0, 0, 0.1);
+
+        &::after,
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          height: calc(100%);
+          width: 8px;
+          background-image: linear-gradient($gallery-border-light 5px, $gallery-border-light 5px),
+            linear-gradient($gallery-border-light 5px, $gallery-border-light 5px);
+          background-size: 8px 8px;
+          background-position: top center, bottom center;
+          background-repeat: no-repeat;
+          z-index: 2;
+        }
+
+        &::before {
+          left: 0;
+        }
+
+        &::after {
+          right: 0;
+        }
+      }
+
+      &,
+      & * {
+        cursor: $cursor-active;
+      }
+      &#start-from-scratch {
+        /* background: rgba(255, 222, 77, 0.5); */
+        background: $gallery-highlight-background;
+        border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="' + $gallery-highlight-border-dark + '" /></svg>');
+
+        a {
+          border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="' + $gallery-highlight-border-light + '" /></svg>');
+        }
+        .text {
+          visibility: hidden;
+        }
+
+        &:hover {
+          background: $gallery-highlight-background-hover;
+        }
+
+        .image-box {
+          border: 4px solid $gallery-highlight-border-light;
+
+          &::after,
+          &::before {
+            background-image: linear-gradient(
+                $gallery-highlight-border-xlight 5px,
+                $gallery-highlight-border-xlight 5px
+              ),
+              linear-gradient(
+                $gallery-highlight-border-xlight 5px,
+                $gallery-highlight-border-xlight 5px
+              );
+          }
+        }
+      }
+    }
+    &-image {
+      position: absolute; /* Take your picture out of the flow */
+      top: 0;
+      bottom: 0;
+      left: 0;
+      object-fit: fill;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: white;
+
+      span {
+        font-family: $text-font;
+        color: black;
+        font-size: 1.8rem;
+        text-transform: lowercase;
+        display: block;
+        padding: 0.4rem;
+      }
+    }
   }
 
   /* .novice-tag {
@@ -447,131 +444,6 @@
     left: -10%;
     transform: rotate(-3deg);
   } */
-  .gallery-item a {
-    border-style: solid;
-    border-width: 4px;
-    padding: 0.6rem 0.6rem 0 0.6rem !important;
-    border-image-repeat: stretch;
-    border-image-slice: 3;
-    border-image-width: 3;
-    /* border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(167,171,185)" /></svg>'); */
-    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(167,171,185)" /></svg>');
-    border-image-outset: 2;
-  }
-
-  .gallery-item,
-  .gallery-item * {
-    cursor: url('/cursor-click.png'), pointer;
-  }
-
-  #start-from-scratch:hover {
-    background: #f2c3099b;
-  }
-
-  .gallery-item:hover {
-    transform: scale(1.05);
-    background: rgba(71, 75, 128, 0.8);
-  }
-
-  .sprig-dino {
-    position: fixed;
-    left: 30px;
-    bottom: -3.8rem;
-    width: 4rem;
-    transition: all 0.5s linear;
-    cursor: url('/cursor-click.png'), pointer;
-  }
-
-  .sprig-dino:hover {
-    bottom: 0;
-  }
-
-  .sprig-logo {
-    position: absolute;
-    right: 30px;
-    top: 30px;
-    width: 8rem;
-    /* transition-duration: 0.5s; */
-    cursor: url('/cursor-click.png'), pointer;
-  }
-
-  .sprig-logo:hover {
-    transform: scale(1.05);
-  }
-
-  .gallery-outer {
-    padding: 10vh 0;
-    margin: 0;
-    width: calc(50%);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2.2rem;
-  }
-
-  .image-box {
-    width: calc(100% - 0.6rem);
-    padding-bottom: 100%;
-    border: 4px solid rgb(118, 118, 143);
-    margin: 0;
-    position: relative;
-    box-shadow: 0 4px 0px rgba(0, 0, 0, 0.1);
-  }
-
-  #start-from-scratch .image-box {
-    border: 4px solid rgb(242, 196, 9);
-  }
-
-  #start-from-scratch .image-box::after,
-  #start-from-scratch .image-box::before {
-    background-image: linear-gradient(rgb(255, 224, 101) 5px, rgb(255, 224, 101) 5px),
-      linear-gradient(rgb(255, 224, 101) 5px, rgb(255, 224, 101) 5px);
-  }
-
-  .image-box::after,
-  .image-box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    height: calc(100%);
-    width: 8px;
-    background-image: linear-gradient(rgb(167, 171, 185) 5px, rgb(167, 171, 185) 5px),
-      linear-gradient(rgb(167, 171, 185) 5px, rgb(167, 171, 185) 5px);
-    background-size: 8px 8px;
-    background-position: top center, bottom center;
-    background-repeat: no-repeat;
-    z-index: 2;
-  }
-
-  .image-box::before {
-    left: 0;
-  }
-
-  .image-box::after {
-    right: 0;
-  }
-
-  .gallery-image {
-    position: absolute; /* Take your picture out of the flow */
-    top: 0;
-    bottom: 0;
-    left: 0;
-    object-fit: fill;
-    object-position: center;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background: white;
-  }
-  .gallery-image span {
-    font-family: 'OS X Darwin', 'JetBrains Mono', monospace;
-    color: black;
-    font-size: 1.8rem;
-    text-transform: lowercase;
-    display: block;
-    padding: 0.4rem;
-  }
 
   .logo {
     position: absolute;
@@ -582,21 +454,49 @@
     z-index: 333;
     transition: cubic-bezier(0.375, 0, 0.675, 1) transform;
     transform-origin: top left;
+
+    &,
+    & * {
+      cursor: $cursor-active;
+    }
+
+    img {
+      width: 112px;
+      height: auto;
+    }
+
+    &:hover,
+    &:focus {
+      animation: waveFlag 0.5s linear infinite alternate;
+    }
   }
 
-  .logo,
-  .logo * {
-    cursor: url('/cursor-click.png'), pointer;
-  }
+  .sprig {
+    &-dino {
+      position: fixed;
+      left: 30px;
+      bottom: -3.8rem;
+      width: 4rem;
+      transition: all 0.5s linear;
+      cursor: $cursor-active;
 
-  .logo img {
-    width: 112px;
-    height: auto;
-  }
+      &:hover {
+        bottom: 0;
+      }
+    }
 
-  .logo:hover,
-  .logo:focus {
-    animation: waveFlag 0.5s linear infinite alternate;
+    &-logo {
+      position: absolute;
+      right: 30px;
+      top: 30px;
+      width: 8rem;
+      /* transition-duration: 0.5s; */
+      cursor: $cursor-active;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
   }
 
   @keyframes waveFlag {
@@ -608,42 +508,37 @@
     }
   }
 
-  @media (min-width: 320px) {
+  @media (max-width: 320px) {
     /* .sprig-logo {
       width: 24px;
     } */
   }
 
-  @media (min-width: 480px) {
-    /* h1 {
-      font-size: 2rem;
-    } */
+  @media (max-width: 480px) {
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 760px) {
+  }
+
+  @media (max-width: 920px) {
+    .wrapper {
+      flex-direction: column;
+    }
+    .gallery-outer {
+      width: 100%;
+    }
+    .info-outer {
+      width: calc(100% - 6rem);
+    }
 
     p {
       font-size: 1rem;
     }
 
-    /* .sprig-logo {
-      width: 36px;
-    } */
-  }
-
-  @media (min-width: 760px) {
-    /* .sprig-logo {
-      width: 38px;
-    } */
-  }
-
-  @media (min-width: 920px) {
-    /* h1 {
-      font-size: 4.6rem;
-    } */
-
-    p {
-      font-size: 1.8rem;
-    }
-
-    .button,
+    .btn,
     .tag-container fieldset legend {
       font-size: 1rem;
     }
@@ -657,29 +552,27 @@
   }
 
   @media (resolution: 1.5dppx) {
-    /* h1 {
-      font-size: 3.2rem;
-      letter-spacing: 0.3rem;
-      padding-bottom: 0.8rem;
-    } */
-
-    .image-box {
-      width: 10rem;
-      height: 10rem;
+    .gallery-item {
+      width: 14rem;
     }
 
     p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
 
     h3 {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
-    .gallery-text span {
-      font-size: 1rem;
+    .text span {
+      font-size: 0.8rem;
     }
     .gallery-header {
       width: 20rem;
+    }
+
+    .btn,
+    .tag-container fieldset legend {
+      font-size: 1.3rem;
     }
   }
 </style>

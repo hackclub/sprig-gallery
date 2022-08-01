@@ -1,0 +1,46 @@
+// ====== FONTS ======
+
+$text-font: 'Billy', 'JetBrains Mono', monospace;
+$subheading-font: 'Billy', 'JetBrains Mono', monospace;
+
+// ====== END FONTS ======
+
+// ====== SIZES ======
+// ====== END SIZES ======
+
+
+// ====== COLORS ======
+
+// gallery
+
+$gallery-border-dark: rgb(118, 118, 143);
+$gallery-border-light: rgb(167, 171, 185);
+$gallery-background: rgba(56, 42, 90, 0.75);
+$gallery-background-hover: rgba(78, 71, 128, 0.8);
+
+$gallery-highlight-border-dark: rgb(140, 107, 42);
+$gallery-highlight-border-light: rgb(230, 201, 119);
+$gallery-highlight-border-xlight: rgb(255, 233, 172);
+$gallery-highlight-background: rgba(179, 153, 79, 0.6);
+$gallery-highlight-background-hover: rgba(242, 195, 9, 0.6);
+
+// buttons
+
+$button-text-border: rgb(33, 37, 41);
+$button-background: rgb(255, 222, 77);
+$button-highlight: rgb(251, 247, 177);
+$button-shadow: rgb(229, 148, 0);
+$button-hover-background: rgb(242, 196, 9);
+$button-hover-highlight: rgba(251, 247, 177, 0.5);
+
+// ====== END COLORS ======
+
+
+
+
+// ====== MISCELLANEOUS ======
+
+$cursor-inactive: url('/cursor.png'), auto;
+$cursor-active: url('/cursor-click.png'), pointer;
+
+// ====== END MISCELLANEOUS ======

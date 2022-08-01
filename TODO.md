@@ -1,3 +1,5 @@
+## Gallery
+
 - [X] Add NES cursor
 - [ ] Add preloader that lets you in after it's done fetching from gh
 - [X] Add sprig logo
@@ -10,4 +12,6 @@
 - [ ] Fetch game authors from gh
 - [X] Fix the card width
 - [X] Add "Start from scratch" card
-- [ ] Make responsive
+- [ ] Make responsive (w/ dynamic sizing variables)
+- [X] Switch to SCSS
+- [X] Reduce all subheadings/texts to the same font
