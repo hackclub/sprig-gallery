@@ -2,12 +2,12 @@
 - [ ] Add preloader that lets you in after it's done fetching from gh
 - [X] Add sprig logo
 - [ ] Get rid of the first card animation somehow
-- [ ] Revamp cards
-- [ ] Make infinite parallax scroll dirt background
+- [X] Revamp cards
+- [ ] Make infinitely repeating dirt background
 - [X] Add filter by tag section
     - [X] Display "Good for beginners", other tags (?) on the actual cards
     - [ ] Give each one a designated color
 - [ ] Fetch game authors from gh
-- [ ] Fix the card width
+- [X] Fix the card width
 - [X] Add "Start from scratch" card
 - [ ] Make responsive
