@@ -79,9 +79,9 @@
         <div class="tag-container">
           <fieldset>
             <legend>Sort By Tag</legend>
-            <button class="btn-green button"> New Creations </button>
-            <button class="btn-red button"> For Beginners </button>
-            <button class="btn-blue button"> Tutorials </button>
+            <button class="button"> New Creations </button>
+            <button class="button"> For Beginners </button>
+            <button class="button"> Tutorials </button>
           </fieldset>
         </div>
         <div class="button-container">
@@ -89,7 +89,6 @@
             Want to join in on the fun? If you have a Sprig game to share with the community, add it
             here!
           </p>
-          <!-- <button class="button"> Create </button> -->
           <button class="button"> Add Your Game </button>
         </div>
       </div>
@@ -120,7 +119,7 @@
             href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${thumbnail.name}.js`}
             style="margin:0;padding:0;"
           >
-            <img class="novice-tag" src="/novice.png" alt="novice" />
+            <!-- <img class="novice-tag" src="/novice.png" alt="novice" /> -->
 
             <div class="image-box">
               <img src={thumbnail.imgURL} class="gallery-image" alt="game preview" />
@@ -246,7 +245,6 @@
     position: relative;
   }
 
-
   .title {
     margin-bottom: 30px;
   }
@@ -322,7 +320,7 @@
   .button:hover::after {
     box-shadow: inset 4px 4px #fbf7b178, inset -6px -6px #e59400;
   }
-
+  /* 
   .btn-red {
     color: white;
     background: #ff1744;
@@ -342,11 +340,11 @@
 
   .btn-green {
     color: white;
-    background: #7ab73a;
+    background: #7ab13c;
   }
 
   .btn-green::after {
-    box-shadow: inset 4px 4px #b3ec8c, inset -4px -4px #4aa52e;
+    box-shadow: inset 4px 4px #b1d389, inset -4px -4px #5e943b;
   }
 
   .btn-green:hover {
@@ -371,7 +369,7 @@
 
   .btn-blue:hover::after {
     box-shadow: inset 4px 4px #78c4f77e, inset -6px -6px #006bb3;
-  }
+  } */
 
   .gallery-text {
     font-family: 'OS X Darwin';
@@ -387,7 +385,7 @@
 
   .gallery-text span {
     font-size: 1.2rem;
-    color: rgb(151, 178, 187);
+    color: rgb(151, 166, 187);
     padding: 0;
   }
 
@@ -402,7 +400,7 @@
     border-image-repeat: stretch;
     border-image-slice: 3;
     border-image-width: 3;
-    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(229, 148, 0)" /></svg>');
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(211, 151, 20)" /></svg>');
     border-image-outset: 2;
   }
   #start-from-scratch a {
@@ -413,32 +411,37 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background: rgba(48, 69, 86, 0.7);
+    /* background: rgba(48, 55, 86, 0.75); */
+    background: rgba(42, 45, 90, 0.75);
     border-style: solid;
     border-width: 4px;
+    box-sizing: border-box;
     border-image-repeat: stretch;
     border-image-slice: 3;
     border-image-width: 3;
-    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(84, 101, 117)" /></svg>');
+    /* border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(117,121,135)" /></svg>'); */
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(117,121,135)" /></svg>');
     border-image-outset: 2;
 
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(0.2rem);
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
   }
 
-  .novice-tag {
+  /* .novice-tag {
     position: absolute;
     width: 120%;
     top: 8%;
     left: -10%;
     transform: rotate(-3deg);
-  }
+  } */
   .gallery-item a {
     border-style: solid;
     border-width: 4px;
     border-image-repeat: stretch;
     border-image-slice: 3;
     border-image-width: 3;
-    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(118, 136, 156)" /></svg>');
+    /* border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(167,171,185)" /></svg>'); */
+    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(167,171,185)" /></svg>');
     border-image-outset: 2;
   }
 
@@ -453,7 +456,7 @@
 
   .gallery-item:hover {
     transform: scale(1.05);
-    background: rgba(72, 96, 125, 0.8);
+    background: rgba(71, 75, 128, 0.8);
   }
 
   .sprig-dino {
@@ -493,10 +496,47 @@
   }
 
   .image-box {
-    width: 14rem;
-    height: 14rem;
-    border: 4px solid black;
+    width: 13rem;
+    height: 13rem;
+    /* border: 4px solid rgb(167,171,185); */
+    border: 4px solid rgb(117,121,135);
     margin: 0.6rem;
+    position: relative;
+    box-shadow: 0 4px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  #start-from-scratch .image-box {
+    border: 4px solid rgb(242, 196, 9);
+  }
+
+  #start-from-scratch .image-box::after,
+  #start-from-scratch .image-box::before {
+    background-image: linear-gradient(rgb(255, 224, 101) 5px, rgb(255, 224, 101) 5px),
+      linear-gradient(rgb(255, 224, 101) 5px, rgb(255, 224, 101) 5px);
+  }
+
+  .image-box::after,
+  .image-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: calc(100%);
+    width: 8px;
+    background-image: linear-gradient(rgb(167,171,185) 5px, rgb(167,171,185) 5px),
+      linear-gradient(rgb(167,171,185) 5px, rgb(167,171,185) 5px);
+    /* background-image: linear-gradient(rgb(117,121,135) 5px, rgb(117,121,135) 5px),
+      linear-gradient(rgb(117,121,135) 5px, rgb(117,121,135) 5px); */
+    background-size: 8px 8px;
+    background-position: top center, bottom center;
+    background-repeat: no-repeat;
+  }
+
+  .image-box::before {
+    left: 0;
+  }
+
+  .image-box::after {
+    right: 0;
   }
 
   .gallery-image {
