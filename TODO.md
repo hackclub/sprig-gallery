@@ -8,7 +8,7 @@
 - [ ] Make infinitely repeating dirt background
 - [X] Add filter by tag section
     - [X] Display "Good for beginners", other tags (?) on the actual cards
-    - [ ] Give each one a designated color
+    - [ ] Revamp - maybe make it a minimal toggle above the gallery section so that the grey buttons are hidden initially
 - [ ] Fetch game authors from gh
 - [X] Fix the card width
 - [X] Add "Start from scratch" card

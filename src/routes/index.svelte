@@ -73,14 +73,14 @@
           </p>
         </div>
 
-        <div class="tag-container">
+        <!-- <div class="tag-container">
           <fieldset>
             <legend>Filter By Tag</legend>
             <button class="btn-tag btn"> New Creations </button>
             <button class="btn-tag btn"> For Beginners </button>
             <button class="btn-tag btn"> Tutorials </button>
           </fieldset>
-        </div>
+        </div> -->
         <div class="btn-container">
           <p>
             Want to join in on the fun? If you have a Sprig game to share with the community, add it
