@@ -75,10 +75,10 @@
 
         <div class="tag-container">
           <fieldset>
-            <legend>Sort By Tag</legend>
-            <button class="btn"> New Creations </button>
-            <button class="btn"> For Beginners </button>
-            <button class="btn"> Tutorials </button>
+            <legend>Filter By Tag</legend>
+            <button class="btn-tag btn"> New Creations </button>
+            <button class="btn-tag btn"> For Beginners </button>
+            <button class="btn-tag btn"> Tutorials </button>
           </fieldset>
         </div>
         <div class="btn-container">
@@ -98,38 +98,43 @@
     >
     <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
     <div class="gallery-outer">
-      <div id="start-from-scratch" class="gallery-item">
-        <a href="/">
-          <div class="image-box">
-            <div class="gallery-image">
-              <span>Start<br />From<br />Scratch</span>
-            </div>
-          </div>
-          <div class="text">
-            <h3>Title<br /> <span>by Author</span></h3>
-          </div>
-        </a>
-      </div>
-      {#each data as thumbnail}
-        <div class="gallery-item">
-          <a
-            href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${thumbnail.name}.js`}
-            style="margin:0;padding:0;"
-          >
-            <!-- <img class="novice-tag" src="/novice.png" alt="novice" /> -->
-
+      <!-- <div class="filter-container">
+        <span>Filter:</span>
+      </div> -->
+      <div class="gallery-inner">
+        <div id="start-from-scratch" class="gallery-item">
+          <a href="/">
             <div class="image-box">
-              <img src={thumbnail.imgURL} class="gallery-image" alt="game preview" />
+              <div class="gallery-image">
+                <span>Start<br />From<br />Scratch</span>
+              </div>
             </div>
             <div class="text">
-              <h3>
-                {thumbnail.name}<br />
-                <span>by Author</span>
-              </h3>
+              <h3>Title<br /> <span>by Author</span></h3>
             </div>
           </a>
         </div>
-      {/each}
+        {#each data as thumbnail}
+          <div class="gallery-item">
+            <a
+              href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${thumbnail.name}.js`}
+              style="margin:0;padding:0;"
+            >
+              <div class="image-box">
+                <span class="tag">Beginner</span>
+
+                <img src={thumbnail.imgURL} class="gallery-image" alt="game preview" />
+              </div>
+              <div class="text">
+                <h3>
+                  {thumbnail.name}<br />
+                  <span>by Author</span>
+                </h3>
+              </div>
+            </a>
+          </div>
+        {/each}
+      </div>
     </div>
   </div>
 </body>
@@ -198,26 +203,29 @@
     p {
       width: 85%;
     }
-  }
 
-  .tag-container {
-    margin: 2rem 0;
-    width: 90%;
-    position: relative;
-    fieldset {
-      border: 4px solid white;
-      padding: 0.8rem;
-      max-width: 100%;
-      width: fit-content;
-      legend {
-        font-family: $subheading-font;
-        text-transform: lowercase;
-        font-size: 1.6rem;
-        padding: 0 0.5rem;
-        margin-left: 1rem;
+    .tag-container {
+      margin: 2rem 0;
+      width: 90%;
+      position: relative;
+      fieldset {
+        border: 4px solid white;
+        padding: 0.8rem;
+        max-width: 100%;
+        width: fit-content;
+        display: flex;
+        gap: 0.6rem;
+        legend {
+          font-family: $subheading-font;
+          text-transform: lowercase;
+          font-size: 1.6rem;
+          padding: 0 0.5rem;
+          margin-left: 1rem;
+        }
       }
     }
   }
+
   .btn {
     font-family: $subheading-font;
     font-size: 1.6rem;
@@ -262,6 +270,23 @@
         box-shadow: inset 4px 4px $button-hover-highlight, inset -6px -6px $button-shadow;
       }
     }
+
+    &-tag {
+      color: $button-tag-color;
+      background: $button-tag-background;
+
+      &::after {
+        box-shadow: inset 4px 4px $button-tag-highlight, inset -4px -4px $button-tag-shadow;
+      }
+
+      &:hover {
+        background: $button-tag-hover-background;
+
+        &::after {
+          box-shadow: inset 4px 4px $button-tag-hover-highlight, inset -4px -4px $button-tag-shadow;
+        }
+      }
+    }
   }
 
   .gallery {
@@ -270,6 +295,10 @@
       margin: 0;
       // width: 50%;
       flex: 1;
+
+    }
+
+    &-inner {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -438,13 +467,22 @@
     }
   }
 
-  /* .novice-tag {
+  .tag {
+    font-family: $text-font;
+    font-weight: 300;
+    text-transform: lowercase;
     position: absolute;
-    width: 120%;
-    top: 8%;
-    left: -10%;
-    transform: rotate(-3deg);
-  } */
+    top: 0.8rem;
+    right: 0.8rem;
+    z-index: 3;
+    padding: 0 0.6rem;
+    font-size: 1.2rem;
+    text-align: center;
+    color: $tag-color;
+    background: $tag-background;
+    box-shadow: 0 0.3em $tag-background, 0 -0.3em $tag-background, 0.3em 0 $tag-background,
+      -0.3em 0 $tag-background, 0 0.5em 0 rgba(0, 0, 0, 0.2);
+  }
 
   .logo {
     position: absolute;
