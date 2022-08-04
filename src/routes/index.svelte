@@ -1,23 +1,7 @@
 <script>
   import { onMount } from 'svelte';
-  // import VanillaTilt from 'vanilla-tilt';
 
   let data = [];
-
-  onMount(() => {
-    let preloader = document.querySelector('#preloader');
-    let gallery = document.querySelector('.gallery-inner');
-    let observer = new MutationObserver(() => {
-      preloader.style.opacity = '0';
-
-      setTimeout(() => {
-        preloader.style.display = 'none';
-        document.body.style.overflow = 'auto';
-      }, 500);
-      observer.disconnect();
-    });
-    observer.observe(gallery, { childList: true });
-  });
 
   const decode = ({ data, width }) => {
     const decodedString = atob(data);
@@ -61,6 +45,22 @@
 
     data = result.filter((x) => x);
   });
+
+  // Preloader observes for DOM update in .gallery-inner childlist
+  onMount(() => {
+    let preloader = document.querySelector('#preloader');
+    let gallery = document.querySelector('.gallery-inner');
+    let observer = new MutationObserver(() => {
+      preloader.style.opacity = '0';
+
+      setTimeout(() => {
+        preloader.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }, 500);
+      observer.disconnect();
+    });
+    observer.observe(gallery, { childList: true });
+  });
 </script>
 
 <body>
@@ -73,7 +73,6 @@
     <div class="info-outer">
       <div class="info-inner">
         <div class="gallery-title">
-          <!-- <img src="/spriglogotext.png" alt="sprig logo" class="sprig-logo"> -->
           <img class="gallery-header" src="/gallery.svg" alt="gallery header" draggable="false" />
           <p>
             The best way to learn is by making things you care about and sharing them with others.
@@ -86,7 +85,6 @@
         <div class="tag-container">
           <fieldset>
             <legend>Filter By Tag</legend>
-            <!-- <button class="btn-tag btn"> New Creations </button> -->
             <button class="btn-tag btn"> For Beginners </button>
             <button class="btn-tag btn"> Tutorials </button>
             <button class="btn-tag btn"> Example Tag </button>
@@ -108,11 +106,13 @@
     <a href="https://github.com/hackclub/sprig/tree/main/games" target="_blank"
       ><img src="./spriglogotext.png" alt="sprig logo" class="sprig-logo" /></a
     >
+    <!-- <div class="dino-container">
+      <div class="bubble">
+        <p>Psst! We're on GitHub!</p>
+      </div>
+    </div> -->
     <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
     <div class="gallery-outer">
-      <!-- <div class="filter-container">
-        <span>Filter:</span>
-      </div> -->
       <div class="gallery-inner">
         <div id="start-from-scratch" class="gallery-item">
           <a href="/">
@@ -213,7 +213,7 @@
     bottom: 0;
     z-index: 4;
     // background: rgba(50,46,46,255);
-    background: black;
+    background: $preloader-background;
     opacity: 1;
     transition: all 0.5s ease;
 
@@ -555,20 +555,79 @@
     }
   }
 
+  // .dino-container {
+  //   position: fixed;
+  //   left: 30px;
+  //   transition: all 0.5s linear;
+  //   bottom: -3.8rem;
+  //   display: flex;
+  //   align-items: center;
+
+  //   &,
+  //   & * {
+  //     cursor: $cursor-active;
+  //   }
+
+  //   &:hover {
+  //     bottom: 0;
+
+  //     .bubble {
+  //       opacity: 1;
+  //     }
+  //   }
+
+  //   .sprig-dino {
+  //     width: 4rem;
+  //   }
+  //   .bubble {
+  //     opacity: 0;
+  //     transition: all 0.3s ease;
+  //     transition-delay: 0.4s;
+  //     border-image-repeat: stretch;
+  //     border-image-slice: 3;
+  //     border-image-width: 3;
+  //     border-image-repeat: stretch;
+  //     border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(33,37,41)" /></svg>');
+  //     border-image-outset: 2;
+  //     background: white;
+  //     padding: 0.5rem 1.2rem;
+  //     margin: 8px 8px 30px 18px;
+  //     border-width: 4px;
+  //     position: relative;
+  //     border-style: solid;
+
+  //     &::before {
+  //       position: absolute;
+  //       content: '';
+  //       bottom: -14px;
+  //       width: 26px;
+  //       height: 10px;
+  //       background-color: #fff;
+  //       border-right: 4px solid #212529;
+  //       border-left: 4px solid #212529;
+  //     }
+
+  //     &::after {
+  //       position: absolute;
+  //       content: '';
+  //       bottom: -18px;
+  //       width: 18px;
+  //       height: 4px;
+  //       margin-right: 8px;
+  //       color: #212529;
+  //       background-color: #fff;
+  //       box-shadow: -4px 0, 4px 0, -4px 4px #fff, 0 4px, -8px 4px, -4px 8px, -8px 8px;
+  //     }
+
+  //     p {
+  //       font-size: 1.4rem;
+  //       margin: 0;
+  //       color: black;
+  //     }
+  //   }
+  // }
+
   .sprig {
-    &-dino {
-      position: fixed;
-      left: 30px;
-      bottom: -3.8rem;
-      width: 4rem;
-      transition: all 0.5s linear;
-      cursor: $cursor-active;
-
-      &:hover {
-        bottom: 0;
-      }
-    }
-
     &-logo {
       position: absolute;
       right: 30px;
@@ -581,8 +640,20 @@
         transform: scale(1.05);
       }
     }
-  }
 
+    &-dino {
+      position: fixed;
+      left: 30px;
+      width: 4rem;
+      bottom: -3.8rem;
+      cursor: $cursor-active;
+      transition: all .5s linear;
+
+      &:hover {
+        bottom: 0;
+      }
+    }
+  }
   @keyframes waveFlag {
     from {
       transform: rotate(0deg);
@@ -599,6 +670,10 @@
     .wrapper {
       flex-direction: column;
       padding: 3rem;
+    }
+
+    .sprig-dino {
+      display: none;
     }
 
     // .tag-container fieldset {

@@ -22,7 +22,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"marked": "^4.0.18",
-		"vanilla-tilt": "^1.7.2"
+		"marked": "^4.0.18"
 	}
 }

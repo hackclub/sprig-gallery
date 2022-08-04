@@ -1,7 +1,7 @@
 ## Gallery
 
 - [X] Add NES cursor
-- [ ] Add preloader that lets you in after it's done fetching from gh
+- [X] Add preloader that lets you in after it's done fetching from gh
 - [X] Add sprig logo
 - [ ] Get rid of the first card animation somehow
 - [X] Revamp cards
