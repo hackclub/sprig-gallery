@@ -14,7 +14,7 @@ $subheading-font: 'Billy', 'JetBrains Mono', monospace;
 
 $gallery-border-dark: rgb(118, 118, 143);
 $gallery-border-light: rgb(167, 171, 185);
-$gallery-background: rgba(56, 42, 90, 0.75);
+$gallery-background: rgba(57, 48, 90, 0.75);
 $gallery-background-hover: rgba(78, 71, 128, 0.8);
 
 $gallery-highlight-border-dark: rgb(163, 119, 31);
@@ -35,12 +35,12 @@ $button-hover-highlight: rgba(251, 247, 177, 0.5);
 $tag-color: white;
 $tag-background: rgb(159, 183, 72);
 
-$button-tag-color: white;
-$button-tag-background: rgb(134, 137, 151);
-$button-tag-highlight: rgb(168, 172, 186);
-$button-tag-shadow: rgb(89, 92, 102);
-$button-tag-hover-background: rgb(132, 158, 35);
-$button-tag-hover-highlight: rgba(193, 218, 104, 0.5);
+$button-tag-color: rgb(33, 37, 41);
+$button-tag-background: rgb(255, 222, 77);
+$button-tag-highlight: rgb(251, 247, 177);
+$button-tag-shadow: rgb(229, 148, 0);
+$button-tag-hover-background: rgb(242, 196, 9);
+$button-tag-hover-highlight: rgba(251, 247, 177, 0.5);
 
 // ====== END COLORS ======
 

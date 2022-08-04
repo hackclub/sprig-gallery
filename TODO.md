@@ -12,6 +12,6 @@
 - [ ] Fetch game authors from gh
 - [X] Fix the card width
 - [X] Add "Start from scratch" card
-- [ ] Make responsive (w/ dynamic sizing variables)
+- [X] Make responsive (w/ dynamic sizing variables)
 - [X] Switch to SCSS
 - [X] Reduce all subheadings/texts to the same font

@@ -1,14 +1,22 @@
 <script>
   import { onMount } from 'svelte';
-  import VanillaTilt from 'vanilla-tilt';
+  // import VanillaTilt from 'vanilla-tilt';
 
   let data = [];
 
   onMount(() => {
-    VanillaTilt.init(document.querySelectorAll('.gallery-item'), {
-      max: 15,
-      scale: 1.05,
+    let preloader = document.querySelector('#preloader');
+    let gallery = document.querySelector('.gallery-inner');
+    let observer = new MutationObserver(() => {
+      preloader.style.opacity = '0';
+
+      setTimeout(() => {
+        preloader.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }, 500);
+      observer.disconnect();
     });
+    observer.observe(gallery, { childList: true });
   });
 
   const decode = ({ data, width }) => {
@@ -41,9 +49,6 @@
         c.width = json.image.width;
         c.height = json.image.height;
         c.getContext('2d').putImageData(json.image, 0, 0);
-        // const factor = 200/c.width;
-        // c.style.width = c.width*factor + "px";
-        // c.style.height = c.height*factor + "px";
         c.style['image-rendering'] = 'pixelated';
         json.imgURL = c.toDataURL();
         return json;
@@ -59,6 +64,11 @@
 </script>
 
 <body>
+  <div id="preloader">
+    <img src="/loader.gif" alt="coin preloader" />
+    <p>loading...</p>
+  </div>
+
   <div class="wrapper">
     <div class="info-outer">
       <div class="info-inner">
@@ -73,14 +83,16 @@
           </p>
         </div>
 
-        <!-- <div class="tag-container">
+        <div class="tag-container">
           <fieldset>
             <legend>Filter By Tag</legend>
-            <button class="btn-tag btn"> New Creations </button>
+            <!-- <button class="btn-tag btn"> New Creations </button> -->
             <button class="btn-tag btn"> For Beginners </button>
             <button class="btn-tag btn"> Tutorials </button>
+            <button class="btn-tag btn"> Example Tag </button>
           </fieldset>
-        </div> -->
+        </div>
+
         <div class="btn-container">
           <p>
             Want to join in on the fun? If you have a Sprig game to share with the community, add it
@@ -140,7 +152,7 @@
 </body>
 
 <style type="text/scss">
-  // ============= IMPORTS ============
+  // ============= IMPORTS & VARIABLES ============
 
   @import '../styles/_variables.scss';
   @import '../styles/_fonts.scss';
@@ -151,6 +163,7 @@
     --pcb-trace: #014a27;
     --pcb-darker: #03321b;
   }
+  // ============= END IMPORTS & VARIABLES ============
 
   *,
   *::before,
@@ -168,6 +181,7 @@
       url('/pixelart_ruins_girl_trees.png');
     background-size: cover;
     background-attachment: fixed;
+    overflow: hidden;
   }
 
   h3::selection,
@@ -187,8 +201,37 @@
     // text-transform: lowercase;
   }
 
+  #preloader {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+    // background: rgba(50,46,46,255);
+    background: black;
+    opacity: 1;
+    transition: all 0.5s ease;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 14rem;
+    }
+    p {
+      margin: 1rem 0;
+    }
+  }
+
   .wrapper {
-    width: 100vw;
+    width: 100%;
     height: auto;
     z-index: -1;
     display: flex;
@@ -214,6 +257,7 @@
         max-width: 100%;
         width: fit-content;
         display: flex;
+        flex-wrap: wrap;
         gap: 0.6rem;
         legend {
           font-family: $subheading-font;
@@ -234,6 +278,7 @@
     display: inline-block;
     color: $button-text-border;
     background: $button-background;
+    white-space: nowrap;
 
     padding: 6px 12px;
     text-align: center;
@@ -242,7 +287,6 @@
     user-select: none;
     border-style: solid;
     position: relative;
-    cursor: $cursor-active;
     border-width: 4px;
 
     border-image-slice: 2;
@@ -251,6 +295,7 @@
     border-image-outset: 2;
 
     &::after {
+      cursor: $cursor-active;
       position: absolute;
       top: -4px;
       left: -4px;
@@ -272,20 +317,21 @@
     }
 
     &-tag {
-      color: $button-tag-color;
-      background: $button-tag-background;
+      // color: $button-tag-color;
+      // background: $button-tag-background;
+      // white-space: nowrap;
 
-      &::after {
-        box-shadow: inset 4px 4px $button-tag-highlight, inset -4px -4px $button-tag-shadow;
-      }
+      // &::after {
+      //   box-shadow: inset 4px 4px $button-tag-highlight, inset -4px -4px $button-tag-shadow;
+      // }
 
-      &:hover {
-        background: $button-tag-hover-background;
+      // &:hover {
+      //   background: $button-tag-hover-background;
 
-        &::after {
-          box-shadow: inset 4px 4px $button-tag-hover-highlight, inset -4px -4px $button-tag-shadow;
-        }
-      }
+      //   &::after {
+      //     box-shadow: inset 4px 4px $button-tag-hover-highlight, inset -4px -4px $button-tag-shadow;
+      //   }
+      // }
     }
   }
 
@@ -295,7 +341,6 @@
       margin: 0;
       // width: 50%;
       flex: 1;
-
     }
 
     &-inner {
@@ -555,6 +600,10 @@
       flex-direction: column;
       padding: 3rem;
     }
+
+    // .tag-container fieldset {
+    //   flex-direction: column;
+    // }
     .gallery {
       &-outer {
         width: 100%;
