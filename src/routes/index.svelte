@@ -75,9 +75,9 @@
         <div class="gallery-title">
           <img class="gallery-header" src="/gallery.svg" alt="gallery header" draggable="false" />
           <p>
-            The best way to learn is by making things you care about and sharing them with others.
-          </p>
-          <p>
+            The best way to learn is by making things that you care about and sharing them with
+            other people.
+            <br /><br />
             Check out games by other Hack Clubbers! Click to play each game and to hack on the code.
           </p>
         </div>
@@ -93,7 +93,7 @@
 
         <div class="btn-container">
           <p>
-            Want to join in on the fun? If you have a Sprig game to share with the community, add it
+            Want to join in on the fun? If you have a Sprig game to share with the community, click
             here!
           </p>
           <button class="btn"> Add Your Game </button>
@@ -196,8 +196,8 @@
   }
 
   p {
+    font-size: 1.5rem;
     font-family: $text-font;
-    font-size: 1.8rem;
     // text-transform: lowercase;
   }
 
@@ -240,16 +240,15 @@
 
   .info-outer {
     padding: 10vh 0;
-    flex: 1;
-    // width: calc(50% - 6rem);
+    flex: 3;
+    // width: 40%;
     position: relative;
     p {
-      width: 85%;
+      width: 98%;
     }
 
     .tag-container {
       margin: 2rem 0;
-      width: 90%;
       position: relative;
       fieldset {
         border: 4px solid white;
@@ -272,7 +271,7 @@
 
   .btn {
     font-family: $subheading-font;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     text-transform: lowercase;
     margin: 4px;
     display: inline-block;
@@ -340,18 +339,19 @@
       padding: 10vh 0;
       margin: 0;
       // width: 50%;
-      flex: 1;
+      flex: 5;
     }
 
     &-inner {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+
+      justify-content: flex-end;
       gap: 2.2rem;
     }
 
     &-header {
-      width: 28rem;
+      width: 26rem;
       padding: 0;
       margin: 0;
     }
@@ -362,7 +362,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      width: 16rem;
+      width: 14rem;
       background: $gallery-background;
       border-style: solid;
       border-width: 4px;
@@ -407,7 +407,7 @@
           color: white;
           white-space: nowrap;
           margin: 0.8rem 0 0.8rem 0;
-          font-size: 1.6rem;
+          font-size: 1.5rem;
           font-weight: 400;
           // line-height: 0.9;
           span {
@@ -504,7 +504,7 @@
       span {
         font-family: $text-font;
         color: black;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         text-transform: lowercase;
         display: block;
         padding: 0.4rem;
@@ -520,8 +520,8 @@
     top: 0.8rem;
     right: 0.8rem;
     z-index: 3;
-    padding: 0 0.6rem;
-    font-size: 1.2rem;
+    padding: 0 0.4rem;
+    font-size: 1.1rem;
     text-align: center;
     color: $tag-color;
     background: $tag-background;
@@ -647,7 +647,7 @@
       width: 4rem;
       bottom: -3.8rem;
       cursor: $cursor-active;
-      transition: all .5s linear;
+      transition: all 0.5s linear;
 
       &:hover {
         bottom: 0;
@@ -683,8 +683,12 @@
       &-outer {
         width: 100%;
       }
+
+      &-inner {
+        justify-content: center;
+      }
       &-item {
-        width: 15rem;
+        width: 12rem;
       }
 
       &-header {
