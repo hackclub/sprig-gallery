@@ -1,4 +1,5 @@
 <script>
+  import Card from '../components/Card.svelte';
   import { onMount } from 'svelte';
 
   let data = [];
@@ -47,8 +48,9 @@
     const result = await Promise.all(names);
 
     data = result.filter((x) => x);
-    console.log(data);
   });
+
+  // $: visibleUsers =
 
   // Preloader observes for DOM update in .gallery-inner childlist
   onMount(() => {
@@ -118,7 +120,7 @@
     <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
     <div class="gallery-outer">
       <div class="gallery-inner">
-        <div id="start-from-scratch" class="gallery-item">
+        <!-- <div id="start-from-scratch" class="gallery-item">
           <a href="/">
             <div class="image-box">
               <div class="gallery-image">
@@ -129,9 +131,17 @@
               <h3>Title<br /> <span>by Author</span></h3>
             </div>
           </a>
-        </div>
+        </div> -->
+
+        <Card id="start-from-scratch" />
         {#each data as thumbnail}
-          <div class="gallery-item">
+          <Card
+            name={thumbnail.name}
+            imgURL={thumbnail.imgURL}
+            tags={thumbnail.tags}
+            author={thumbnail.author}
+          />
+          <!-- <div class="gallery-item">
             <a
               href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${thumbnail.name}.js`}
               style="margin:0;padding:0;"
@@ -150,7 +160,7 @@
                 </h3>
               </div>
             </a>
-          </div>
+          </div> -->
         {/each}
       </div>
     </div>
@@ -517,24 +527,6 @@
       }
     }
   }
-
-  .tag {
-    font-family: $text-font;
-    font-weight: 300;
-    text-transform: lowercase;
-    position: absolute;
-    top: 0.8rem;
-    right: 0.8rem;
-    z-index: 3;
-    padding: 0 0.4rem;
-    font-size: 1.1rem;
-    text-align: center;
-    color: $tag-color;
-    background: $tag-background;
-    box-shadow: 0 0.3em $tag-background, 0 -0.3em $tag-background, 0.3em 0 $tag-background,
-      -0.3em 0 $tag-background, 0 0.5em 0 rgba(0, 0, 0, 0.2);
-  }
-
   .logo {
     position: absolute;
     top: 0;
