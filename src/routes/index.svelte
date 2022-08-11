@@ -18,14 +18,14 @@
 
   onMount(async () => {
     const gitFiles = await fetch(
-      'https://api.github.com/repos/hackclub/sprig/contents/games?recursive=1',
+      'https://raw.githubusercontent.com/hackclub/sprig/main/games/metadata.json',
     ).then((res) => res.json());
 
     const makeURL = (x) => `https://sprig.hackclub.dev/api/thumbnail/${x}`;
 
     const names = gitFiles.map(async (x) => {
       try {
-        const res = await fetch(makeURL(x.name.slice(0, -3)));
+        const res = await fetch(makeURL(x.title));
         const json = await res.json();
 
         json.image = decode(json.image);
@@ -35,6 +35,9 @@
         c.getContext('2d').putImageData(json.image, 0, 0);
         c.style['image-rendering'] = 'pixelated';
         json.imgURL = c.toDataURL();
+        json.author = x.author;
+        json.tags = x.tags;
+
         return json;
       } catch (err) {
         console.log(err);
@@ -44,6 +47,7 @@
     const result = await Promise.all(names);
 
     data = result.filter((x) => x);
+    console.log(data);
   });
 
   // Preloader observes for DOM update in .gallery-inner childlist
@@ -85,9 +89,9 @@
         <div class="tag-container">
           <fieldset>
             <legend>Filter By Tag</legend>
-            <button class="btn-tag btn"> For Beginners </button>
+            <button class="btn-tag btn"> Beginner </button>
+            <button class="btn-tag btn"> Advanced </button>
             <button class="btn-tag btn"> Tutorials </button>
-            <button class="btn-tag btn"> Example Tag </button>
           </fieldset>
         </div>
 
@@ -133,14 +137,16 @@
               style="margin:0;padding:0;"
             >
               <div class="image-box">
-                <span class="tag">Beginner</span>
+                {#if thumbnail.tags.indexOf('beginner') > -1}
+                  <span class="tag">Beginner</span>
+                {/if}
 
                 <img src={thumbnail.imgURL} class="gallery-image" alt="game preview" />
               </div>
               <div class="text">
                 <h3>
                   {thumbnail.name}<br />
-                  <span>by Author</span>
+                  <span>by {thumbnail.author}</span>
                 </h3>
               </div>
             </a>
