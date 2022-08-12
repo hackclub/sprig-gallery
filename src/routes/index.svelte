@@ -78,7 +78,7 @@
 				<a href="https://sprig.hackclub.dev" class="button big-button">
 					Create Your Own
 				</a>
-				<a href="/share" class="button big-button">Share your game</a>
+				<a href="https://github.com/hackclub/sprig/blob/main/games/README.md" class="button big-button">Share your game</a>
 			</div>
 		</div>
 	</div>
