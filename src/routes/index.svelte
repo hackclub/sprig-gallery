@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
 
   let data = [];
+  let tags = ['beginner', 'advanced', 'tutorial']
 
   const decode = ({ data, width }) => {
     const decodedString = atob(data);
@@ -49,8 +50,18 @@
 
     data = result.filter((x) => x);
   });
+  let activeFilters = [];
 
-  // $: visibleUsers =
+  let handleFilter = (x) => {
+    let index = activeFilters.indexOf(x.tag);
+    if (index > -1) {
+      activeFilters.splice(index, 1);
+    } else {
+      activeFilters.push(x.tag)
+    }
+    console.log(activeFilters);
+    activeFilters = activeFilters;
+  }
 
   // Preloader observes for DOM update in .gallery-inner childlist
   onMount(() => {
@@ -91,9 +102,9 @@
         <div class="tag-container">
           <fieldset>
             <legend>Filter By Tag</legend>
-            <button class="btn-tag btn"> Beginner </button>
-            <button class="btn-tag btn"> Advanced </button>
-            <button class="btn-tag btn"> Tutorials </button>
+            {#each tags as tag}
+              <button class="btn-tag btn" on:click={() => { handleFilter({tag}) }}> {tag} </button>
+            {/each}
           </fieldset>
         </div>
 
@@ -112,22 +123,18 @@
     <a href="https://github.com/hackclub/sprig/tree/main/games" target="_blank"
       ><img src="./spriglogotext.png" alt="sprig logo" class="sprig-logo" /></a
     >
-    <!-- <div class="dino-container">
-      <div class="bubble">
-        <p>Psst! We're on GitHub!</p>
-      </div>
-    </div> -->
     <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
     <div class="gallery-outer">
       <div class="gallery-inner">
         <Card id="start-from-scratch" />
         {#each data as thumbnail}
-          <Card
-            name={thumbnail.name}
-            imgURL={thumbnail.imgURL}
-            tags={thumbnail.tags}
-            author={thumbnail.author}
-          />
+            <Card
+              name={thumbnail.name}
+              imgURL={thumbnail.imgURL}
+              tags={thumbnail.tags}
+              author={thumbnail.author}
+              filters={activeFilters}
+            />
         {/each}
       </div>
     </div>
@@ -167,7 +174,6 @@
     overflow: hidden;
   }
 
-  h3::selection,
   p::selection,
   a::selection {
     color: var(--pcb-trace);
@@ -297,24 +303,6 @@
         box-shadow: inset 4px 4px $button-hover-highlight, inset -6px -6px $button-shadow;
       }
     }
-
-    &-tag {
-      // color: $button-tag-color;
-      // background: $button-tag-background;
-      // white-space: nowrap;
-
-      // &::after {
-      //   box-shadow: inset 4px 4px $button-tag-highlight, inset -4px -4px $button-tag-shadow;
-      // }
-
-      // &:hover {
-      //   background: $button-tag-hover-background;
-
-      //   &::after {
-      //     box-shadow: inset 4px 4px $button-tag-hover-highlight, inset -4px -4px $button-tag-shadow;
-      //   }
-      // }
-    }
   }
 
   .gallery {
@@ -341,7 +329,7 @@
     &-title {
       margin-bottom: 30px;
     }
-   
+  }
   .logo {
     position: absolute;
     top: 0;
@@ -367,78 +355,6 @@
       animation: waveFlag 0.5s linear infinite alternate;
     }
   }
-
-  // .dino-container {
-  //   position: fixed;
-  //   left: 30px;
-  //   transition: all 0.5s linear;
-  //   bottom: -3.8rem;
-  //   display: flex;
-  //   align-items: center;
-
-  //   &,
-  //   & * {
-  //     cursor: $cursor-active;
-  //   }
-
-  //   &:hover {
-  //     bottom: 0;
-
-  //     .bubble {
-  //       opacity: 1;
-  //     }
-  //   }
-
-  //   .sprig-dino {
-  //     width: 4rem;
-  //   }
-  //   .bubble {
-  //     opacity: 0;
-  //     transition: all 0.3s ease;
-  //     transition-delay: 0.4s;
-  //     border-image-repeat: stretch;
-  //     border-image-slice: 3;
-  //     border-image-width: 3;
-  //     border-image-repeat: stretch;
-  //     border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(33,37,41)" /></svg>');
-  //     border-image-outset: 2;
-  //     background: white;
-  //     padding: 0.5rem 1.2rem;
-  //     margin: 8px 8px 30px 18px;
-  //     border-width: 4px;
-  //     position: relative;
-  //     border-style: solid;
-
-  //     &::before {
-  //       position: absolute;
-  //       content: '';
-  //       bottom: -14px;
-  //       width: 26px;
-  //       height: 10px;
-  //       background-color: #fff;
-  //       border-right: 4px solid #212529;
-  //       border-left: 4px solid #212529;
-  //     }
-
-  //     &::after {
-  //       position: absolute;
-  //       content: '';
-  //       bottom: -18px;
-  //       width: 18px;
-  //       height: 4px;
-  //       margin-right: 8px;
-  //       color: #212529;
-  //       background-color: #fff;
-  //       box-shadow: -4px 0, 4px 0, -4px 4px #fff, 0 4px, -8px 4px, -4px 8px, -8px 8px;
-  //     }
-
-  //     p {
-  //       font-size: 1.4rem;
-  //       margin: 0;
-  //       color: black;
-  //     }
-  //   }
-  // }
 
   .sprig {
     &-logo {
@@ -500,9 +416,6 @@
       &-inner {
         justify-content: center;
       }
-      &-item {
-        width: 12rem;
-      }
 
       &-header {
         width: 20rem;
@@ -558,19 +471,9 @@
   }
 
   @media (resolution: 1.5dppx) {
-    .gallery-item {
-      width: 14rem;
-    }
 
     p {
       font-size: 1.3rem;
-    }
-
-    h3 {
-      font-size: 1.2rem;
-    }
-    .text span {
-      font-size: 0.8rem;
     }
     .gallery-header {
       width: 20rem;

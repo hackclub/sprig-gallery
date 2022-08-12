@@ -4,45 +4,44 @@
   export let imgURL;
   export let author;
   export let id;
+  export let filters = [];
+
+
+  $: shown = filters.every(elem => tags.includes(elem));
 </script>
 
-<div class="gallery-item" {id}>
-  <a
-    href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${name}.js`}
-  >
-    <div class="image-box">
-      {#if !id}
-        {#if tags.indexOf('beginner') > -1}
-          <span class="tag">Beginner</span>
+{#if (id === 'start-from-scratch' || shown)}
+  <div class="gallery-item" {id}>
+    <a
+      href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${name}.js`}
+    >
+      <div class="image-box">
+        {#if !id}
+          {#if tags.indexOf('beginner') > -1}
+            <span class="tag">Beginner</span>
+          {/if}
+          <img src={imgURL} class="gallery-image" alt="game preview" />
         {/if}
-        <img src={imgURL} class="gallery-image" alt="game preview" />
-      {/if}
 
-      {#if id}
-        <div class="gallery-image">
-          <span>Start<br />From<br />Scratch</span>
-        </div>
-      {/if}
-    </div>
-    <div class="text">
-      <h3>
-        {name}<br />
-        <span>by {author}</span>
-      </h3>
-    </div>
-  </a>
-</div>
+        {#if id}
+          <div class="gallery-image">
+            <span>Start<br />From<br />Scratch</span>
+          </div>
+        {/if}
+      </div>
+      <div class="text">
+        <h3>
+          {name}<br />
+          <span>by {author}</span>
+        </h3>
+      </div>
+    </a>
+  </div>
+{/if}
 
 <style type="text/scss">
   @import '../styles/_variables.scss';
   @import '../styles/_fonts.scss';
-
-  h3::selection,
-  p::selection,
-  a::selection {
-    color: var(--pcb-trace);
-    background-color: white;
-  }
 
   *,
   *::before,
