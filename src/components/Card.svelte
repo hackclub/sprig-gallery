@@ -4,40 +4,36 @@
   export let imgURL;
   export let author;
   export let id;
-  export let filters = [];
 
-
-  $: shown = filters.every(elem => tags.includes(elem));
+  // If A) activeFilters is empty or B) activeFilters is not empty and the card contais all of the tags in activeFilters
 </script>
 
-{#if (id === 'start-from-scratch' || shown)}
-  <div class="gallery-item" {id}>
-    <a
-      href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${name}.js`}
-    >
-      <div class="image-box">
-        {#if !id}
-          {#if tags.indexOf('beginner') > -1}
-            <span class="tag">Beginner</span>
-          {/if}
-          <img src={imgURL} class="gallery-image" alt="game preview" />
+<div class="gallery-item" {id}>
+  <a
+    href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${name}.js`}
+  >
+    <div class="image-box">
+      {#if !id}
+        {#if tags.indexOf('beginner') > -1}
+          <span class="tag">Beginner</span>
         {/if}
+        <img src={imgURL} class="gallery-image" alt="game preview" />
+      {/if}
 
-        {#if id}
-          <div class="gallery-image">
-            <span>Start<br />From<br />Scratch</span>
-          </div>
-        {/if}
-      </div>
-      <div class="text">
-        <h3>
-          {name}<br />
-          <span>by {author}</span>
-        </h3>
-      </div>
-    </a>
-  </div>
-{/if}
+      {#if id}
+        <div class="gallery-image">
+          <span>Start<br />From<br />Scratch</span>
+        </div>
+      {/if}
+    </div>
+    <div class="text">
+      <h3>
+        {name}<br />
+        <span>by {author}</span>
+      </h3>
+    </div>
+  </a>
+</div>
 
 <style type="text/scss">
   @import '../styles/_variables.scss';

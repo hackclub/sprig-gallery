@@ -3,7 +3,7 @@
   import { onMount } from 'svelte';
 
   let data = [];
-  let tags = ['beginner', 'advanced', 'tutorial']
+  let tags = ['beginner', 'advanced', 'tutorial'];
 
   const decode = ({ data, width }) => {
     const decodedString = atob(data);
@@ -19,6 +19,22 @@
   };
 
   onMount(async () => {
+    // Preloader observes for changes in .gallery-inner childlist
+    let preloader = document.querySelector('#preloader');
+    let gallery = document.querySelector('.gallery-inner');
+    let observer = new MutationObserver(() => {
+      preloader.style.opacity = '0';
+
+      setTimeout(() => {
+        preloader.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }, 500);
+      observer.disconnect();
+    });
+    observer.observe(gallery, { childList: true });
+
+    /////////////////////////////////
+
     const gitFiles = await fetch(
       'https://raw.githubusercontent.com/hackclub/sprig/main/games/metadata.json',
     ).then((res) => res.json());
@@ -50,6 +66,7 @@
 
     data = result.filter((x) => x);
   });
+
   let activeFilters = [];
 
   let handleFilter = (x) => {
@@ -57,27 +74,10 @@
     if (index > -1) {
       activeFilters.splice(index, 1);
     } else {
-      activeFilters.push(x.tag)
+      activeFilters.push(x.tag);
     }
-    console.log(activeFilters);
     activeFilters = activeFilters;
-  }
-
-  // Preloader observes for DOM update in .gallery-inner childlist
-  onMount(() => {
-    let preloader = document.querySelector('#preloader');
-    let gallery = document.querySelector('.gallery-inner');
-    let observer = new MutationObserver(() => {
-      preloader.style.opacity = '0';
-
-      setTimeout(() => {
-        preloader.style.display = 'none';
-        document.body.style.overflow = 'auto';
-      }, 500);
-      observer.disconnect();
-    });
-    observer.observe(gallery, { childList: true });
-  });
+  };
 </script>
 
 <body>
@@ -102,8 +102,18 @@
         <div class="tag-container">
           <fieldset>
             <legend>Filter By Tag</legend>
-            {#each tags as tag}
-              <button class="btn-tag btn" on:click={() => { handleFilter({tag}) }}> {tag} </button>
+            {#each tags as tag, i}
+              <button
+                id={tag}
+                class={activeFilters.length === 0 || activeFilters.includes(tag)
+                  ? 'btn-tag btn'
+                  : 'btn-tag btn inactive'}
+                on:click={() => {
+                  handleFilter({ tag });
+                }}
+              >
+                {tag}
+              </button>
             {/each}
           </fieldset>
         </div>
@@ -128,13 +138,14 @@
       <div class="gallery-inner">
         <Card id="start-from-scratch" />
         {#each data as thumbnail}
+          {#if activeFilters.every((elem) => thumbnail.tags.includes(elem))}
             <Card
               name={thumbnail.name}
               imgURL={thumbnail.imgURL}
               tags={thumbnail.tags}
               author={thumbnail.author}
-              filters={activeFilters}
             />
+          {/if}
         {/each}
       </div>
     </div>
@@ -153,6 +164,7 @@
     --pcb-trace: #014a27;
     --pcb-darker: #03321b;
   }
+
   // ============= END IMPORTS & VARIABLES ============
 
   *,
@@ -282,6 +294,24 @@
     border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="' + $button-text-border + '" /></svg>');
     border-image-outset: 2;
 
+    &.inactive {
+      color: $button-inactive-color;
+      background: $button-inactive-background;
+
+      &::after {
+        box-shadow: inset 4px 4px $button-inactive-highlight,
+          inset -4px -4px $button-inactive-shadow;
+      }
+
+      &:hover {
+        background: $button-inactive-hover-background;
+        &::after {
+          box-shadow: inset 4px 4px $button-inactive-hover-highlight,
+            inset -6px -6px $button-inactive-hover-shadow;
+        }
+      }
+    }
+
     &::after {
       cursor: $cursor-active;
       position: absolute;
@@ -295,7 +325,7 @@
     }
 
     &:hover {
-      background: #f2c409;
+      background: $button-hover-background;
       transform: scale(1.05);
       text-decoration: none;
 
@@ -471,7 +501,6 @@
   }
 
   @media (resolution: 1.5dppx) {
-
     p {
       font-size: 1.3rem;
     }

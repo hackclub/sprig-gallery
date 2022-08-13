@@ -37,12 +37,13 @@ $button-hover-highlight: rgba(251, 247, 177, 0.5);
 $tag-color: white;
 $tag-background: rgb(159, 183, 72);
 
-$button-tag-color: rgb(33, 37, 41);
-$button-tag-background: rgb(255, 222, 77);
-$button-tag-highlight: rgb(251, 247, 177);
-$button-tag-shadow: rgb(229, 148, 0);
-$button-tag-hover-background: rgb(242, 196, 9);
-$button-tag-hover-highlight: rgba(251, 247, 177, 0.5);
+$button-inactive-color: rgb(255, 255, 255);
+$button-inactive-background: rgb(118, 118, 143);
+$button-inactive-highlight: rgb(167, 171, 185);
+$button-inactive-shadow: rgb(90, 86, 105);
+$button-inactive-hover-shadow: rgb(115, 110, 131);
+$button-inactive-hover-background: rgb(157, 157, 182);
+$button-inactive-hover-highlight: rgb(196, 200, 214);
 
 // ====== END COLORS ======
 
