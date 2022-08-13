@@ -4,17 +4,17 @@
   export let imgURL;
   export let author;
   export let id;
-
-  // If A) activeFilters is empty or B) activeFilters is not empty and the card contais all of the tags in activeFilters
 </script>
 
 <div class="gallery-item" {id}>
   <a
-    href={`https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${name}.js`}
+    href={id
+      ? 'https://sprig.hackclub.dev'
+      : `https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${name}.js`}
   >
     <div class="image-box">
       {#if !id}
-        {#if tags.indexOf('beginner') > -1}
+        {#if tags.includes('beginner')}
           <span class="tag">Beginner</span>
         {/if}
         <img src={imgURL} class="gallery-image" alt="game preview" />
@@ -64,7 +64,7 @@
     border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="' + $gallery-border-dark + '" /></svg>');
     border-image-outset: 2;
 
-    backdrop-filter: blur(0.2rem);
+    // backdrop-filter: blur(0.2rem);
     box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
 
     &:hover {
@@ -79,7 +79,6 @@
       border-image-repeat: stretch;
       border-image-slice: 3;
       border-image-width: 3;
-      /* border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="rgb(167,171,185)" /></svg>'); */
       border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="' + $gallery-border-light + '" /></svg>');
       border-image-outset: 2;
     }
@@ -89,7 +88,6 @@
       display: flex;
       flex: 60% 40%;
       flex-wrap: wrap;
-      /* padding: 0 0.8rem 0.8rem 0.8rem; */
       h3 {
         text-transform: lowercase;
         text-overflow: ellipsis;
@@ -100,7 +98,6 @@
         margin: 0.8rem 0 0.8rem 0;
         font-size: 1.5rem;
         font-weight: 400;
-        // line-height: 0.9;
         span {
           font-weight: 300;
           font-size: 1.2rem;
@@ -147,7 +144,6 @@
       cursor: $cursor-active;
     }
     &#start-from-scratch {
-      /* background: rgba(255, 222, 77, 0.5); */
       background: $gallery-highlight-background;
       border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="8" height="8" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 h1 v1 h-1 z M4 1 h1 v1 h-1 z M2 2 h1 v1 h-1 z M5 2 h1 v1 h-1 z M1 3 h1 v1 h-1 z M6 3 h1 v1 h-1 z M1 4 h1 v1 h-1 z M6 4 h1 v1 h-1 z M2 5 h1 v1 h-1 z M5 5 h1 v1 h-1 z M3 6 h1 v1 h-1 z M4 6 h1 v1 h-1 z" fill="' + $gallery-highlight-border-dark + '" /></svg>');
 
@@ -167,14 +163,8 @@
 
         &::after,
         &::before {
-          background-image: linear-gradient(
-              $gallery-highlight-border-xlight 5px,
-              $gallery-highlight-border-xlight 5px
-            ),
-            linear-gradient(
-              $gallery-highlight-border-xlight 5px,
-              $gallery-highlight-border-xlight 5px
-            );
+          background-image: linear-gradient($gallery-highlight-border-xlight 5px, $gallery-highlight-border-xlight 5px),
+            linear-gradient($gallery-highlight-border-xlight 5px, $gallery-highlight-border-xlight 5px);
         }
       }
     }
@@ -215,8 +205,8 @@
     text-align: center;
     color: $tag-color;
     background: $tag-background;
-    box-shadow: 0 0.3em $tag-background, 0 -0.3em $tag-background, 0.3em 0 $tag-background,
-      -0.3em 0 $tag-background, 0 0.5em 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.3em $tag-background, 0 -0.3em $tag-background, 0.3em 0 $tag-background, -0.3em 0 $tag-background,
+      0 0.5em 0 rgba(0, 0, 0, 0.2);
   }
 
   @media (max-width: 760px) {

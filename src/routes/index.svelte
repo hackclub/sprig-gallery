@@ -5,6 +5,9 @@
   let data = [];
   let tags = ['beginner', 'advanced', 'tutorial'];
 
+  let preloader;
+  let gallery;
+
   const decode = ({ data, width }) => {
     const decodedString = atob(data);
     const l = decodedString.length;
@@ -20,8 +23,6 @@
 
   onMount(async () => {
     // Preloader observes for changes in .gallery-inner childlist
-    let preloader = document.querySelector('#preloader');
-    let gallery = document.querySelector('.gallery-inner');
     let observer = new MutationObserver(() => {
       preloader.style.opacity = '0';
 
@@ -35,9 +36,9 @@
 
     /////////////////////////////////
 
-    const gitFiles = await fetch(
-      'https://raw.githubusercontent.com/hackclub/sprig/main/games/metadata.json',
-    ).then((res) => res.json());
+    const gitFiles = await fetch('https://raw.githubusercontent.com/hackclub/sprig/main/games/metadata.json').then(
+      (res) => res.json(),
+    );
 
     const makeURL = (x) => `https://sprig.hackclub.dev/api/thumbnail/${x}`;
 
@@ -81,7 +82,7 @@
 </script>
 
 <body>
-  <div id="preloader">
+  <div bind:this={preloader} id="preloader">
     <img src="/loader.gif" alt="coin preloader" />
     <p>loading...</p>
   </div>
@@ -92,8 +93,7 @@
         <div class="gallery-title">
           <img class="gallery-header" src="/gallery.svg" alt="gallery header" draggable="false" />
           <p>
-            The best way to learn is by making things that you care about and sharing them with
-            other people.
+            The best way to learn is by making things that you care about and sharing them with other people.
             <br /><br />
             Check out games by other Hack Clubbers! Click to play each game and to hack on the code.
           </p>
@@ -119,11 +119,10 @@
         </div>
 
         <div class="btn-container">
-          <p>
-            Want to join in on the fun? If you have a Sprig game to share with the community, click
-            here!
-          </p>
-          <button class="btn"> Add Your Game </button>
+          <p>Want to join in on the fun? If you have a Sprig game to share with the community, click here!</p>
+          <a href="https://github.com/hackclub/sprig/blob/main/games/README.md">
+            <button class="btn"> Add Your Game </button>
+          </a>
         </div>
       </div>
     </div>
@@ -135,16 +134,11 @@
     >
     <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
     <div class="gallery-outer">
-      <div class="gallery-inner">
+      <div class="gallery-inner" bind:this={gallery}>
         <Card id="start-from-scratch" />
         {#each data as thumbnail}
           {#if activeFilters.every((elem) => thumbnail.tags.includes(elem))}
-            <Card
-              name={thumbnail.name}
-              imgURL={thumbnail.imgURL}
-              tags={thumbnail.tags}
-              author={thumbnail.author}
-            />
+            <Card name={thumbnail.name} imgURL={thumbnail.imgURL} tags={thumbnail.tags} author={thumbnail.author} />
           {/if}
         {/each}
       </div>
@@ -153,19 +147,12 @@
 </body>
 
 <style type="text/scss">
-  // ============= IMPORTS & VARIABLES ============
+  // ============= IMPORTS ============
 
   @import '../styles/_variables.scss';
   @import '../styles/_fonts.scss';
 
-  :root {
-    --pcb-lighter: #04a356;
-    --pcb-base: #016e3d;
-    --pcb-trace: #014a27;
-    --pcb-darker: #03321b;
-  }
-
-  // ============= END IMPORTS & VARIABLES ============
+  // ============= END IMPORTS ============
 
   *,
   *::before,
@@ -179,8 +166,7 @@
     color: white;
     margin: 0;
     padding: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-      url('/pixelart_ruins_girl_trees.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/pixelart_ruins_girl_trees.png');
     background-size: cover;
     background-attachment: fixed;
     overflow: hidden;
@@ -199,7 +185,6 @@
   p {
     font-size: 1.5rem;
     font-family: $text-font;
-    // text-transform: lowercase;
   }
 
   #preloader {
@@ -213,7 +198,6 @@
     right: 0;
     bottom: 0;
     z-index: 4;
-    // background: rgba(50,46,46,255);
     background: $preloader-background;
     opacity: 1;
     transition: all 0.5s ease;
@@ -242,7 +226,6 @@
   .info-outer {
     padding: 10vh 0;
     flex: 3;
-    // width: 40%;
     position: relative;
     p {
       width: 98%;
@@ -299,15 +282,13 @@
       background: $button-inactive-background;
 
       &::after {
-        box-shadow: inset 4px 4px $button-inactive-highlight,
-          inset -4px -4px $button-inactive-shadow;
+        box-shadow: inset 4px 4px $button-inactive-highlight, inset -4px -4px $button-inactive-shadow;
       }
 
       &:hover {
         background: $button-inactive-hover-background;
         &::after {
-          box-shadow: inset 4px 4px $button-inactive-hover-highlight,
-            inset -6px -6px $button-inactive-hover-shadow;
+          box-shadow: inset 4px 4px $button-inactive-hover-highlight, inset -6px -6px $button-inactive-hover-shadow;
         }
       }
     }
@@ -339,7 +320,6 @@
     &-outer {
       padding: 10vh 0;
       margin: 0;
-      // width: 50%;
       flex: 5;
     }
 
@@ -435,9 +415,6 @@
       display: none;
     }
 
-    // .tag-container fieldset {
-    //   flex-direction: column;
-    // }
     .gallery {
       &-outer {
         width: 100%;

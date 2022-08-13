@@ -1,17 +1,16 @@
 ## Gallery
 
-- [X] Add NES cursor
-- [X] Add preloader that lets you in after it's done fetching from gh
-- [X] Add sprig logo
-- [ ] Get rid of the first card animation somehow
-- [X] Revamp cards
-- [ ] Make infinitely repeating dirt background
-- [X] Add filter by tag section
-    - [X] Display "Good for beginners", other tags (?) on the actual cards
-    - [ ] Revamp - maybe make it a minimal toggle above the gallery section so that the grey buttons are hidden initially
-- [ ] Fetch game authors from gh
-- [X] Fix the card width
-- [X] Add "Start from scratch" card
-- [X] Make responsive (w/ dynamic sizing variables)
-- [X] Switch to SCSS
-- [X] Reduce all subheadings/texts to the same font
+- [x] Add NES cursor
+- [x] Add preloader that lets you in after it's done fetching from gh
+- [x] Add sprig logo
+- [X] Get rid of the first card animation somehow
+- [x] Revamp cards
+- [x] Add filter by tag section
+  - [x] Display "Good for beginners", other tags (?) on the actual cards
+  - [x] Make functional
+- [X] Fetch game authors from gh
+- [x] Fix the card width
+- [x] Add "Start from scratch" card
+- [x] Make responsive (w/ dynamic sizing variables)
+- [x] Switch to SCSS
+- [x] Reduce all subheadings/texts to the same font
