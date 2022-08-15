@@ -143,7 +143,7 @@
   </div>
 </div>
 
-<style type="text/scss">
+<style lang="scss">
   // ============= IMPORTS ============
 
   @import '../styles/_variables.scss';

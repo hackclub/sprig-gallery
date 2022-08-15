@@ -35,7 +35,7 @@
   </a>
 </div>
 
-<style type="text/scss">
+<style lang="scss">
   @import '../styles/_variables.scss';
   @import '../styles/_fonts.scss';
 
