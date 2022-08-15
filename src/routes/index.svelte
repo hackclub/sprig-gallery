@@ -28,7 +28,6 @@
 
       setTimeout(() => {
         preloader.style.display = 'none';
-        document.body.style.overflow = 'auto';
       }, 500);
       observer.disconnect();
     });
@@ -81,70 +80,68 @@
   };
 </script>
 
-<body>
-  <div bind:this={preloader} id="preloader">
-    <img src="/loader.gif" alt="coin preloader" />
-    <p>loading...</p>
-  </div>
+<div bind:this={preloader} id="preloader">
+  <img src="/loader.gif" alt="coin preloader" />
+  <p>loading...</p>
+</div>
 
-  <div class="wrapper">
-    <div class="info-outer">
-      <div class="info-inner">
-        <div class="gallery-title">
-          <img class="gallery-header" src="/gallery.svg" alt="gallery header" draggable="false" />
-          <p>
-            The best way to learn is by making things that you care about and sharing them with other people.
-            <br /><br />
-            Check out games by other Hack Clubbers! Click to play each game and to hack on the code.
-          </p>
-        </div>
-
-        <div class="tag-container">
-          <fieldset>
-            <legend>Filter By Tag</legend>
-            {#each tags as tag, i}
-              <button
-                id={tag}
-                class={activeFilters.length === 0 || activeFilters.includes(tag)
-                  ? 'btn-tag btn'
-                  : 'btn-tag btn inactive'}
-                on:click={() => {
-                  handleFilter({ tag });
-                }}
-              >
-                {tag}
-              </button>
-            {/each}
-          </fieldset>
-        </div>
-
-        <div class="btn-container">
-          <p>Want to join in on the fun? If you have a Sprig game to share with the community, click here!</p>
-          <a href="https://github.com/hackclub/sprig/blob/main/games/README.md">
-            <button class="btn"> Add Your Game </button>
-          </a>
-        </div>
+<div class="wrapper">
+  <div class="info-outer">
+    <div class="info-inner">
+      <div class="gallery-title">
+        <img class="gallery-header" src="/gallery.svg" alt="gallery header" draggable="false" />
+        <p>
+          The best way to learn is by making things that you care about and sharing them with other people.
+          <br /><br />
+          Check out games by other Hack Clubbers! Click to play each game and to hack on the code.
+        </p>
       </div>
-    </div>
-    <a class="logo" href="https://hackclub.com"
-      ><img src="https://assets.hackclub.com/flag-orpheus-top.svg" alt="hack club logo" /></a
-    >
-    <a href="https://github.com/hackclub/sprig/tree/main/games" target="_blank"
-      ><img src="./spriglogotext.png" alt="sprig logo" class="sprig-logo" /></a
-    >
-    <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
-    <div class="gallery-outer">
-      <div class="gallery-inner" bind:this={gallery}>
-        <Card id="start-from-scratch" />
-        {#each data as thumbnail}
-          {#if activeFilters.every((elem) => thumbnail.tags.includes(elem))}
-            <Card name={thumbnail.name} imgURL={thumbnail.imgURL} tags={thumbnail.tags} author={thumbnail.author} />
-          {/if}
-        {/each}
+
+      <div class="tag-container">
+        <fieldset>
+          <legend>Filter By Tag</legend>
+          {#each tags as tag, i}
+            <button
+              id={tag}
+              class={activeFilters.length === 0 || activeFilters.includes(tag)
+                ? 'btn-tag btn'
+                : 'btn-tag btn inactive'}
+              on:click={() => {
+                handleFilter({ tag });
+              }}
+            >
+              {tag}
+            </button>
+          {/each}
+        </fieldset>
+      </div>
+
+      <div class="btn-container">
+        <p>Want to join in on the fun? If you have a Sprig game to share with the community, click here!</p>
+        <a href="https://github.com/hackclub/sprig/blob/main/games/README.md">
+          <button class="btn"> Add Your Game </button>
+        </a>
       </div>
     </div>
   </div>
-</body>
+  <a class="logo" href="https://hackclub.com"
+    ><img src="https://assets.hackclub.com/flag-orpheus-top.svg" alt="hack club logo" /></a
+  >
+  <a href="https://github.com/hackclub/sprig/tree/main/games" target="_blank"
+    ><img src="./spriglogotext.png" alt="sprig logo" class="sprig-logo" /></a
+  >
+  <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
+  <div class="gallery-outer">
+    <div class="gallery-inner" bind:this={gallery}>
+      <Card id="start-from-scratch" />
+      {#each data as thumbnail}
+        {#if activeFilters.every((elem) => thumbnail.tags.includes(elem))}
+          <Card name={thumbnail.name} imgURL={thumbnail.imgURL} tags={thumbnail.tags} author={thumbnail.author} />
+        {/if}
+      {/each}
+    </div>
+  </div>
+</div>
 
 <style type="text/scss">
   // ============= IMPORTS ============
@@ -161,7 +158,7 @@
     box-sizing: border-box;
   }
 
-  body {
+  :global(body) {
     font-size: 62.5%;
     color: white;
     margin: 0;
@@ -172,9 +169,8 @@
     overflow: hidden;
   }
 
-  p::selection,
-  a::selection {
-    color: var(--pcb-trace);
+  ::selection {
+    color: black;
     background-color: white;
   }
 
@@ -183,7 +179,7 @@
   }
 
   p {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-family: $text-font;
   }
 
@@ -217,16 +213,21 @@
 
   .wrapper {
     width: 100%;
-    height: auto;
+    height: 100vh;
+    overflow: hidden;
     z-index: -1;
     display: flex;
-    padding: 3rem 6rem;
+    --wrapper-padding-vertical: 3rem;
+    --wrapper-padding-horizontal: 6rem;
   }
 
   .info-outer {
-    padding: 10vh 0;
+    overflow: auto;
+    padding: calc(10vh + var(--wrapper-padding-vertical)) 0;
+    padding-left: var(--wrapper-padding-horizontal);
     flex: 3;
     position: relative;
+
     p {
       width: 98%;
     }
@@ -245,7 +246,7 @@
         legend {
           font-family: $subheading-font;
           text-transform: lowercase;
-          font-size: 1.6rem;
+          font-size: 1.4rem;
           padding: 0 0.5rem;
           margin-left: 1rem;
         }
@@ -318,9 +319,11 @@
 
   .gallery {
     &-outer {
-      padding: 10vh 0;
+      padding: calc(10vh + var(--wrapper-padding-vertical)) 0;
+      padding-right: var(--wrapper-padding-horizontal);
       margin: 0;
       flex: 5;
+      overflow: auto;
     }
 
     &-inner {
@@ -408,7 +411,8 @@
   @media (max-width: 920px) {
     .wrapper {
       flex-direction: column;
-      padding: 3rem;
+      overflow: auto;
+      --wrapper-padding-horizontal: 3rem;
     }
 
     .sprig-dino {
@@ -417,7 +421,10 @@
 
     .gallery {
       &-outer {
+        padding-top: 0;
+        padding-left: var(--wrapper-padding-horizontal);
         width: 100%;
+        overflow: unset;
       }
 
       &-inner {
@@ -430,6 +437,8 @@
     }
     .info-outer {
       width: 100%;
+      padding-right: var(--wrapper-padding-horizontal);
+      padding-bottom: 10vh;
 
       p {
         font-size: 1.6rem;
@@ -467,13 +476,13 @@
     }
 
     .wrapper {
-      padding: 3rem 2rem;
+      --wrapper-padding-horizontal: 2rem;
     }
   }
 
   @media (max-width: 320px) {
     .wrapper {
-      padding: 3rem 1rem;
+      --wrapper-padding-horizontal: 1rem;
     }
   }
 
