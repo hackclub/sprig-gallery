@@ -9,7 +9,7 @@
   let gallery;
 
   const decode = ({ data, width }) => {
-    const decodedString = atob(data);
+    const decodedString = Buffer.from(data, 'base64');
     const l = decodedString.length;
     const buf = new Uint8ClampedArray(l);
     for (let i = 0; i < l; i++) {
