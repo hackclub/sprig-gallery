@@ -9,7 +9,7 @@
   let gallery;
 
   const decode = ({ data, width }) => {
-    const decodedString = Buffer.from(data, 'base64');
+    const decodedString = atob(data);
     const l = decodedString.length;
     const buf = new Uint8ClampedArray(l);
     for (let i = 0; i < l; i++) {
@@ -103,9 +103,7 @@
           {#each tags as tag, i}
             <button
               id={tag}
-              class={activeFilters.length === 0 || activeFilters.includes(tag)
-                ? 'btn-tag btn'
-                : 'btn-tag btn inactive'}
+              class={activeFilters.length === 0 || activeFilters.includes(tag) ? 'btn-tag btn' : 'btn-tag btn inactive'}
               on:click={() => {
                 handleFilter({ tag });
               }}
