@@ -14,8 +14,8 @@
   >
     <div class="image-box">
       {#if !id}
-        {#if tags.includes('beginner')}
-          <span class="tag">Beginner</span>
+        {#if tags.includes('tutorial')}
+          <span class="tag">Tutorial</span>
         {/if}
         <img src={imgURL} class="gallery-image" alt="game preview" />
       {/if}
@@ -96,11 +96,11 @@
         color: white;
         white-space: nowrap;
         margin: 0.8rem 0 0.8rem 0;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 400;
         span {
           font-weight: 300;
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           color: rgb(151, 166, 187);
           padding: 0;
         }
@@ -201,7 +201,7 @@
     right: 0.8rem;
     z-index: 3;
     padding: 0 0.4rem;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-align: center;
     color: $tag-color;
     background: $tag-background;

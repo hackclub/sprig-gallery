@@ -2,7 +2,7 @@
   import Card from '../components/Card.svelte';
   import { onMount } from 'svelte';
 
-  let data = [];
+  let games = [];
   let tags = ['beginner', 'advanced', 'tutorial'];
 
   let preloader;
@@ -64,7 +64,7 @@
 
     const result = await Promise.all(names);
 
-    data = result.filter((x) => x);
+    games = result.filter((x) => x);
   });
 
   let activeFilter = null;
@@ -120,9 +120,18 @@
   <div class="gallery-outer">
     <div class="gallery-inner" bind:this={gallery}>
       <Card id="start-from-scratch" />
-      {#each data as thumbnail}
-        {#if !activeFilter || thumbnail.tags.includes(activeFilter)}
-          <Card name={thumbnail.name} imgURL={thumbnail.imgURL} tags={thumbnail.tags} author={thumbnail.author} />
+
+      {#each games as game}
+        <!-- Tutorials first, or whatever the filter is -->
+        {#if game.tags.includes(activeFilter || 'tutorial')}
+          <Card name={game.name} imgURL={game.imgURL} tags={game.tags} author={game.author} />
+        {/if}
+      {/each}
+
+      {#each games as game}
+        <!-- Everything but tutorials, or nothing if we're filtering -->
+        {#if !game.tags.includes('tutorial') && !activeFilter}
+          <Card name={game.name} imgURL={game.imgURL} tags={game.tags} author={game.author} />
         {/if}
       {/each}
     </div>
