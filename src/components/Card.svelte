@@ -29,7 +29,8 @@
     <div class="text">
       <h3>
         {name}<br />
-        <span>by {author}</span>
+        <span>by {author}</span><br />
+        <span>{tags?.map((tag) => `#${tag}`)?.join(', ') || '--'}</span>
       </h3>
     </div>
   </a>
