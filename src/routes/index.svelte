@@ -67,17 +67,7 @@
     data = result.filter((x) => x);
   });
 
-  let activeFilters = [];
-
-  let handleFilter = (x) => {
-    let index = activeFilters.indexOf(x.tag);
-    if (index > -1) {
-      activeFilters.splice(index, 1);
-    } else {
-      activeFilters.push(x.tag);
-    }
-    activeFilters = activeFilters;
-  };
+  let activeFilter = null;
 </script>
 
 <div bind:this={preloader} id="preloader">
@@ -103,10 +93,8 @@
           {#each tags as tag, i}
             <button
               id={tag}
-              class={activeFilters.length === 0 || activeFilters.includes(tag) ? 'btn-tag btn' : 'btn-tag btn inactive'}
-              on:click={() => {
-                handleFilter({ tag });
-              }}
+              class={activeFilter === tag ? 'btn-tag btn active' : 'btn-tag btn'}
+              on:click={() => (activeFilter = activeFilter === tag ? null : tag)}
             >
               {tag}
             </button>
@@ -117,7 +105,7 @@
       <div class="btn-container">
         <p>Want to join in on the fun? If you have a Sprig game to share with the community, click here!</p>
         <a href="https://github.com/hackclub/sprig/blob/main/games/README.md">
-          <button class="btn"> Add Your Game </button>
+          <button class="btn active">Add Your Game</button>
         </a>
       </div>
     </div>
@@ -133,7 +121,7 @@
     <div class="gallery-inner" bind:this={gallery}>
       <Card id="start-from-scratch" />
       {#each data as thumbnail}
-        {#if activeFilters.every((elem) => thumbnail.tags.includes(elem))}
+        {#if !activeFilter || thumbnail.tags.includes(activeFilter)}
           <Card name={thumbnail.name} imgURL={thumbnail.imgURL} tags={thumbnail.tags} author={thumbnail.author} />
         {/if}
       {/each}
@@ -258,8 +246,8 @@
     text-transform: lowercase;
     margin: 4px;
     display: inline-block;
-    color: $button-text-border;
-    background: $button-background;
+    color: $button-inactive-color;
+    background: $button-inactive-background;
     white-space: nowrap;
 
     padding: 6px 12px;
@@ -276,18 +264,18 @@
     border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="' + $button-text-border + '" /></svg>');
     border-image-outset: 2;
 
-    &.inactive {
-      color: $button-inactive-color;
-      background: $button-inactive-background;
+    &.active {
+      color: $button-text-border;
+      background: $button-background;
 
       &::after {
-        box-shadow: inset 4px 4px $button-inactive-highlight, inset -4px -4px $button-inactive-shadow;
+        box-shadow: inset 4px 4px $button-highlight, inset -4px -4px $button-shadow;
       }
 
       &:hover {
-        background: $button-inactive-hover-background;
+        background: $button-hover-background;
         &::after {
-          box-shadow: inset 4px 4px $button-inactive-hover-highlight, inset -6px -6px $button-inactive-hover-shadow;
+          box-shadow: inset 4px 4px $button-hover-highlight, inset -6px -6px $button-shadow;
         }
       }
     }
@@ -300,17 +288,17 @@
       right: -4px;
       bottom: -4px;
       content: '';
-      box-shadow: inset 4px 4px $button-highlight, inset -4px -4px $button-shadow;
+      box-shadow: inset 4px 4px $button-inactive-highlight, inset -4px -4px $button-inactive-shadow;
       box-sizing: border-box;
     }
 
     &:hover {
-      background: $button-hover-background;
+      background: $button-inactive-hover-background;
       transform: scale(1.05);
       text-decoration: none;
 
       &::after {
-        box-shadow: inset 4px 4px $button-hover-highlight, inset -6px -6px $button-shadow;
+        box-shadow: inset 4px 4px $button-inactive-hover-highlight, inset -6px -6px $button-inactive-hover-shadow;
       }
     }
   }
