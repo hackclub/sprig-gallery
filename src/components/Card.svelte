@@ -174,8 +174,9 @@
     top: 0;
     bottom: 0;
     left: 0;
-    object-fit: fill;
+    object-fit: contain;
     object-position: center;
+    image-rendering: pixelated;
     width: 100%;
     height: 100%;
     margin: 0;

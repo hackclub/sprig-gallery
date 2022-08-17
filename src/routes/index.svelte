@@ -3,7 +3,7 @@
   import { onMount } from 'svelte';
 
   let games = [];
-  let tags = ['beginner', 'advanced', 'tutorial'];
+  let tags = [];
 
   let preloader;
   let gallery;
@@ -63,8 +63,8 @@
     });
 
     const result = await Promise.all(names);
-
     games = result.filter((x) => x);
+    tags = [...new Set(games.reduce((p, c) => [...p, ...c.tags], []))];
   });
 
   let activeFilter = null;
@@ -90,7 +90,7 @@
       <div class="tag-container">
         <fieldset>
           <legend>Filter By Tag</legend>
-          {#each tags as tag, i}
+          {#each tags as tag}
             <button
               id={tag}
               class={activeFilter === tag ? 'btn-tag btn active' : 'btn-tag btn'}
