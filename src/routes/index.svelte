@@ -104,7 +104,7 @@
 
       <div class="btn-container">
         <p>Want to join in on the fun? If you have a Sprig game to share with the community, click here!</p>
-        <a href="https://github.com/hackclub/sprig/blob/main/games/README.md">
+        <a href="/share">
           <button class="btn active">Add Your Game</button>
         </a>
       </div>
@@ -139,43 +139,17 @@
 </div>
 
 <style lang="scss">
-  // ============= IMPORTS ============
-
   @import '../styles/_variables.scss';
   @import '../styles/_fonts.scss';
+  @import '../styles/_shared.scss';
 
-  // ============= END IMPORTS ============
-
-  *,
-  *::before,
-  *::after {
-    cursor: $cursor-inactive;
-    box-sizing: border-box;
-  }
-
-  :global(body) {
-    font-size: 62.5%;
-    color: white;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/pixelart_ruins_girl_trees.png');
+  .wrapper {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/pixelart_ruins_girl_trees.png'),
+      $base-background;
     background-size: cover;
     background-attachment: fixed;
+    background-position: center center;
     overflow: hidden;
-  }
-
-  ::selection {
-    color: black;
-    background-color: white;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  p {
-    font-size: 1.4rem;
-    font-family: $text-font;
   }
 
   #preloader {
@@ -189,7 +163,7 @@
     right: 0;
     bottom: 0;
     z-index: 4;
-    background: $preloader-background;
+    background: $base-background;
     opacity: 1;
     transition: all 0.5s ease;
 
@@ -204,6 +178,10 @@
     p {
       margin: 1rem 0;
     }
+  }
+
+  .btn {
+    text-transform: lowercase;
   }
 
   .wrapper {
@@ -249,69 +227,6 @@
     }
   }
 
-  .btn {
-    font-family: $subheading-font;
-    font-size: 1.4rem;
-    text-transform: lowercase;
-    margin: 4px;
-    display: inline-block;
-    color: $button-inactive-color;
-    background: $button-inactive-background;
-    white-space: nowrap;
-
-    padding: 6px 12px;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    user-select: none;
-    border-style: solid;
-    position: relative;
-    border-width: 4px;
-
-    border-image-slice: 2;
-    border-image-width: 2;
-    border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="' + $button-text-border + '" /></svg>');
-    border-image-outset: 2;
-
-    &.active {
-      color: $button-text-border;
-      background: $button-background;
-
-      &::after {
-        box-shadow: inset 4px 4px $button-highlight, inset -4px -4px $button-shadow;
-      }
-
-      &:hover {
-        background: $button-hover-background;
-        &::after {
-          box-shadow: inset 4px 4px $button-hover-highlight, inset -6px -6px $button-shadow;
-        }
-      }
-    }
-
-    &::after {
-      cursor: $cursor-active;
-      position: absolute;
-      top: -4px;
-      left: -4px;
-      right: -4px;
-      bottom: -4px;
-      content: '';
-      box-shadow: inset 4px 4px $button-inactive-highlight, inset -4px -4px $button-inactive-shadow;
-      box-sizing: border-box;
-    }
-
-    &:hover {
-      background: $button-inactive-hover-background;
-      transform: scale(1.05);
-      text-decoration: none;
-
-      &::after {
-        box-shadow: inset 4px 4px $button-inactive-hover-highlight, inset -6px -6px $button-inactive-hover-shadow;
-      }
-    }
-  }
-
   .gallery {
     &-outer {
       padding: calc(10vh + var(--wrapper-padding-vertical)) 0;
@@ -338,80 +253,12 @@
       margin-bottom: 30px;
     }
   }
-  .logo {
-    position: absolute;
-    top: 0;
-    left: 30px;
-    background-size: contain;
-    flex-shrink: 0;
-    z-index: 333;
-    transition: cubic-bezier(0.375, 0, 0.675, 1) transform;
-    transform-origin: top left;
-
-    &,
-    & * {
-      cursor: $cursor-active;
-    }
-
-    img {
-      width: 112px;
-      height: auto;
-    }
-
-    &:hover,
-    &:focus {
-      animation: waveFlag 0.5s linear infinite alternate;
-    }
-  }
-
-  .sprig {
-    &-logo {
-      position: absolute;
-      right: 30px;
-      top: 30px;
-      width: 8rem;
-      /* transition-duration: 0.5s; */
-      cursor: $cursor-active;
-
-      &:hover {
-        transform: scale(1.05);
-      }
-    }
-
-    &-dino {
-      position: fixed;
-      left: 30px;
-      width: 4rem;
-      bottom: -3.8rem;
-      cursor: $cursor-active;
-      transition: all 0.5s linear;
-
-      &:hover {
-        bottom: 0;
-      }
-    }
-  }
-  @keyframes waveFlag {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(-5deg);
-    }
-  }
-
-  @media (max-width: 760px) {
-  }
 
   @media (max-width: 920px) {
     .wrapper {
       flex-direction: column;
       overflow: auto;
       --wrapper-padding-horizontal: 3rem;
-    }
-
-    .sprig-dino {
-      display: none;
     }
 
     .gallery {
@@ -430,6 +277,7 @@
         width: 20rem;
       }
     }
+
     .info-outer {
       width: 100%;
       padding-right: var(--wrapper-padding-horizontal);
@@ -441,7 +289,6 @@
       }
     }
 
-    .btn,
     .tag-container fieldset legend {
       font-size: 1.6rem;
     }
@@ -450,10 +297,6 @@
       width: 100%;
     }
 
-    .logo img {
-      width: 128px;
-      height: auto;
-    }
     .gallery-header {
       width: 25rem;
     }
@@ -465,7 +308,6 @@
     }
 
     .info-outer p,
-    .btn,
     .tag-container fieldset legend {
       font-size: 1.4rem;
     }
@@ -482,14 +324,10 @@
   }
 
   @media (resolution: 1.5dppx) {
-    p {
-      font-size: 1.3rem;
-    }
     .gallery-header {
       width: 20rem;
     }
 
-    .btn,
     .tag-container fieldset legend {
       font-size: 1.3rem;
     }
