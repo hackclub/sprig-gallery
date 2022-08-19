@@ -1,0 +1,191 @@
+@import './_variables.scss';
+@import './_fonts.scss';
+
+body {
+  background: $base-background;
+  margin: 0;
+  padding: 0;
+  font-family: $text-font;
+}
+
+*,
+*::before,
+*::after {
+  cursor: $cursor-inactive;
+  box-sizing: border-box;
+}
+
+::selection {
+  color: black;
+  background-color: white;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    cursor: $cursor-active;
+  }
+}
+
+p, ul, ol {
+  font-size: 1.4rem;
+}
+
+.btn {
+  font-family: $subheading-font;
+  font-size: 1.4rem;
+  margin: 4px;
+  display: inline-block;
+  color: $button-inactive-color;
+  background: $button-inactive-background;
+  white-space: nowrap;
+
+  padding: 6px 12px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  border-style: solid;
+  position: relative;
+  border-width: 4px;
+
+  border-image-slice: 2;
+  border-image-width: 2;
+  border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="' + $button-text-border + '" /></svg>');
+  border-image-outset: 2;
+
+  &.active {
+    color: $button-text-border;
+    background: $button-background;
+
+    &::after {
+      box-shadow: inset 4px 4px $button-highlight, inset -4px -4px $button-shadow;
+    }
+
+    &:hover {
+      background: $button-hover-background;
+
+      &::after {
+        box-shadow: inset 4px 4px $button-hover-highlight, inset -6px -6px $button-shadow;
+      }
+    }
+  }
+
+  &::after {
+    cursor: $cursor-active;
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    content: '';
+    box-shadow: inset 4px 4px $button-inactive-highlight, inset -4px -4px $button-inactive-shadow;
+    box-sizing: border-box;
+  }
+
+  &:hover {
+    background: $button-inactive-hover-background;
+    transform: scale(1.05);
+    text-decoration: none;
+
+    &::after {
+      box-shadow: inset 4px 4px $button-inactive-hover-highlight, inset -6px -6px $button-inactive-hover-shadow;
+    }
+  }
+}
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  background-size: contain;
+  flex-shrink: 0;
+  z-index: 333;
+  transition: cubic-bezier(0.375, 0, 0.675, 1) transform;
+  transform-origin: top left;
+
+  &,
+  & * {
+    cursor: $cursor-active;
+  }
+
+  img {
+    width: 112px;
+    height: auto;
+  }
+
+  &:hover,
+  &:focus {
+    animation: waveFlag 0.5s linear infinite alternate;
+  }
+}
+
+.sprig {
+  &-logo {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    width: 8rem;
+    /* transition-duration: 0.5s; */
+    cursor: $cursor-active;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &-dino {
+    position: fixed;
+    left: 30px;
+    width: 4rem;
+    bottom: -3.8rem;
+    cursor: $cursor-active;
+    transition: all 0.5s linear;
+
+    &:hover {
+      bottom: 0;
+    }
+  }
+}
+
+@keyframes waveFlag {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-5deg);
+  }
+}
+
+@media (max-width: 920px) {
+  .sprig-dino {
+    display: none;
+  }
+
+  .btn {
+    font-size: 1.6rem;
+  }
+
+  .logo img {
+    width: 128px;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn {
+    font-size: 1.4rem;
+  }
+}
+
+@media (resolution: 1.5dppx) {
+  p {
+    font-size: 1.3rem;
+  }
+
+  .btn {
+    font-size: 1.3rem;
+  }
+}
