@@ -5,12 +5,10 @@ $subheading-font: 'Billy', 'JetBrains Mono', monospace;
 
 // ====== END FONTS ======
 
-// ====== SIZES ======
-// ====== END SIZES ======
-
 // ====== COLORS ======
 
-$base-background: #1b1922;
+$base-background: #161620;
+$accent: #ffc225;
 
 // gallery
 
@@ -34,7 +32,8 @@ $button-shadow: rgb(229, 148, 0);
 $button-hover-background: rgb(242, 196, 9);
 $button-hover-highlight: rgba(251, 247, 177, 0.5);
 
-$tag-color: white;$tag-background: rgb(78, 49, 158);
+$tag-color: white;
+$tag-background: rgb(78, 49, 158);
 
 $button-inactive-color: rgb(255, 255, 255);
 $button-inactive-background: rgb(118, 118, 143);

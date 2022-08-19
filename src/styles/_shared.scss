@@ -1,11 +1,10 @@
 @import './_variables.scss';
 @import './_fonts.scss';
 
-:global(body) {
-  color: white;
+body {
+  background: $base-background;
   margin: 0;
   padding: 0;
-  background: $base-background;
   font-family: $text-font;
 }
 
