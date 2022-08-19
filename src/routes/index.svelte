@@ -245,7 +245,6 @@
     &-inner {
       display: flex;
       flex-wrap: wrap;
-
       justify-content: flex-end;
       gap: 2.2rem;
     }
