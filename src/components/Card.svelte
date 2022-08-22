@@ -76,7 +76,7 @@
     a {
       border-style: solid;
       border-width: 4px;
-      padding: 0.6rem 0.6rem 0 0.6rem !important;
+      padding: 0.6rem 0.6rem 0 0.6rem;
       border-image-repeat: stretch;
       border-image-slice: 3;
       border-image-width: 3;
@@ -211,21 +211,12 @@
       0 0.5em 0 rgba(0, 0, 0, 0.2);
   }
 
-  @media (max-width: 760px) {
-  }
-
-  @media (max-width: 920px) {
+  @media (max-width: $breakpoint-3) {
     .gallery {
       &-item {
         width: 12rem;
       }
     }
-  }
-
-  @media (max-width: 480px) {
-  }
-
-  @media (max-width: 320px) {
   }
 
   @media (resolution: 1.5dppx) {
@@ -239,6 +230,28 @@
 
     .text span {
       font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .gallery-item {
+      width: 100%;
+
+      .image-box {
+        width: 70%;
+        padding-bottom: 70%;
+        margin: 0 auto;
+      }
+
+      &#start-from-scratch {
+        a {
+          padding: 0.6rem;
+        }
+
+        .text {
+          display: none;
+        }
+      }
     }
   }
 </style>

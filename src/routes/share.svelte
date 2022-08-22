@@ -197,7 +197,7 @@
     }
   }
 
-  @media (min-width: 760px) {
+  @media (min-width: $breakpoint-2) {
     h1 {
       font-size: 42px;
     }
@@ -210,7 +210,7 @@
       width: 80%;
     }
 
-    @media (min-width: 920px) {
+    @media (min-width: $breakpoint-3) {
       h1 {
         font-size: 54px;
       }

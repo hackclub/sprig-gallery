@@ -210,6 +210,7 @@
     overflow: auto;
     padding: calc(10vh + var(--wrapper-padding-vertical)) 0;
     padding-left: var(--wrapper-padding-horizontal);
+    padding-right: 12px;
     flex: 3;
     position: relative;
 
@@ -243,6 +244,7 @@
     &-outer {
       padding: calc(10vh + var(--wrapper-padding-vertical)) 0;
       padding-right: var(--wrapper-padding-horizontal);
+      padding-left: 12px;
       margin: 0;
       flex: 5;
       overflow: auto;
@@ -265,7 +267,7 @@
     }
   }
 
-  @media (max-width: 920px) {
+  @media (max-width: $breakpoint-3) {
     .wrapper {
       flex-direction: column;
       overflow: auto;
@@ -290,18 +292,11 @@
     }
 
     .info-outer {
+      overflow: visible;
       width: 100%;
       padding-right: var(--wrapper-padding-horizontal);
-      padding-bottom: 10vh;
-
-      p {
-        font-size: 1.6rem;
-        width: 100%;
-      }
-    }
-
-    .tag-container fieldset legend {
-      font-size: 1.6rem;
+      padding-bottom: 6vh;
+      padding-top: 10vh;
     }
 
     .tag-container {
@@ -313,14 +308,9 @@
     }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: $breakpoint-2) {
     .gallery-header {
       width: 18rem;
-    }
-
-    .info-outer p,
-    .tag-container fieldset legend {
-      font-size: 1.4rem;
     }
 
     .wrapper {
@@ -328,7 +318,7 @@
     }
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: $breakpoint-1) {
     .wrapper {
       --wrapper-padding-horizontal: 1rem;
     }

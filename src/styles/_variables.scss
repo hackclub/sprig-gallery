@@ -7,7 +7,7 @@ $subheading-font: 'Billy', 'JetBrains Mono', monospace;
 
 // ====== COLORS ======
 
-$base-background: #161620;
+$base-background: #0a0a16;
 $accent: #ffc225;
 
 // gallery
@@ -51,3 +51,11 @@ $cursor-inactive: url('/cursor.png'), auto;
 $cursor-active: url('/cursor-click.png'), pointer;
 
 // ====== END MISCELLANEOUS ======
+
+// ====== BREAKPOINTS ======
+
+$breakpoint-1: 320px;
+$breakpoint-2: 760px;
+$breakpoint-3: 1400px;
+
+// ====== END BREAKPOINTS ======
