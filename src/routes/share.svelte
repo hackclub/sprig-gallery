@@ -33,13 +33,9 @@
         <div>
           <p class="step-number">Step 1:</p>
           <h2>Download your game file</h2>
-          <p>Select "share" then "as file". Your download should begin immediately.</p>
+          <p>Select "file", "share", then "as file". Your download should begin immediately.</p>
         </div>
-        <img
-          class="media"
-          src="https://cloud-hemofvnr5-hack-club-bot.vercel.app/0download.png"
-          alt="screenshot of where to export game file"
-        />
+        <img class="media" src="/screenshots/export.png" alt="screenshot of where to export the game file" />
       </div>
 
       <div class="step">
@@ -52,11 +48,7 @@
             <button class="btn active">Fork hackclub/sprig</button>
           </a>
         </div>
-        <img
-          class="media"
-          src="https://cloud-jps0pn7d1-hack-club-bot.vercel.app/0screenshot_2022-07-07_at_11.40.19_pm.png"
-          alt="screenshot of where to fork repository"
-        />
+        <img class="media" src="/screenshots/fork.png" alt="screenshot of github's fork page" />
       </div>
 
       <div class="step">
@@ -70,16 +62,33 @@
             <li>Add your file and click "Commit File"</li>
           </ul>
         </div>
-        <img
-          class="media"
-          src="https://cloud-a7l5tmw39-hack-club-bot.vercel.app/0screenshot_2022-07-07_at_11.51.32_pm.png"
-          alt="screenshot of where to upload game file option is"
-        />
+        <img class="media" src="/screenshots/upload.png" alt="screenshot of where to upload the game file on github" />
       </div>
 
       <div class="step">
         <div>
-          <p class="step-number">Step 4:</p>
+          <p class="step-number">(Optional) Step 4:</p>
+          <h2>Add custom thumbnail</h2>
+          <p>
+            By default, the thumbnail that shows up in the gallery will be the first map of your game. If you want to
+            change this, you can:
+          </p>
+          <ul>
+            <li>Take a screenshot of your game (PNG format only)</li>
+            <li>Click back to the gallery folder</li>
+            <li>Open the img folder in gallery</li>
+            <li>Click "Add File"</li>
+            <li>Select "Upload File"</li>
+            <li>Name your image file the file name for your game</li>
+            <li>Click "Commit File"</li>
+          </ul>
+        </div>
+        <img class="media" src="/screenshots/thumbnail.png" alt="screenshot of where to add a thumbnail" />
+      </div>
+
+      <div class="step">
+        <div>
+          <p class="step-number">Step 5:</p>
           <h2>Create a pull request</h2>
           <ul>
             <li>On your fork's page, click on "Contribute"</li>
@@ -90,36 +99,7 @@
           </ul>
           <p>We'll take a look at your game! Once approved, your game will appear in the gallery :)</p>
         </div>
-        <img
-          class="media"
-          src="https://cloud-af1r71tvz-hack-club-bot.vercel.app/0screenshot_2022-07-07_at_11.52.55_pm.png"
-          alt="screenshot of pull request page"
-        />
-      </div>
-
-      <div class="step">
-        <div>
-          <p class="step-number">Optional:</p>
-          <h2>Add custom thumbnail</h2>
-          <p>
-            By default, the thumbnail that shows up in the gallery will be the first map of your game. If you want to
-            change this, you can:
-          </p>
-          <ul>
-            <li>Take a screenshot of your game</li>
-            <li>Click back to the gallery folder</li>
-            <li>Open the img folder in gallery</li>
-            <li>Click "Add File"</li>
-            <li>Select "Upload File"</li>
-            <li>Name your image file the file name for your game</li>
-            <li>Click "Commit File"</li>
-          </ul>
-        </div>
-        <img
-          class="media"
-          src="https://user-images.githubusercontent.com/27078897/184410129-a2dbf444-ae7e-442b-b4bd-d3f21ede54cc.png"
-          alt="screenshot of pull request page"
-        />
+        <img class="media" src="/screenshots/contribute.png" alt="screenshot of the create pull request button" />
       </div>
 
       <a href="/" class="bottom-cta"><button class="btn active">Check out the gallery &raquo;</button></a>
