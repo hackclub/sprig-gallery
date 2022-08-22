@@ -46,13 +46,19 @@
         const res = await fetch(makeURL(x.title));
         const json = await res.json();
 
-        json.image = decode(json.image);
-        const c = document.createElement('canvas');
-        c.width = json.image.width;
-        c.height = json.image.height;
-        c.getContext('2d').putImageData(json.image, 0, 0);
-        c.style['image-rendering'] = 'pixelated';
-        json.imgURL = c.toDataURL();
+        if (json.image.kind === 'png') {
+          json.imgURL = `data:image/png;base64,${json.image.data}`;
+        } else {
+          // Raw, hopefully
+          const imageData = decode(json.image);
+          const c = document.createElement('canvas');
+          c.width = imageData.width;
+          c.height = imageData.height;
+          c.getContext('2d').putImageData(imageData, 0, 0);
+          c.style['image-rendering'] = 'pixelated';
+          json.imgURL = c.toDataURL();
+        }
+
         json.author = x.author;
         json.tags = x.tags;
 
