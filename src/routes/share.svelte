@@ -38,7 +38,7 @@
         <div>
           <p class="step-number">Step 0:</p>
           <h2>Name your game</h2>
-          <p>Add the following comment.</p>
+          <p>Add the following code to the top of your file.</p>
         </div>
         <code class="media">
           /*<br />
@@ -52,7 +52,7 @@
         <div>
           <p class="step-number">Step 1:</p>
           <h2>Download your game file</h2>
-          <p>Select "file", "share", then "as file". Your download should begin immediately.</p>
+          <p>In the top left, select "file", "share", then "as file". Your download should begin immediately.</p>
         </div>
         <img class="media" src="/screenshots/export.png" alt="screenshot of where to export the game file" />
       </div>
@@ -61,7 +61,7 @@
         <div>
           <p class="step-number">Step 2:</p>
           <h2>Fork the Sprig repository</h2>
-          <p>Click below to create a fork of the Sprig repository.</p>
+          <p>Click below to create a fork of the <a href="https://github.com/hackclub/sprig">Sprig repository</a> on GitHub.</p>
           <p>You might have to sign up for a GitHub account.</p>
           <a href="https://github.com/hackclub/sprig/fork" target="_blank">
             <button class="btn active">Fork hackclub/sprig</button>
