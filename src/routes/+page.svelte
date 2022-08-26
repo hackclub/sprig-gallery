@@ -368,7 +368,10 @@
 <section class="community wrapper std-padding">
   <div class="container limit-text">
     <p>
-      <strong>Make games you can share with friends in the Gallery and play on your Sprig consoles.</strong>
+      <strong>
+        We built you a game engine that&rsquo;s accessible to beginners, yet entertaining for masters.
+      </strong> 
+        Start building a Sprig game within minutes using integrated sprite, sound, and map editors.
     </p>
     <div class="cards">
       <Card
@@ -396,12 +399,6 @@
         tags={[]}
       />
     </div>
-
-    <p>
-      Sprig is also Hack Club’s web-based game editor that gets you coding and creating within minutes, either from
-      scratch or by hacking on other games and projects in the Gallery. It's accessible to beginners, yet entertaining
-      for masters.
-    </p>
 
     <a href="/gallery"><button class="btn big active">Check out the gallery &raquo;</button></a>
   </div>
