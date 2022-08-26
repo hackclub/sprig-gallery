@@ -421,6 +421,9 @@
       </p>
     </div>
 
+    <a style="display: flex; justify-content: center;" href="https://github.com/hackclub/sprig/blob/main/GET_A_SPRIG.md"><button class="btn big active">Get a Sprig&raquo;</button></a>
+
+
     <div class="steps">
       <article>
         <h3>1</h3>
@@ -438,8 +441,6 @@
       </article>
     </div>
   </div>
-
-  <a style="padding-top: 30px;" href="https://github.com/hackclub/sprig/blob/main/GET_A_SPRIG.md"><button class="btn big active">Get a Sprig&raquo;</button></a>
 
 </section>
 
