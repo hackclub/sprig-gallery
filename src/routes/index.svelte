@@ -310,7 +310,7 @@
 <a class="logo" href="https://hackclub.com">
   <img src="https://assets.hackclub.com/flag-orpheus-top.svg" alt="hack club logo" />
 </a>
-<a href="https://github.com/hackclub/sprig/tree/main/games" target="_blank">
+<a href="/" target="_blank">
   <img src="./spriglogotext.png" alt="sprig logo" class="sprig-logo" />
 </a>
 <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
