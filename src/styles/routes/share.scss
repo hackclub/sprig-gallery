@@ -5,8 +5,8 @@ $cursor-active-override: url('/cursor-click.png'), pointer;
 
 body {
   font-family: $pixel-text-font;
-  background: #016535;
-  color: #16161e;
+  background: #2f2f2f;
+  color: #ffffff;
 }
 
 *,
@@ -24,7 +24,7 @@ code {
   font-size: 1.2rem;
   font-family: inherit;
   font-weight: 400;
-  border: 4px solid desaturate(darken($accent, 8%), 30%);
+  border: 4px solid #5b5b5b;
   padding: 20px 30px;
   width: 65%;
   margin: auto;
@@ -45,12 +45,14 @@ ul {
 .step-number {
   font-size: 1.2rem;
   margin: 0;
+  color: #c6c6c6;
 }
 
 h2 {
   font-weight: normal;
   font-size: 2rem;
   margin: 4px 0 20px 0;
+  color: #66eb83;
 }
 
 li {
@@ -79,8 +81,11 @@ li {
   margin: auto;
 
   a {
-    color: $accent;
-    text-decoration: underline;
+    color: #66eb83;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 

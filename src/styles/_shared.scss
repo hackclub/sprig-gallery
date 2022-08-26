@@ -91,7 +91,7 @@ a {
 .logo {
   position: absolute;
   top: 0;
-  left: 30px;
+  right: 30px;
   background-size: contain;
   flex-shrink: 0;
   z-index: 9999;
@@ -118,8 +118,8 @@ a {
   &-logo {
     position: absolute;
     height: auto;
-    right: 30px;
-    top: 30px;
+    left: 40px;
+    top: 20px;
     width: 6rem;
     /* transition-duration: 0.5s; */
     cursor: $cursor-active-override;
