@@ -242,7 +242,7 @@
   <meta property="og:url" content="https://sprig.hackclub.com" />
   <meta name="twitter:site" content="https://sprig.hackclub.com" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://sprig.hackclub.com/SPRIGDINO.svg" />
+  <meta property="og:image" content="https://sprig.hackclub.com/SPRIGDINO.png" />
   <meta name="twitter:card" content="summary" />
 </svelte:head>
 
