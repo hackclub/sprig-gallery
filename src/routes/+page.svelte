@@ -285,8 +285,7 @@
         <article>
           <h2>Hackable everything</h2>
           <p>
-            Sprig comes disassembled and all parts are reusable. Reflash the controller&rsquo;s firmware with the touch
-            of a button.
+            Sprig is a hardware development kit. It comes disassembled and all parts are reusable. Reflash the controller&rsquo;s firmware with the touch of a button.
           </p>
         </article>
       </div>
@@ -399,7 +398,7 @@
     <p>
       Sprig is also Hack Club’s web-based game editor that gets you coding and creating within minutes, 
       either from scratch or by hacking on other games and projects in the Gallery. It's accessible to beginners, 
-      yet entertaining for masters. Start building a Sprig game within minutes using integrated sprite, sound, and map editors.
+      yet entertaining for masters.
     </p>
 
     <a href="/gallery"><button class="btn big active">Check out the gallery &raquo;</button></a>
