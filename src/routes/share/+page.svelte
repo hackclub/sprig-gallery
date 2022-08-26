@@ -134,6 +134,6 @@
   <img src="https://assets.hackclub.com/flag-orpheus-top.svg" alt="hack club logo" />
 </a>
 <a href="/">
-  <img src="./spriglogotext.png" alt="sprig logo" class="sprig-logo" />
+  <img src="./spriglogotext-white.png" alt="sprig logo" class="sprig-logo" />
 </a>
 <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
