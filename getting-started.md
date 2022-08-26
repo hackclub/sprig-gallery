@@ -1,7 +1,7 @@
-# Let's make our first game in [Sprig](https://sprig.hackclub.dev)!
+# Let's make our first game in [Sprig](https://editor.sprig.hackclub.com)!
 
 All Sprig games take place on a grid of tiles.
-Sprig uses sprites in these tiles to represent everything in games. 
+Sprig uses sprites in these tiles to represent everything in games.
 
 Let's learn how to use Sprig by making a simple game.
 
@@ -10,17 +10,15 @@ Let's learn how to use Sprig by making a simple game.
 To start let's assign a single character to a variable which we can use in our sprite legend.
 
 ```js
-const player = "p";
+const player = 'p';
 ```
 
 We can then set the image we want to use for our player like so.
 
 ```js
-const player = "p";
+const player = 'p';
 
-setLegend(
-  [ player, bitmap`...`]
-);
+setLegend([player, bitmap`...`]);
 ```
 
 Click on bitmap to open up the pixel editor and draw an image for our sprite.
@@ -32,13 +30,15 @@ The bitmap is stored as a string. To take a look at it click on the little arrow
 Let's also add some obstacles, boxes, and objectives into our game.
 
 ```js
-const player = "p";
-const box = "b";
-const goal = "g";
-const wall = "w";
+const player = 'p';
+const box = 'b';
+const goal = 'g';
+const wall = 'w';
 
 setLegend(
-  [ player, bitmap`
+  [
+    player,
+    bitmap`
 ................
 ................
 ................
@@ -54,8 +54,11 @@ setLegend(
 ....000...000...
 ................
 ................
-................`],
-  [ box, bitmap`
+................`,
+  ],
+  [
+    box,
+    bitmap`
 ................
 ................
 ................
@@ -71,8 +74,11 @@ setLegend(
 ................
 ................
 ................
-................`],
-  [ goal, bitmap`
+................`,
+  ],
+  [
+    goal,
+    bitmap`
 ................
 ................
 ................
@@ -88,8 +94,11 @@ setLegend(
 .....444444.....
 ................
 ................
-................`],
-  [ wall, bitmap`
+................`,
+  ],
+  [
+    wall,
+    bitmap`
 0000000000000000
 0000000000000000
 0000000000000000
@@ -105,7 +114,8 @@ setLegend(
 0000000000000000
 0000000000000000
 0000000000000000
-0000000000000000`]
+0000000000000000`,
+  ],
 );
 ```
 
@@ -116,14 +126,12 @@ Let's now create the first level. Ultimately we'll want multiple levels so let's
 ```js
 let level = 0;
 
-const levels = [
-  map`.`
-];
+const levels = [map`.`];
 ```
 
-Right now we only have one level. 
-Click on `map` to open up the map editor. 
-__Make sure you hit run__ to load the legend before editting the map.
+Right now we only have one level.
+Click on `map` to open up the map editor.
+**Make sure you hit run** to load the legend before editting the map.
 
 ![Screen Recording 2022-07-18 at 3 17 36 PM](https://user-images.githubusercontent.com/27078897/179600230-f29db474-9fcb-4829-94e5-d2f283bd03ad.gif)
 
@@ -133,12 +141,12 @@ To set the map use `setMap`.
 let level = 0;
 
 const levels = [
-    map`
+  map`
       p.w.
       .bwg
       ....
       ....
-    `
+    `,
 ];
 
 const currentLevel = levels[level];
@@ -153,7 +161,7 @@ Sprig has 8 inputs `w`, `a`, `s`, `d`, `i`, `j`, `k`, `l`.
 You can do something on a button press like so:
 
 ```js
-onInput("w", () => {
+onInput('w', () => {
   getFirst(player).y -= 1;
 });
 ```
@@ -163,25 +171,24 @@ We're using `getFirst` to retrieve our player sprite.
 Repeating that pattern we can add up/down/left/right movement to our player.
 
 ```js
-onInput("w", () => {
+onInput('w', () => {
   getFirst(player).y -= 1;
 });
 
-onInput("s", () => {
+onInput('s', () => {
   getFirst(player).y += 1;
 });
 
-onInput("a", () => {
+onInput('a', () => {
   getFirst(player).x -= 1;
 });
 
-onInput("d", () => {
+onInput('d', () => {
   getFirst(player).x += 1;
 });
 ```
 
 ![Screen Recording 2022-07-18 at 3 20 09 PM](https://user-images.githubusercontent.com/27078897/179600584-3d5de630-6a63-436c-9c39-e811b592be12.gif)
-
 
 ### Adding Behaviors
 
@@ -190,7 +197,7 @@ We want our player to push boxes and not be able to move through walls.
 Let's make the player, boxes, and walls all solid so they can't move through eachother.
 
 ```js
-setSolids([ player, box, wall ]);
+setSolids([player, box, wall]);
 ```
 
 Now those sprites won't overlap.
@@ -201,7 +208,7 @@ We want the player to push boxes though, we can set this behavior with `setPusha
 
 ```js
 setPushables({
-  [ player ]: [ box ]
+  [player]: [box],
 });
 ```
 
@@ -247,7 +254,7 @@ p.w.
 p.w.
 .bwg
 ....
-..bg`
+..bg`,
 ];
 ```
 
@@ -261,7 +268,7 @@ It will be annoying to have to restart the entire game when we get stuck on one 
 We can fix this by adding the ability to restart levels.
 
 ```js
-onInput("j", () => {
+onInput('j', () => {
   const currentLevel = levels[level];
   if (currentLevel !== undefined) setMap(currentLevel);
 });
@@ -284,7 +291,7 @@ afterInput(() => {
     if (currentLevel !== undefined) {
       setMap(currentLevel);
     } else {
-      addText("you win!", { y: 4, color: [255, 0, 0] });
+      addText('you win!', { y: 4, color: [255, 0, 0] });
     }
   }
 });
@@ -307,13 +314,15 @@ Make the game your own. You can try:
 Let's look at all of the code together now.
 
 ```js
-const player = "p";
-const box = "b";
-const goal = "g";
-const wall = "w";
+const player = 'p';
+const box = 'b';
+const goal = 'g';
+const wall = 'w';
 
 setLegend(
-  [ player, bitmap`
+  [
+    player,
+    bitmap`
 ................
 ................
 ................
@@ -329,8 +338,11 @@ setLegend(
 ....000...000...
 ................
 ................
-................`],
-  [ box, bitmap`
+................`,
+  ],
+  [
+    box,
+    bitmap`
 ................
 ................
 ................
@@ -346,8 +358,11 @@ setLegend(
 ................
 ................
 ................
-................`],
-  [ goal, bitmap`
+................`,
+  ],
+  [
+    goal,
+    bitmap`
 ................
 ................
 ................
@@ -363,8 +378,11 @@ setLegend(
 .....444444.....
 ................
 ................
-................`],
-  [ wall, bitmap`
+................`,
+  ],
+  [
+    wall,
+    bitmap`
 0000000000000000
 0000000000000000
 0000000000000000
@@ -380,7 +398,8 @@ setLegend(
 0000000000000000
 0000000000000000
 0000000000000000
-0000000000000000`]
+0000000000000000`,
+  ],
 );
 
 let level = 0;
@@ -394,37 +413,37 @@ p.w.
 p.w.
 .bwg
 ....
-..bg`
+..bg`,
 ];
 
 const currentLevel = levels[level];
 setMap(currentLevel);
 
-onInput("w", () => {
+onInput('w', () => {
   getFirst(player).y -= 1;
 });
 
-onInput("s", () => {
+onInput('s', () => {
   getFirst(player).y += 1;
 });
 
-onInput("a", () => {
+onInput('a', () => {
   getFirst(player).x -= 1;
 });
 
-onInput("d", () => {
+onInput('d', () => {
   getFirst(player).x += 1;
 });
 
-onInput("j", () => {
+onInput('j', () => {
   const currentLevel = levels[level];
   if (currentLevel !== undefined) setMap(currentLevel);
 });
 
-setSolids([ player, box, wall ]);
+setSolids([player, box, wall]);
 
 setPushables({
-  [ player ]: [ box ]
+  [player]: [box],
 });
 
 afterInput(() => {
@@ -441,7 +460,7 @@ afterInput(() => {
     if (currentLevel !== undefined) {
       setMap(currentLevel);
     } else {
-      addText("you win!", { y: 4, color: [255, 0, 0] });
+      addText('you win!', { y: 4, color: [255, 0, 0] });
     }
   }
 });

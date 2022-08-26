@@ -54,6 +54,7 @@
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enablePan = false;
     controls.enableZoom = false;
+    controls.autoRotateSpeed = -2.5;
 
     // const raycaster = new Raycaster();
     // const mouse = new Vector2();
@@ -83,7 +84,7 @@
 
         scene.add(gltf.scene);
         controls.autoRotate = true;
-        setTimeout(() => (controls.autoRotate = false), 2500);
+        setTimeout(() => (controls.autoRotate = false), 1000);
       },
       undefined,
       console.error,
@@ -192,17 +193,15 @@
         };
 
         const t = clamp(
-          weirdEase(progress(rects.m.top + 100, rects.shrinker.top, rects.shrinker.top + rects.shrinker.height / 2)),
+          weirdEase(progress(rects.m.top + 150, rects.shrinker.top, rects.shrinker.top + rects.shrinker.height / 2)),
           0,
           1,
         );
-        // const t = 1;
 
         m.style.width = `${lerp(rects.start.width, rects.stop.width, t)}px`;
         m.style.height = `${lerp(rects.start.height, rects.stop.height, t)}px`;
         m.style.left = `${lerp(rects.start.left + scrollLeft, rects.stop.left + scrollLeft, t)}px`;
         m.style.top = `${Math.min(rects.start.top + scrollTop * 2, rects.stop.top + scrollTop)}px`;
-        // m.style.top = `${rects.stop.top + scrollTop}px`;
         if (needsSecond) scrollUpdate();
       }
     };
