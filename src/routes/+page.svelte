@@ -280,14 +280,14 @@
         <article>
           <h2>An online microworld</h2>
           <p>
-            Draw, make music, and craft games in a web-based environment, then see your work realized on real hardware.
+            Draw, make music, and craft games in a web-based editor, then see your work realized on real hardware.
           </p>
         </article>
         <article>
           <h2>Hackable everything</h2>
           <p>
-            Sprig is a hardware development kit. It comes disassembled and all parts are reusable. Reflash the
-            controller&rsquo;s firmware with the touch of a button.
+            Sprig is a hardware development kit. It comes disassembled with reusable parts. 
+            Reflash the controller&rsquo;s firmware with the touch of a button.
           </p>
         </article>
       </div>
