@@ -25,7 +25,7 @@ setLegend(
 
 Click on bitmap to open up the pixel editor and draw an image for our sprite.
 
-![Screen Recording 2022-07-18 at 12 24 08 PM](https://user-images.githubusercontent.com/27078897/179599823-be112b5d-3fe6-4c7f-b1ca-d741ef5b5bcb.gif)
+![Screen recording of drawing sprite on a pixel canvas](https://user-images.githubusercontent.com/27078897/179599823-be112b5d-3fe6-4c7f-b1ca-d741ef5b5bcb.gif)
 
 The bitmap is stored as a string. To take a look at it click on the little arrow next to the line number. You can minimize it by clicking the area again.
 

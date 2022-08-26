@@ -76,6 +76,25 @@
   let activeFilter = null;
 </script>
 
+<svelte:head>
+  <meta charSet="utf-8" />
+  <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sprig Gallery</title>
+  <meta property="og:title" content="Sprig Gallery" />
+  <meta name="description" content="The best way to learn is by making things that you care about and sharing them with other people. Check out games created by Hack Clubbers." />
+  <meta property="og:description" content="The best way to learn is by making things that you care about and sharing them with other people. Check out games created by Hack Clubbers." />
+  <meta name="keywords" content="game, sprig, hack club" />
+  <meta name="author" content="@hackclub" />
+  <meta name="twitter:creator" content="@hackclub" />
+  <meta name="theme-color" content="#0a0a16" />
+  <meta property="og:url" content="https://sprig-gallery.hackclub.dev" />
+  <meta name="twitter:site" content="https://sprig-gallery.hackclub.dev" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/SPRIGDINO.svg" />
+  <meta name="twitter:card" content="summary" />
+</svelte:head>
+
 <body>
   <div bind:this={preloader} id="preloader">
     <img src="/loader.gif" alt="coin preloader" />
