@@ -409,7 +409,7 @@
     <div class="prose">
       <p>
         Ship an original game to our Gallery and we’ll ship you a Sprig console. It can be your first program, or your
-        thousandth— but we only have 500 Sprigs to send out. Oh, and teenagers only. Read more on how to get a game <a
+        thousandth— but we only have 500 Sprigs to send out. Oh, and teenagers only. Read more on how to get a Sprig <a
           href="https://github.com/hackclub/sprig/blob/main/GET_A_SPRIG.md"
           target="_blank"
           rel="noopener"
