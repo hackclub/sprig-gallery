@@ -30,7 +30,7 @@
   let selectedStory = null;
 
   $: {
-    typeof document !== 'undefined' && (document.documentElement.style.overflow = selectedStory ? 'hidden' : 'auto');
+    typeof document !== 'undefined' && (document.documentElement.style.overflowY = selectedStory ? 'hidden' : 'auto');
   }
 
   const initThree = (m) => {
@@ -479,3 +479,10 @@
   <img src="./spriglogotext.png" alt="sprig logo" class="sprig-logo" />
 </a>
 <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
+
+<nav>
+  <a href="https://editor.sprig.hackclub.com/">Editor</a>
+  <a href="/gallery">Gallery</a>
+  <a href="/share">Share</a>
+  <a href="https://github.com/hackclub/sprig/">GitHub</a>
+</nav>

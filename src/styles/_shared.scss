@@ -145,6 +145,25 @@ a {
   }
 }
 
+nav {
+  position: absolute;
+  top: 24px;
+  left: calc(6rem + 70px);
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  z-index: 9999;
+
+  a {
+    color: #868b9a;
+
+    &:hover {
+      color: #acb2c3;
+      text-decoration: underline;
+    }
+  }
+}
+
 @keyframes waveFlag {
   from {
     transform: rotate(0deg);
@@ -152,6 +171,22 @@ a {
 
   to {
     transform: rotate(-5deg);
+  }
+}
+
+@media (max-width: 650px) {
+  .logo { display: none; }
+}
+
+@media (max-width: 450px) {
+  nav a:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  nav a:nth-child(2) {
+    display: none;
   }
 }
 

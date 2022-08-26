@@ -7,6 +7,10 @@ $std-horiz-margin: 15px;
 * { margin: 0; }
 html, body { height: 100%; }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: #e4e4e4;
   font-family: $text-font;
