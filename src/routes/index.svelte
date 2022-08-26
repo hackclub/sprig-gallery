@@ -107,9 +107,8 @@
         <div class="gallery-title">
           <img class="gallery-header" src="/gallery.svg" alt="gallery header" draggable="false" />
           <p>
-            The best way to learn is by making things that you care about and sharing them with other people.
-            <br /><br />
-            Check out games made by other Hack Clubbers! Click to play each game and hack on the code.
+            Check back frequently as more Hack Clubbers add their games to the gallery.
+            Click to play each game and hack away!
           </p>
         </div>
 
@@ -129,7 +128,7 @@
         </div>
 
         <div class="btn-container">
-          <p>Want to join in on the fun? Add your game to the gallery.</p>
+          <p>Share your game with the gallery and begin your journey to getting a Sprig console.</p>
           <a href="/share">
             <button class="btn active">Add Your Game</button>
           </a>
@@ -140,7 +139,7 @@
       ><img src="https://assets.hackclub.com/flag-orpheus-top.svg" alt="hack club logo" /></a
     >
     <a href="https://github.com/hackclub/sprig/tree/main/games" target="_blank"
-      ><img src="./spriglogotext.png" alt="sprig logo" class="sprig-logo" /></a
+      ><img src="./spriglogotext-github.png" alt="sprig logo" class="sprig-logo" /></a
     >
     <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
     <div class="gallery-outer">
