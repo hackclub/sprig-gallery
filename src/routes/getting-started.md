@@ -284,7 +284,7 @@ afterInput(() => {
     if (currentLevel !== undefined) {
       setMap(currentLevel);
     } else {
-      setText("you win!")
+      addText("you win!", { y: 4 });
     }
   }
 });
@@ -441,7 +441,7 @@ afterInput(() => {
     if (currentLevel !== undefined) {
       setMap(currentLevel);
     } else {
-      setText("you win!");
+      addText("you win!", { y: 4 });
     }
   }
 });
