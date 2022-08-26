@@ -19,7 +19,7 @@
   <meta name="twitter:creator" content="@hackclub" />
   <meta name="theme-color" content="#0a0a16" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/SPRIGDINO.svg" />
+  <meta property="og:image" content="https://sprig.hackclub.com/SPRIGDINO.svg" />
   <meta name="twitter:card" content="summary" />
   <meta property="og:url" content="https://sprig.hackclub.com/share" />
   <meta name="twitter:site" content="https://sprig.hackclub.com/share" />
