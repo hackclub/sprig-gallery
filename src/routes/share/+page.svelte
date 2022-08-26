@@ -37,16 +37,13 @@
     </div>
   </div>
 
-  <h1>Anyone can submit to the gallery but if you want to get a Sprig read the details below.<h1>
-
   <div class="inner">
+    <!-- <h1>Anyone can submit to the gallery but if you want to get a Sprig read the details below.</h1>
     <h2>How to get a Sprig!</h2>
+    <p>Sprig consoles are a limited run and will be ready for delivery end of Oct 2022*.</p>
     <p>
-      Sprig consoles are a limited run and will be ready for delivery end of Oct 2022*.
-    </p>
-    <p>
-      Get on the waitlist now by sharing your game and having it approved by one of our project maintainers.
-      Once your GitHub pull request is approved, we'll collect your shipping details.
+      Get on the waitlist now by sharing your game and having it approved by one of our project maintainers. Once your
+      GitHub pull request is approved, we'll collect your shipping details.
     </p>
     <p>
       <b>If you have any questions, join #sprig on our <a href="https://hackclub.com/slack">Slack</a>.</b>
@@ -61,8 +58,7 @@
     </ol>
     <p>
       <small>(* Our aim is to ship everywhere except US-sanctioned and trade-/mail-restricted nations.)</small>
-    </p>
-
+    </p> -->
 
     <div class="step">
       <div>
