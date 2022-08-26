@@ -132,9 +132,15 @@ a {
   &-dino {
     height: auto;
     position: fixed;
-    right: 30px;
+    left: 30px;
     width: 4rem;
-    bottom: 0;
+    bottom: -3.8rem;
+    cursor: $cursor-active-override;
+    transition: all 0.5s linear;
+
+    &:hover {
+      bottom: 0;
+    }
   }
 }
 
