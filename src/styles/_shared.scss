@@ -1,18 +1,11 @@
-@import './_variables.scss';
-@import './_fonts.scss';
-
-body {
-  background: $base-background;
-  margin: 0;
-  padding: 0;
-  font-family: $text-font;
-}
+html { box-sizing: border-box; }
+body { margin: 0; }
 
 *,
 *::before,
 *::after {
-  cursor: $cursor-inactive;
-  box-sizing: border-box;
+  box-sizing: inherit;
+  scrollbar-color: lighten($base-background, 20%) $base-background;
 }
 
 ::selection {
@@ -24,22 +17,17 @@ a {
   text-decoration: none;
 
   &:hover {
-    cursor: $cursor-active;
+    cursor: $cursor-active-override;
   }
 }
 
-p, ul, ol {
-  font-size: 1.4rem;
-}
-
 .btn {
-  font-family: $subheading-font;
+  font-family: $pixel-text-font;
   font-size: 1.4rem;
   margin: 4px;
   display: inline-block;
   color: $button-inactive-color;
   background: $button-inactive-background;
-  white-space: nowrap;
 
   padding: 6px 12px;
   text-align: center;
@@ -54,6 +42,11 @@ p, ul, ol {
   border-image-width: 2;
   border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="' + $button-text-border + '" /></svg>');
   border-image-outset: 2;
+
+  &.big {
+    font-size: 1.6rem;
+    padding: 10px 16px;
+  }
 
   &.active {
     color: $button-text-border;
@@ -73,7 +66,7 @@ p, ul, ol {
   }
 
   &::after {
-    cursor: $cursor-active;
+    cursor: $cursor-active-override;
     position: absolute;
     top: -4px;
     left: -4px;
@@ -107,7 +100,7 @@ p, ul, ol {
 
   &,
   & * {
-    cursor: $cursor-active;
+    cursor: $cursor-active-override;
   }
 
   img {
@@ -124,11 +117,12 @@ p, ul, ol {
 .sprig {
   &-logo {
     position: absolute;
+    height: auto;
     right: 30px;
     top: 30px;
     width: 8rem;
     /* transition-duration: 0.5s; */
-    cursor: $cursor-active;
+    cursor: $cursor-active-override;
 
     &:hover {
       transform: scale(1.05);
@@ -136,11 +130,12 @@ p, ul, ol {
   }
 
   &-dino {
+    height: auto;
     position: fixed;
     left: 30px;
     width: 4rem;
     bottom: -3.8rem;
-    cursor: $cursor-active;
+    cursor: $cursor-active-override;
     transition: all 0.5s linear;
 
     &:hover {
@@ -201,7 +196,6 @@ p, ul, ol {
 
 ::-webkit-scrollbar-track {
   background: $base-background;
-  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb {

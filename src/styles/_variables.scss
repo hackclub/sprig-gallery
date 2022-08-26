@@ -1,7 +1,8 @@
 // ====== FONTS ======
 
-$text-font: 'Billy', 'JetBrains Mono', monospace;
-$subheading-font: 'Billy', 'JetBrains Mono', monospace;
+$heading-font: 'Billy', monospace;
+$pixel-text-font: 'Billy', monospace;
+$text-font: 'Manrope', sans-serif;
 
 // ====== END FONTS ======
 
@@ -14,8 +15,8 @@ $accent: #ffc225;
 
 $gallery-border-dark: rgb(118, 118, 143);
 $gallery-border-light: rgb(167, 171, 185);
-$gallery-background: rgba(57, 48, 90, 0.75);
-$gallery-background-hover: rgba(78, 71, 128, 0.8);
+$gallery-background: rgba(54, 66, 85, 0.75);
+$gallery-background-hover: rgba(77, 90, 114, 0.8);
 
 $gallery-highlight-border-dark: rgb(163, 119, 31);
 $gallery-highlight-border-light: rgb(248, 195, 49);
@@ -36,19 +37,19 @@ $tag-color: white;
 $tag-background: rgb(78, 49, 158);
 
 $button-inactive-color: rgb(255, 255, 255);
-$button-inactive-background: rgb(118, 118, 143);
-$button-inactive-highlight: rgb(167, 171, 185);
+$button-inactive-background: rgb(118, 126, 143);
+$button-inactive-highlight: rgb(167, 175, 185);
 $button-inactive-shadow: rgb(90, 86, 105);
-$button-inactive-hover-shadow: rgb(115, 110, 131);
-$button-inactive-hover-background: rgb(157, 157, 182);
+$button-inactive-hover-shadow: rgb(110, 114, 131);
+$button-inactive-hover-background: rgb(157, 166, 182);
 $button-inactive-hover-highlight: rgb(196, 200, 214);
 
 // ====== END COLORS ======
 
 // ====== MISCELLANEOUS ======
 
-$cursor-inactive: url('/cursor.png'), auto;
-$cursor-active: url('/cursor-click.png'), pointer;
+$pixel-cursor-inactive: url('/cursor.png'), auto;
+$cursor-active-override: pointer;
 
 // ====== END MISCELLANEOUS ======
 

@@ -85,7 +85,7 @@
     }
 
     .text {
-      font-family: $text-font;
+      font-family: $pixel-text-font;
       display: flex;
       flex: 60% 40%;
       flex-wrap: wrap;
@@ -110,7 +110,7 @@
 
     .image-box {
       width: 100%;
-      padding-bottom: 100%;
+      padding-bottom: calc(100% - 8px);
       border: 4px solid $gallery-border-dark;
       margin: 0;
       position: relative;
@@ -142,7 +142,7 @@
 
     &,
     & * {
-      cursor: $cursor-active;
+      cursor: $cursor-active-override;
     }
     &#start-from-scratch {
       background: $gallery-highlight-background;
@@ -185,7 +185,7 @@
     background: white;
 
     span {
-      font-family: $text-font;
+      font-family: $pixel-text-font;
       color: black;
       font-size: 1.6rem;
       text-transform: lowercase;
@@ -195,7 +195,7 @@
   }
 
   .tag {
-    font-family: $text-font;
+    font-family: $pixel-text-font;
     font-weight: 300;
     text-transform: lowercase;
     position: absolute;
@@ -211,7 +211,7 @@
       0 0.5em 0 rgba(0, 0, 0, 0.2);
   }
 
-  @media (max-width: $breakpoint-3) {
+  @media (max-width: 1050px) {
     .gallery {
       &-item {
         width: 12rem;
