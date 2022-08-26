@@ -30,9 +30,8 @@
     <div class="heading-inner">
       <h1>Share your game</h1>
       <p>
-        After you <a href="https://editor.sprig.hackclub.com/" target="_blank">create your own game</a>, we'd love for
-        you to
-        <a href="/gallery">share it with other makers</a> on the internet!
+        After you create your own game, we'd love for
+        you to share it with other makers on the internet!
       </p>
     </div>
   </div>
