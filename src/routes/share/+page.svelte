@@ -37,6 +37,29 @@
   </div>
 
   <div class="inner">
+    <p>
+      Sprig consoles will be ready for shipping end of Sept 2022*. You can get on the waitlist 
+      now by sharing your game and having it approved by one of our project maintainers. Once approved, 
+      we'll collect your details for shipping. If you have any questions, join #sprig on our Slack.
+    </p>
+    <p>
+      There are only a few requirements to get a Sprig console:
+    </p>
+    <ol>
+      <li>you must be in high school or younger (this will be checked before mailing)</li>
+      <li>your game must use the Sprig editor</li>
+      <li>your game must be winnable</li>
+      <li>your game has a minimum of 5mins of gameplay</li>
+      <li>your game is original</li>
+    </ol>
+    <p>
+      Sprig consoles will be ready for shipping end of Sept 2022*. You can get on the waitlist 
+      now by sharing your game and having it approved by one of our project maintainers. Once approved, 
+      we'll collect your details for shipping.
+    </p>
+    <p>
+      <small>* subject to availability for shipping</small>
+    </p>
     <div class="step">
       <div>
         <p class="step-number">Step 0:</p>
