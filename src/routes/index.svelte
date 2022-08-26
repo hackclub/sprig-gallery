@@ -109,7 +109,7 @@
           <p>
             The best way to learn is by making things that you care about and sharing them with other people.
             <br /><br />
-            Check out games by other Hack Clubbers! Click to play each game and to hack on the code.
+            Check out games made by other Hack Clubbers! Click to play each game and hack on the code.
           </p>
         </div>
 
@@ -129,7 +129,7 @@
         </div>
 
         <div class="btn-container">
-          <p>Want to join in on the fun? If you have a Sprig game to share with the community, click here!</p>
+          <p>Want to join in on the fun? Add your game to the gallery.</p>
           <a href="/share">
             <button class="btn active">Add Your Game</button>
           </a>
