@@ -38,10 +38,16 @@
   </div>
 
   <div class="inner">
+    <h2>How to get a Sprig!</h2>
     <p>
-      Sprig consoles will be ready for shipping end of Sept 2022*. You can get on the waitlist now by sharing your game
-      and having it approved by one of our project maintainers. Once approved, we'll collect your details for shipping.
-      If you have any questions, join #sprig on our Slack.
+      Sprig consoles are a limited run and will be ready for delivery end of Sept 2022*.
+    </p>
+    <p>
+      Get on the waitlist now by sharing your game and having it approved by one of our project maintainers.
+      Once your GitHub pull request is approved, we'll collect your shipping details.
+    </p>
+    <p>
+      <b>If you have any questions, join #sprig on our <a href="https://hackclub.com/slack">Slack</a>.</b>
     </p>
     <p>There are only a few requirements to get a Sprig console:</p>
     <ol>
@@ -52,7 +58,7 @@
       <li>your game is original</li>
     </ol>
     <p>
-      <small>(* subject to availability for shipping)</small>
+      <small>(* Our aim is to ship everywhere except US-sanctioned & trade-/mail-restricted nations.)</small>
     </p>
     <div class="step">
       <div>
