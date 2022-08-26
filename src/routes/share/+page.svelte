@@ -53,7 +53,7 @@
       <li>your game is original</li>
     </ol>
     <p>
-      <small>* subject to availability for shipping</small>
+      <small>(* subject to availability for shipping)</small>
     </p>
     <div class="step">
       <div>
