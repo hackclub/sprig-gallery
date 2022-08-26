@@ -135,7 +135,7 @@
   <div class="specs-split-container">
     <div class="specs-split-slot" />
     <div class="specs">
-      <h2>Sprig: fantasy console turned real</h2>
+      <h2>Sprig: fantasy console turned real by Hack Club</h2>
       <div class="specs-grid">
         <article>
           <img src="/icons/sprites.png" alt="Sprites icon" />
@@ -201,13 +201,7 @@
 <section class="community wrapper std-padding">
   <div class="container limit-text">
     <p>
-      <strong>We built you a game engine that&rsquo;s accessible to beginners, yet entertaining for masters.</strong> Start
-      building a Sprig game within minutes using integrated sprite, sound, and map editors.
-    </p>
-    <p>
-      Join the community of creators, hackers, and gamers all working together to make and share games and hack on Sprig
-      itself.
-    </p>
+      <strong>Make games you can share with friends in the Gallery and play on your Sprig consoles.</strong> 
 
     <div class="cards">
       <Card
@@ -236,22 +230,26 @@
       />
     </div>
 
+    <p>
+      Sprig is also Hack Club’s web-based game editor that gets you coding and creating within minutes, 
+      either from scratch or by hacking on other games and projects in the Gallery. It's accessible to beginners, 
+      yet entertaining for masters. Start building a Sprig game within minutes using integrated sprite, sound, and map editors.
+    </p>
+
     <a href="/gallery"><button class="btn big active">Check out the gallery &raquo;</button></a>
   </div>
 </section>
 
 <section class="pricing wrapper std-padding">
   <div class="container limit-text">
-    <h2>So... how much is it?</h2>
+    <h2>You ship, we ship.</h2>
 
     <div class="prose">
       <p>
-        Sprig isn&rsquo;t for sale. Build an original game and we&rsquo;ll personally mail you one— &ldquo;you ship, we
-        ship!&rdquo;
-      </p>
-      <p>
-        It can be your first program, or your thousandth, but build fast. Only 500 devices will be built and sent out.
-        Oh, and teenagers only.
+        Ship an original game to our Gallery and we’ll ship you a Sprig console. 
+        It can be your first program, or your thousandth— but we only have 500 Sprigs to send out. 
+        <i>Sprig consoles are available for teenagers only.</i>
+        Read more on how to get a game <a href="/share">here</a>.
       </p>
     </div>
 
