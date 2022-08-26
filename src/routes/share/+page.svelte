@@ -53,11 +53,6 @@
       <li>your game is original</li>
     </ol>
     <p>
-      Sprig consoles will be ready for shipping end of Sept 2022*. You can get on the waitlist 
-      now by sharing your game and having it approved by one of our project maintainers. Once approved, 
-      we'll collect your details for shipping.
-    </p>
-    <p>
       <small>* subject to availability for shipping</small>
     </p>
     <div class="step">
