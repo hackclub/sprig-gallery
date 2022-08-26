@@ -14,6 +14,45 @@
   $: {
     typeof document !== 'undefined' && (document.documentElement.style.overflow = selectedStory ? 'hidden' : 'auto');
   }
+
+  if (typeof document !== 'undefined') {
+    const m = document.getElementById('m');
+    const start = document.getElementById('m-start');
+    const shrinker = document.getElementById('m-shrinker');
+    const stop = document.getElementById('m-stop');
+
+    const lerp = (a, b, t) => a * (1 - t) + b * t;
+    const progress = (x, a, b) => (x - a) / (b - a);
+    const clamp = (x, a, b) => Math.max(Math.min(x, b), a);
+
+    const weirdEase = (t) => 1.5 * Math.pow(1 - t, 2) * t + t;
+
+    const scrollUpdate = () => {
+      const { scrollTop, scrollLeft } = document.documentElement;
+
+      const rects = {
+        m: m.getBoundingClientRect(),
+        start: start.getBoundingClientRect(),
+        shrinker: shrinker.getBoundingClientRect(),
+        stop: stop.getBoundingClientRect(),
+      };
+
+      const t = clamp(
+        weirdEase(progress(rects.m.top, rects.shrinker.top, rects.shrinker.top + rects.shrinker.height / 2)),
+        0,
+        1,
+      );
+
+      m.style.width = `${lerp(rects.start.width, rects.stop.width, t)}px`;
+      m.style.height = `${lerp(rects.start.height, rects.stop.height, t)}px`;
+      m.style.left = `${lerp(rects.start.left + scrollLeft, rects.stop.left + scrollLeft, t)}px`;
+      m.style.top = `${Math.min(rects.start.top + scrollTop * 2, rects.stop.top + scrollTop)}px`;
+    };
+
+    window.addEventListener('resize', scrollUpdate);
+    window.addEventListener('scroll', scrollUpdate);
+    scrollUpdate();
+  }
 </script>
 
 <svelte:head>
@@ -251,9 +290,9 @@
     </a>
     <p>
       Sprig is open-source. Read code for:
-      <a href="#" target="_blank" rel="noopener">editor</a>,
-      <a href="#" target="_blank" rel="noopener">gallery</a>,
-      <a href="#" target="_blank" rel="noopener">console</a>
+      <a href="https://github.com/hackclub/sprig" target="_blank" rel="noopener">editor</a>,
+      <a href="https://github.com/hackclub/sprig-gallery" target="_blank" rel="noopener">gallery</a>,
+      <a href="https://github.com/hackclub/sprig-hardware" target="_blank" rel="noopener">console</a>
     </p>
 
     <div class="stories">
