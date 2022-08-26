@@ -409,12 +409,15 @@
     <div class="prose">
       <p>
         Ship an original game to our Gallery and we’ll ship you a Sprig console. It can be your first program, or your
-        thousandth— but we only have 500 Sprigs to send out. Oh, and teenagers only. Read more on how to get a game <a
+        thousandth— but we only have 500 Sprigs to send out. Oh, and teenagers only. 
+
+<!--         Read more on how to get a game <a
           href="https://github.com/hackclub/sprig/blob/main/GET_A_SPRIG.md"
           target="_blank"
           rel="noopener"
           style="color: white; text-decoration: underline">here</a
-        >.
+        >. -->
+
       </p>
     </div>
 
@@ -435,6 +438,9 @@
       </article>
     </div>
   </div>
+
+  <a style="padding-top: 30px;" href="https://github.com/hackclub/sprig/blob/main/GET_A_SPRIG.md"><button class="btn big active">Get a Sprig&raquo;</button></a>
+
 </section>
 
 <section class="credits wrapper">
@@ -475,7 +481,7 @@
 <a class="logo" href="https://hackclub.com">
   <img src="https://assets.hackclub.com/flag-orpheus-top.svg" alt="hack club logo" />
 </a>
-<a href="https://github.com/hackclub/sprig/tree/main/games" target="_blank">
+<a href="/" target="_blank">
   <img src="./spriglogotext.png" alt="sprig logo" class="sprig-logo" />
 </a>
 <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
