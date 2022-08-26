@@ -67,13 +67,13 @@ p  {
   overflow: hidden;
   z-index: -1;
   display: flex;
-  --wrapper-padding-vertical: 3rem;
+  --wrapper-padding-vertical: 1rem;
   --wrapper-padding-horizontal: 6rem;
 }
 
 .info-outer {
   overflow: auto;
-  padding: calc(10vh + var(--wrapper-padding-vertical)) 0;
+  padding: calc(8vh + var(--wrapper-padding-vertical)) 0;
   padding-left: var(--wrapper-padding-horizontal);
   padding-right: 12px;
   flex: 3;
@@ -109,7 +109,7 @@ p  {
 
 .gallery {
   &-outer {
-    padding: calc(10vh + var(--wrapper-padding-vertical)) 0;
+    padding: calc(8vh + var(--wrapper-padding-vertical)) 0;
     padding-right: var(--wrapper-padding-horizontal);
     padding-left: 12px;
     margin: 0;
@@ -132,6 +132,30 @@ p  {
 
   &-title {
     margin-bottom: 30px;
+  }
+}
+
+@media (max-height: 800px) {
+  .info-outer {
+    padding-bottom: 20px;
+  }
+  
+  .info-outer p,
+  .info-outer .tag-container fieldset legend,
+  .info-outer .btn {
+    font-size: 1.2rem;
+  }
+
+  .info-outer p {
+    margin: 0.8rem 0;
+  }
+
+  .info-outer .tag-container {
+    margin: 1rem 0;
+  }
+
+  .info-outer .gallery-title {
+    margin-bottom: 10px;
   }
 }
 
@@ -164,7 +188,7 @@ p  {
     width: 100%;
     padding-right: var(--wrapper-padding-horizontal);
     padding-bottom: 6vh;
-    padding-top: 10vh;
+    padding-top: 8vh;
   }
 
   .tag-container {
