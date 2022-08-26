@@ -440,6 +440,14 @@ h6 {
   object-position: center center;
 }
 
+// --- FOOTER: ---
+footer {
+  color: #898989;
+  padding: 0 10px;
+  font-size: 0.85rem;
+  padding-bottom: 50px;
+}
+
 @media (max-width: 780px) {
   .stories {
     grid-template-columns: repeat(2, 1fr);

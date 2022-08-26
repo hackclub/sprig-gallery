@@ -408,8 +408,9 @@
 
     <div class="prose">
       <p>
-        Anyone can submit to the gallery, but teenagers (or younger) can get Sprig. Just ship an original game to our gallery and we’ll ship you a Sprig console. It can be your first program, or your
-        thousandth — but we only have 500 Sprigs to send out. Read more on how to get a Sprig <a
+        Anyone can submit to the gallery, but teenagers (or younger) can get Sprig. Just ship an original game to our
+        gallery and we’ll ship you a Sprig console. It can be your first program, or your thousandth — but we only have
+        500 Sprigs to send out. Read more on how to get a Sprig <a
           href="https://github.com/hackclub/sprig/blob/main/GET_A_SPRIG.md"
           target="_blank"
           rel="noopener"
@@ -471,6 +472,10 @@
     </div>
   </div>
 </section>
+
+<footer class="wrapper">
+  <div class="container">&copy; 2022 Hack Club. 501(c)(3) nonprofit (EIN: 81-2908499)</div>
+</footer>
 
 <a class="logo" href="https://hackclub.com">
   <img src="https://assets.hackclub.com/flag-orpheus-top.svg" alt="hack club logo" />
