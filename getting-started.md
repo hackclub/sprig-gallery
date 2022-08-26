@@ -25,7 +25,7 @@ setLegend(
 
 Click on bitmap to open up the pixel editor and draw an image for our sprite.
 
-![Screen Recording 2022-07-18 at 12 24 08 PM](https://user-images.githubusercontent.com/27078897/179599823-be112b5d-3fe6-4c7f-b1ca-d741ef5b5bcb.gif)
+![Screen recording of drawing sprite on a pixel canvas](https://user-images.githubusercontent.com/27078897/179599823-be112b5d-3fe6-4c7f-b1ca-d741ef5b5bcb.gif)
 
 The bitmap is stored as a string. To take a look at it click on the little arrow next to the line number. You can minimize it by clicking the area again.
 
@@ -148,12 +148,12 @@ setMap(currentLevel);
 ### Adding Controls
 
 Let's add some controls to our player.
-Sprig has 8 inputs `up`, `left`, `down`, `right` which are w, a, s, d on the keyboard respectively and `i`, `j`, `k`, `l`.
+Sprig has 8 inputs `w`, `a`, `s`, `d`, `i`, `j`, `k`, `l`.
 
 You can do something on a button press like so:
 
 ```js
-onInput("up", () => {
+onInput("w", () => {
   getFirst(player).y -= 1;
 });
 ```
@@ -163,19 +163,19 @@ We're using `getFirst` to retrieve our player sprite.
 Repeating that pattern we can add up/down/left/right movement to our player.
 
 ```js
-onInput("up", () => {
+onInput("w", () => {
   getFirst(player).y -= 1;
 });
 
-onInput("down", () => {
+onInput("s", () => {
   getFirst(player).y += 1;
 });
 
-onInput("left", () => {
+onInput("a", () => {
   getFirst(player).x -= 1;
 });
 
-onInput("right", () => {
+onInput("d", () => {
   getFirst(player).x += 1;
 });
 ```
@@ -284,7 +284,7 @@ afterInput(() => {
     if (currentLevel !== undefined) {
       setMap(currentLevel);
     } else {
-      setText("you win!")
+      addText("you win!", { y: 4, color: [255, 0, 0] });
     }
   }
 });
@@ -400,19 +400,19 @@ p.w.
 const currentLevel = levels[level];
 setMap(currentLevel);
 
-onInput("up", () => {
+onInput("w", () => {
   getFirst(player).y -= 1;
 });
 
-onInput("down", () => {
+onInput("s", () => {
   getFirst(player).y += 1;
 });
 
-onInput("left", () => {
+onInput("a", () => {
   getFirst(player).x -= 1;
 });
 
-onInput("right", () => {
+onInput("d", () => {
   getFirst(player).x += 1;
 });
 
@@ -441,7 +441,7 @@ afterInput(() => {
     if (currentLevel !== undefined) {
       setMap(currentLevel);
     } else {
-      setText("you win!");
+      addText("you win!", { y: 4, color: [255, 0, 0] });
     }
   }
 });
