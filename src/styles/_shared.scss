@@ -121,6 +121,7 @@ a {
     left: 40px;
     top: 20px;
     width: 6rem;
+    z-index: 9999;
     /* transition-duration: 0.5s; */
     cursor: $cursor-active-override;
 
