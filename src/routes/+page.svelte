@@ -48,7 +48,8 @@
 
     const camera = new PerspectiveCamera(75, width / height, 0.1, 100);
     scene.add(camera);
-    camera.position.z = 9.5;
+    camera.position.z = 9.8; // meters per second squared
+    camera.position.x = 1;
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enablePan = false;
@@ -82,6 +83,7 @@
 
         scene.add(gltf.scene);
         controls.autoRotate = true;
+        setTimeout(() => (controls.autoRotate = false), 2500);
       },
       undefined,
       console.error,
@@ -257,7 +259,7 @@
 {/if}
 
 <div class="magic" id="m">
-  <img src="/preview.png" alt="A 3D rendering of the Sprig device." id="preview" />
+  <img src="/preview.webp" alt="A 3D rendering of the Sprig device." id="preview" />
 </div>
 
 <section class="fullpage">
@@ -367,8 +369,8 @@
 <section class="community wrapper std-padding">
   <div class="container limit-text">
     <p>
-      <strong>Make games you can share with friends in the Gallery and play on your Sprig consoles.</strong> 
-
+      <strong>Make games you can share with friends in the Gallery and play on your Sprig consoles.</strong>
+    </p>
     <div class="cards">
       <Card
         name="pyre"
@@ -397,9 +399,9 @@
     </div>
 
     <p>
-      Sprig is also Hack Club’s web-based game editor that gets you coding and creating within minutes, 
-      either from scratch or by hacking on other games and projects in the Gallery. It's accessible to beginners, 
-      yet entertaining for masters. Start building a Sprig game within minutes using integrated sprite, sound, and map editors.
+      Sprig is also Hack Club’s web-based game editor that gets you coding and creating within minutes, either from
+      scratch or by hacking on other games and projects in the Gallery. It's accessible to beginners, yet entertaining
+      for masters. Start building a Sprig game within minutes using integrated sprite, sound, and map editors.
     </p>
 
     <a href="/gallery"><button class="btn big active">Check out the gallery &raquo;</button></a>
@@ -412,8 +414,8 @@
 
     <div class="prose">
       <p>
-        Ship an original game to our Gallery and we’ll ship you a Sprig console. 
-        It can be your first program, or your thousandth— but we only have 500 Sprigs to send out. 
+        Ship an original game to our Gallery and we’ll ship you a Sprig console. It can be your first program, or your
+        thousandth— but we only have 500 Sprigs to send out.
         <i>Sprig consoles are available for teenagers only.</i>
         Read more on how to get a game <a href="/share" style="color: white; text-decoration: underline">here</a>.
       </p>

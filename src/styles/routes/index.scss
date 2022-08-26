@@ -50,6 +50,7 @@ h6 {
   visibility: hidden;
   width: 100%;
   z-index: 99;
+  user-select: none;
 }
 
 .magic-container {
@@ -203,13 +204,14 @@ h6 {
   max-width: 1400px;
   display: flex;
   flex-direction: row;
-  gap: 60px;
+  gap: 40px;
 }
 
 .specs-split-slot {
   flex: 1;
   justify-content: flex-end;
   margin: -40px 0;
+  transform: scale(1.2);
 }
 
 .specs {
