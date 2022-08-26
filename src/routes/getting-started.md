@@ -148,12 +148,12 @@ setMap(currentLevel);
 ### Adding Controls
 
 Let's add some controls to our player.
-Sprig has 8 inputs `up`, `left`, `down`, `right` which are w, a, s, d on the keyboard respectively and `i`, `j`, `k`, `l`.
+Sprig has 8 inputs `w`, `a`, `s`, `d`, `i`, `j`, `k`, `l`.
 
 You can do something on a button press like so:
 
 ```js
-onInput("up", () => {
+onInput("w", () => {
   getFirst(player).y -= 1;
 });
 ```
@@ -163,19 +163,19 @@ We're using `getFirst` to retrieve our player sprite.
 Repeating that pattern we can add up/down/left/right movement to our player.
 
 ```js
-onInput("up", () => {
+onInput("w", () => {
   getFirst(player).y -= 1;
 });
 
-onInput("down", () => {
+onInput("s", () => {
   getFirst(player).y += 1;
 });
 
-onInput("left", () => {
+onInput("a", () => {
   getFirst(player).x -= 1;
 });
 
-onInput("right", () => {
+onInput("d", () => {
   getFirst(player).x += 1;
 });
 ```
@@ -400,19 +400,19 @@ p.w.
 const currentLevel = levels[level];
 setMap(currentLevel);
 
-onInput("up", () => {
+onInput("w", () => {
   getFirst(player).y -= 1;
 });
 
-onInput("down", () => {
+onInput("s", () => {
   getFirst(player).y += 1;
 });
 
-onInput("left", () => {
+onInput("a", () => {
   getFirst(player).x -= 1;
 });
 
-onInput("right", () => {
+onInput("d", () => {
   getFirst(player).x += 1;
 });
 
