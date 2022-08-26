@@ -249,7 +249,7 @@
         Ship an original game to our Gallery and we’ll ship you a Sprig console. 
         It can be your first program, or your thousandth— but we only have 500 Sprigs to send out. 
         <i>Sprig consoles are available for teenagers only.</i>
-        Read more on how to get a game <a href="/share" style="color: white">here</a>.
+        Read more on how to get a game <a href="/share" style="color: white; text-decoration: underline">here</a>.
       </p>
     </div>
 
