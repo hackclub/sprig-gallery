@@ -408,7 +408,7 @@
 
     <div class="prose">
       <p>
-        Anyone can submit to the gallery, but teenagers (or younger) can get Sprig. Just ship an original game to our Gallery and we’ll ship you a Sprig console. It can be your first program, or your
+        Anyone can submit to the gallery, but teenagers (or younger) can get Sprig. Just ship an original game to our gallery and we’ll ship you a Sprig console. It can be your first program, or your
         thousandth— but we only have 500 Sprigs to send out. Read more on how to get a Sprig <a
           href="https://github.com/hackclub/sprig/blob/main/GET_A_SPRIG.md"
           target="_blank"
