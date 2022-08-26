@@ -368,10 +368,8 @@
 <section class="community wrapper std-padding">
   <div class="container limit-text">
     <p>
-      <strong>
-        We built you a game engine that&rsquo;s accessible to beginners, yet entertaining for masters.
-      </strong> 
-        Start building a Sprig game within minutes using integrated sprite, sound, and map editors.
+      <strong> We built you a game engine that&rsquo;s accessible to beginners, yet entertaining for masters. </strong>
+      Start building a Sprig game within minutes using integrated sprite, sound, and map editors.
     </p>
     <div class="cards">
       <Card
@@ -411,9 +409,12 @@
     <div class="prose">
       <p>
         Ship an original game to our Gallery and we’ll ship you a Sprig console. It can be your first program, or your
-        thousandth— but we only have 500 Sprigs to send out.
-        <i>Sprig consoles are available for teenagers only.</i>
-        Read more on how to get a game <a href="/share" style="color: white; text-decoration: underline">here</a>.
+        thousandth— but we only have 500 Sprigs to send out. Oh, and teenagers only. Read more on how to get a game <a
+          href="https://github.com/hackclub/sprig/blob/main/GET_A_SPRIG.md"
+          target="_blank"
+          rel="noopener"
+          style="color: white; text-decoration: underline">here</a
+        >.
       </p>
     </div>
 

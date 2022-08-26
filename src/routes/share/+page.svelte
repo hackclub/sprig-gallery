@@ -38,28 +38,6 @@
   </div>
 
   <div class="inner">
-    <!-- <h1>Anyone can submit to the gallery but if you want to get a Sprig read the details below.</h1>
-    <h2>How to get a Sprig!</h2>
-    <p>Sprig consoles are a limited run and will be ready for delivery end of Oct 2022*.</p>
-    <p>
-      Get on the waitlist now by sharing your game and having it approved by one of our project maintainers. Once your
-      GitHub pull request is approved, we'll collect your shipping details.
-    </p>
-    <p>
-      <b>If you have any questions, join #sprig on our <a href="https://hackclub.com/slack">Slack</a>.</b>
-    </p>
-    <p>There are only a few requirements to get a Sprig console:</p>
-    <ol>
-      <li>you must be in high school or younger (this will be checked before mailing)</li>
-      <li>your game must use the Sprig editor</li>
-      <li>your game must be winnable</li>
-      <li>your game has a minimum of 5mins of gameplay</li>
-      <li>your game is original</li>
-    </ol>
-    <p>
-      <small>(* Our aim is to ship everywhere except US-sanctioned and trade-/mail-restricted nations.)</small>
-    </p> -->
-
     <div class="step">
       <div>
         <p class="step-number">Step 0:</p>
