@@ -80,6 +80,30 @@
   <style lang="scss">
     @import '../styles/routes/gallery.scss';
   </style>
+
+  <meta charSet="utf-8" />
+  <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gallery | Sprig</title>
+  <meta property="og:title" content="Gallery" />
+  <meta property="og:site_name" content="Sprig" />
+  <meta
+    name="description"
+    content="The best way to learn is by making things that you care about and sharing them with other people. Check out games created by Hack Clubbers."
+  />
+  <meta
+    property="og:description"
+    content="The best way to learn is by making things that you care about and sharing them with other people. Check out games created by Hack Clubbers."
+  />
+  <meta name="keywords" content="game, sprig, hack club" />
+  <meta name="author" content="@hackclub" />
+  <meta name="twitter:creator" content="@hackclub" />
+  <meta name="theme-color" content="#0a0a16" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/SPRIGDINO.svg" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://sprig.hackclub.com/gallery" />
+  <meta name="twitter:site" content="https://sprig.hackclub.com/gallery" />
 </svelte:head>
 
 <div bind:this={preloader} id="preloader">
