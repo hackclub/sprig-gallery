@@ -58,7 +58,7 @@
       <li>your game is original</li>
     </ol>
     <p>
-      <small>(* Our aim is to ship everywhere except US-sanctioned & trade-/mail-restricted nations.)</small>
+      <small>(* Our aim is to ship everywhere except US-sanctioned and trade-/mail-restricted nations.)</small>
     </p>
     <div class="step">
       <div>
