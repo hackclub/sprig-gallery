@@ -39,7 +39,7 @@
       (res) => res.json(),
     );
 
-    const makeURL = (x) => `https://sprig.hackclub.com/api/thumbnail/${x}`;
+    const makeURL = (x) => `https://editor.sprig.hackclub.com/api/thumbnail/${x}`;
 
     const names = gitFiles.map(async (x) => {
       try {

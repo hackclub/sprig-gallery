@@ -30,7 +30,8 @@
     <div class="heading-inner">
       <h1>Share your game</h1>
       <p>
-        After you <a href="https://sprig.hackclub.dev/" target="_blank">create your own game</a>, we'd love for you to
+        After you <a href="https://editor.sprig.hackclub.com/" target="_blank">create your own game</a>, we'd love for
+        you to
         <a href="/gallery">share it with other makers</a> on the internet!
       </p>
     </div>
@@ -38,13 +39,11 @@
 
   <div class="inner">
     <p>
-      Sprig consoles will be ready for shipping end of Sept 2022*. You can get on the waitlist 
-      now by sharing your game and having it approved by one of our project maintainers. Once approved, 
-      we'll collect your details for shipping. If you have any questions, join #sprig on our Slack.
+      Sprig consoles will be ready for shipping end of Sept 2022*. You can get on the waitlist now by sharing your game
+      and having it approved by one of our project maintainers. Once approved, we'll collect your details for shipping.
+      If you have any questions, join #sprig on our Slack.
     </p>
-    <p>
-      There are only a few requirements to get a Sprig console:
-    </p>
+    <p>There are only a few requirements to get a Sprig console:</p>
     <ol>
       <li>you must be in high school or younger (this will be checked before mailing)</li>
       <li>your game must use the Sprig editor</li>

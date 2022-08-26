@@ -9,10 +9,10 @@
 <div class="gallery-item" {id}>
   <a
     href={id
-      ? 'https://sprig.hackclub.dev'
-      : `https://sprig.hackclub.dev/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${name}.js`}
-      target="_blank"
-      rel="noopener noreferrer"
+      ? 'https://editor.sprig.hackclub.com'
+      : `https://editor.sprig.hackclub.com/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${name}.js`}
+    target="_blank"
+    rel="noopener noreferrer"
   >
     <div class="image-box">
       {#if !id}
