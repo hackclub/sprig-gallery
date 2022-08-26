@@ -1,6 +1,6 @@
 <svelte:head>
   <style lang="scss">
-    @import '../styles/routes/share.scss';
+    @import '../../styles/routes/share.scss';
   </style>
 
   <title>Share | Sprig</title>

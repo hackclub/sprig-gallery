@@ -1,5 +1,5 @@
 <script>
-  import Card from '../components/Card.svelte';
+  import Card from '../../components/Card.svelte';
   import { onMount } from 'svelte';
 
   let games = [];
@@ -39,7 +39,7 @@
       (res) => res.json(),
     );
 
-    const makeURL = (x) => `https://sprig.hackclub.dev/api/thumbnail/${x}`;
+    const makeURL = (x) => `https://sprig.hackclub.com/api/thumbnail/${x}`;
 
     const names = gitFiles.map(async (x) => {
       try {
@@ -78,7 +78,7 @@
 
 <svelte:head>
   <style lang="scss">
-    @import '../styles/routes/gallery.scss';
+    @import '../../styles/routes/gallery.scss';
   </style>
 
   <meta charSet="utf-8" />

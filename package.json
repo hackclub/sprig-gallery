@@ -22,6 +22,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"marked": "^4.0.18"
+		"marked": "^4.0.18",
+		"three": "^0.143.0"
 	}
 }

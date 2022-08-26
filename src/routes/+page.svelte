@@ -1,5 +1,23 @@
 <script>
+  import {
+    Scene,
+    WebGLRenderer,
+    sRGBEncoding,
+    PerspectiveCamera,
+    AmbientLight,
+    DirectionalLight,
+    HemisphereLight,
+    // Raycaster,
+    // Vector2,
+    // Color,
+  } from 'three';
+  import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment';
+  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+  import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
   import Card from '../components/Card.svelte';
+  import { onMount } from 'svelte';
 
   const stories = [
     { id: 'sprig-front', width: 800, height: 602 },
@@ -15,7 +33,133 @@
     typeof document !== 'undefined' && (document.documentElement.style.overflow = selectedStory ? 'hidden' : 'auto');
   }
 
-  if (typeof document !== 'undefined') {
+  const initThree = (m) => {
+    const [width, height] = [1000, 1000];
+
+    const scene = new Scene();
+    scene.environment = RoomEnvironment;
+    // scene.background = new Color('red');
+
+    const renderer = new WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(width, height, false);
+
+    renderer.outputEncoding = sRGBEncoding;
+    renderer.physicallyCorrectLights = true;
+
+    const camera = new PerspectiveCamera(75, width / height, 0.1, 100);
+    scene.add(camera);
+    camera.position.z = 9.5;
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enablePan = false;
+    controls.enableZoom = false;
+
+    // const raycaster = new Raycaster();
+    // const mouse = new Vector2();
+
+    const ambientLight = new AmbientLight(0xffffff, 1);
+    scene.add(ambientLight);
+
+    const dirLight1 = new DirectionalLight(0xffffff, 0.2);
+    dirLight1.position.set(0, 0, 1000);
+    camera.add(dirLight1);
+
+    scene.add(new HemisphereLight());
+
+    const dracoLoader = new DRACOLoader().setDecoderPath(`https://threejs.org/examples/js/libs/draco/gltf/`);
+    const loader = new GLTFLoader().setDRACOLoader(dracoLoader);
+
+    loader.load(
+      '/sprig.glb',
+      (gltf) => {
+        console.log('loaded :)');
+        document.getElementById('preview').remove();
+        dracoLoader.dispose();
+
+        gltf.scene.rotation.x = Math.PI / 2;
+        gltf.scene.rotation.y = -Math.PI / 2;
+        gltf.scene.position.y = 9.4;
+
+        scene.add(gltf.scene);
+        controls.autoRotate = true;
+      },
+      undefined,
+      console.error,
+    );
+
+    // let INTERSECTED0 = null;
+    // let intersected = null;
+
+    // function raycast() {
+    // 	raycaster.setFromCamera(mouse, camera);
+    // 	// calculate objects intersecting the picking ray
+    // 	let intersects0 = raycaster.intersectObjects(scene.children);
+
+    // 	if (INTERSECTED0) {
+    // 		INTERSECTED0.material.color.set(INTERSECTED0.currentColor);
+    // 	}
+
+    // 	if (intersected) {
+    // 		// console.log(intersected);
+    // 		intersected.forEach(item => {
+    // 			item.material.color.set(item.currentColor);
+    // 		});
+    // 	}
+
+    // 	if (intersects0.length > 0) {
+    // 		if (INTERSECTED0 != intersects0) {
+
+    // 			INTERSECTED0 = intersects0[0].object;
+    // 			INTERSECTED0.currentColor = INTERSECTED0.material.color.getHex();
+    // 			// INTERSECTED0.material.color.set("rgb(255, 255, 0)");
+
+    // 			//  intersected = intersects0.map( x => x.object);
+    // 			//  intersected.forEach(item => {
+    // 			//    item.currentColor = item.material.color.getHex();
+    // 			// item.material.color.set("rgb(255, 255, 0)");
+    // 			//  })
+
+    // 		}
+    // 	} else {
+    // 		INTERSECTED0 = null;
+    // 		intersected = null;
+    // 	}
+    // }
+
+    // function onMouseMove(event) {
+    // 	const target = document.body;
+    // 	// const rect = event.target.getBoundingClientRect();
+    // 	const x = event.clientX; // - rect.left; //x position within the element.
+    // 	const y = event.clientY; // - rect.top;  //y position within the element.
+
+    // 	const width = target.clientWidth;
+    // 	const height = target.clientHeight;
+
+    // 	// calculate mouse position in normalized device coordinates
+    // 	// (-1 to +1) for both components
+
+    // 	mouse.x = (x / width) * 2 - 1;
+    // 	mouse.y = - (y / height) * 2 + 1;
+    // }
+
+    // document.body.addEventListener("pointermove", onMouseMove);
+    // document.body.addEventListener("pointerdown", () => {
+    // 	console.log(INTERSECTED0);
+    // 	console.log(intersected);
+    // });
+
+    const animate = () => {
+      requestAnimationFrame(animate);
+      // raycast();
+      controls.update();
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    m.appendChild(renderer.domElement);
+  };
+
+  onMount(() => {
     const m = document.getElementById('m');
     const start = document.getElementById('m-start');
     const shrinker = document.getElementById('m-shrinker');
@@ -27,32 +171,45 @@
 
     const weirdEase = (t) => 1.5 * Math.pow(1 - t, 2) * t + t;
 
-    const scrollUpdate = () => {
+    let rects = {};
+    const scrollUpdate = (needsSecond = false) => {
       const { scrollTop, scrollLeft } = document.documentElement;
 
-      const rects = {
-        m: m.getBoundingClientRect(),
-        start: start.getBoundingClientRect(),
-        shrinker: shrinker.getBoundingClientRect(),
-        stop: stop.getBoundingClientRect(),
-      };
+      if (window.innerWidth <= 780) {
+        rects = { start: start.getBoundingClientRect() };
+        m.style.width = `${rects.start.width}px`;
+        m.style.height = `${rects.start.height}px`;
+        m.style.left = `${rects.start.left + scrollLeft}px`;
+        m.style.top = `${rects.start.top + scrollTop}px`;
+      } else {
+        rects = {
+          m: m.getBoundingClientRect(),
+          start: start.getBoundingClientRect(),
+          shrinker: shrinker.getBoundingClientRect(),
+          stop: stop.getBoundingClientRect(),
+        };
 
-      const t = clamp(
-        weirdEase(progress(rects.m.top, rects.shrinker.top, rects.shrinker.top + rects.shrinker.height / 2)),
-        0,
-        1,
-      );
+        const t = clamp(
+          weirdEase(progress(rects.m.top + 100, rects.shrinker.top, rects.shrinker.top + rects.shrinker.height / 2)),
+          0,
+          1,
+        );
+        // const t = 1;
 
-      m.style.width = `${lerp(rects.start.width, rects.stop.width, t)}px`;
-      m.style.height = `${lerp(rects.start.height, rects.stop.height, t)}px`;
-      m.style.left = `${lerp(rects.start.left + scrollLeft, rects.stop.left + scrollLeft, t)}px`;
-      m.style.top = `${Math.min(rects.start.top + scrollTop * 2, rects.stop.top + scrollTop)}px`;
+        m.style.width = `${lerp(rects.start.width, rects.stop.width, t)}px`;
+        m.style.height = `${lerp(rects.start.height, rects.stop.height, t)}px`;
+        m.style.left = `${lerp(rects.start.left + scrollLeft, rects.stop.left + scrollLeft, t)}px`;
+        m.style.top = `${Math.min(rects.start.top + scrollTop * 2, rects.stop.top + scrollTop)}px`;
+        // m.style.top = `${rects.stop.top + scrollTop}px`;
+        if (needsSecond) scrollUpdate();
+      }
     };
 
+    initThree(m);
     window.addEventListener('resize', scrollUpdate);
     window.addEventListener('scroll', scrollUpdate);
-    scrollUpdate();
-  }
+    scrollUpdate(true);
+  });
 </script>
 
 <svelte:head>
@@ -99,19 +256,25 @@
   </div>
 {/if}
 
+<div class="magic" id="m">
+  <img src="/preview.png" alt="A 3D rendering of the Sprig device." id="preview" />
+</div>
+
 <section class="fullpage">
   <div class="fullpage-hero wrapper">
     <div class="container">
-      <div />
+      <div class="slot magic-container">
+        <div class="magic" id="m-start" />
+      </div>
       <div>
         <h1>The game console where every player is a creator.</h1>
       </div>
     </div>
   </div>
 
-  <div class="fullpage-footer wrapper">
+  <div class="fullpage-footer wrapper" id="m-shrinker">
     <div class="container">
-      <div class="fun-facts-slot" />
+      <div class="slot" />
       <div class="fun-facts">
         <article>
           <h2>An online microworld</h2>
@@ -133,7 +296,10 @@
 
 <section class="specs-split-wrapper wrapper">
   <div class="specs-split-container">
-    <div class="specs-split-slot" />
+    <div class="specs-split-slot magic-container">
+      <div class="magic" id="m-stop" />
+    </div>
+
     <div class="specs">
       <h2>Sprig: fantasy console turned real</h2>
       <div class="specs-grid">

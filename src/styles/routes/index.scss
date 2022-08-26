@@ -33,7 +33,7 @@ h6 {
 
 .container {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
 }
 
 .std-padding {
@@ -44,6 +44,40 @@ h6 {
   max-width: 800px;
 }
 
+// +++ MAGIC: +++
+.magic {
+  aspect-ratio: 1;
+  visibility: hidden;
+  width: 100%;
+  z-index: 99;
+}
+
+.magic-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#m {
+  visibility: visible;
+  position: absolute;
+  z-index: 999;
+  width: 0px;
+  height: 0px;
+  transform: scale(1.2);
+}
+
+#m img,
+#m canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 // +++ LIGHTBOX: +++
 .lightbox {
   position: fixed;
@@ -52,7 +86,7 @@ h6 {
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0.8);
-  z-index: 999;
+  z-index: 9999;
   padding: 100px;
   display: flex;
   flex-direction: column;
@@ -60,7 +94,7 @@ h6 {
   justify-content: center;
 }
 
-img {
+.lightbox img {
   display: block;
   width: 100%;
   height: 100%;
@@ -84,11 +118,15 @@ img {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
     flex: 1;
 
-    div {
-      flex: 1;
+    > div {
+      flex: 7;
+    }
+
+    > .slot {
+      flex: 6;
     }
   }
 }
@@ -98,6 +136,11 @@ img {
 
   h1 {
     font-size: 2.625rem;
+  }
+
+  .magic {
+    width: 80%;
+    transform: scale(1.4);
   }
 }
 
@@ -128,11 +171,19 @@ img {
   }
 
   .fullpage-hero .container {
-    padding: 60px $std-horiz-margin;
-    flex-direction: column;
+    padding: 10px $std-horiz-margin;
+    padding-top: 120px;
+    flex-direction: column-reverse;
+    gap: 10px;
+    text-align: center;
   }
 
-  .fun-facts-slot {
+  .fullpage-hero .slot {
+    width: 100%;
+    margin: -60px 0;
+  }
+
+  .fullpage-footer .slot {
     display: none;
   }
 }
@@ -149,7 +200,7 @@ img {
 
 .specs-split-container {
   width: 100%;
-  max-width: 1300px;
+  max-width: 1400px;
   display: flex;
   flex-direction: row;
   gap: 60px;
@@ -157,6 +208,8 @@ img {
 
 .specs-split-slot {
   flex: 1;
+  justify-content: flex-end;
+  margin: -40px 0;
 }
 
 .specs {
@@ -213,7 +266,13 @@ img {
 // --- COMMUNITY: ---
 .community {
   font-size: 1.375rem;
-  background: #52b5db;
+  background: url('pcb.svg'), #016535;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+  color: white;
+
+  p {
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+  }
 
   .container {
     display: flex;
@@ -234,7 +293,7 @@ img {
   gap: 20px;
 }
 
-@media (max-width: 860px) {
+@media only screen and (max-width: 860px) {
   .community .cards {
     justify-content: space-around;
   }
@@ -244,7 +303,7 @@ img {
   }
 }
 
-@media (max-width: 660px) {
+@media only screen and (max-width: 660px) {
   .community .gallery-item:nth-child(1) {
     display: none;
   }
