@@ -94,7 +94,7 @@ a {
   left: 30px;
   background-size: contain;
   flex-shrink: 0;
-  z-index: 333;
+  z-index: 9999;
   transition: cubic-bezier(0.375, 0, 0.675, 1) transform;
   transform-origin: top left;
 
