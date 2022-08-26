@@ -36,9 +36,11 @@
     </div>
   </div>
 
+  <h1>Anyone can submit to the gallery but if you want to get a Sprig read the details below.<h1>
+
   <div class="inner">
     <p>
-      Sprig consoles will be ready for shipping end of Sept 2022*. You can get on the waitlist 
+      Sprig consoles will be ready for shipping end of Oct 2022. You can get on the waitlist 
       now by sharing your game and having it approved by one of our project maintainers. Once approved, 
       we'll collect your details for shipping. If you have any questions, join #sprig on our Slack.
     </p>
@@ -55,6 +57,8 @@
     <p>
       <small>(* subject to availability for shipping)</small>
     </p>
+
+
     <div class="step">
       <div>
         <p class="step-number">Step 0:</p>
@@ -87,6 +91,8 @@
         <a href="https://github.com/hackclub/sprig/fork" target="_blank">
           <button class="btn active">Fork hackclub/sprig</button>
         </a>
+
+        <p>Optional: while you're here it'd be nice to give us a star!</p>
       </div>
       <img class="media" src="/screenshots/fork.png" alt="screenshot of github's fork page" />
     </div>
