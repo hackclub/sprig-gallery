@@ -193,7 +193,9 @@
         };
 
         const t = clamp(
-          weirdEase(progress(rects.m.top + 150, rects.shrinker.top, rects.shrinker.top + rects.shrinker.height / 2)),
+          weirdEase(
+            progress(rects.m.top + 50, rects.shrinker.top - 150, rects.shrinker.top + rects.shrinker.height / 2),
+          ),
           0,
           1,
         );
@@ -279,15 +281,13 @@
       <div class="fun-facts">
         <article>
           <h2>An online microworld</h2>
-          <p>
-            Draw, make music, and craft games in a web-based editor, then see your work realized on real hardware.
-          </p>
+          <p>Draw, make music, and craft games in a web-based editor, then see your work realized on real hardware.</p>
         </article>
         <article>
           <h2>Hackable everything</h2>
           <p>
-            Sprig is a hardware development kit. It comes disassembled with reusable parts. 
-            Reflash the controller&rsquo;s firmware with the touch of a button.
+            Sprig is a hardware development kit. It comes disassembled with reusable parts. Reflash the
+            controller&rsquo;s firmware with the touch of a button.
           </p>
         </article>
       </div>
@@ -443,7 +443,10 @@
     <p>
       Sprig was developed by a team at Hack Club with assistance from Brian Silverman (who helped develop Scratch and
       the precursor to LEGO Mindstorms), Vadim Gerasimov (engineer at Google who helped create Tetris when he was 15),
-      and Quentin Bolseé (researcher at MIT and Vrije University). We're also grateful for amazing open-source projects that make this possible like <a href="https://kalumajs.org/">Kaluma</a>, <a href="https://jerryscript.net/">JerryScript</a>, <a href="https://github.com/WebReflection/uhtml">uhtml</a>, and <a href="https://codemirror.net/">CodeMirror</a>.
+      and Quentin Bolseé (researcher at MIT and Vrije University). We're also grateful for amazing open-source projects
+      that make this possible like <a href="https://kalumajs.org/">Kaluma</a>,
+      <a href="https://jerryscript.net/">JerryScript</a>, <a href="https://github.com/WebReflection/uhtml">uhtml</a>,
+      and <a href="https://codemirror.net/">CodeMirror</a>.
     </p>
     <p>
       Dozens of contributors from our community of teen hackers were instrumental to Sprig’s development as well.
