@@ -7,9 +7,8 @@
     AmbientLight,
     DirectionalLight,
     HemisphereLight,
-    // Raycaster,
-    // Vector2,
-    // Color,
+    Raycaster,
+    Vector2,
   } from 'three';
   import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment';
   import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -38,7 +37,6 @@
 
     const scene = new Scene();
     scene.environment = RoomEnvironment;
-    // scene.background = new Color('red');
 
     const renderer = new WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(width, height, false);
@@ -56,15 +54,12 @@
     controls.enableZoom = false;
     controls.autoRotateSpeed = -2.5;
 
-    // const raycaster = new Raycaster();
-    // const mouse = new Vector2();
-
     const ambientLight = new AmbientLight(0xffffff, 1);
     scene.add(ambientLight);
 
-    const dirLight1 = new DirectionalLight(0xffffff, 0.2);
-    dirLight1.position.set(0, 0, 1000);
-    camera.add(dirLight1);
+    const dirLight = new DirectionalLight(0xffffff, 0.2);
+    dirLight.position.set(0, 0, 1000);
+    camera.add(dirLight);
 
     scene.add(new HemisphereLight());
 
@@ -90,71 +85,47 @@
       console.error,
     );
 
-    // let INTERSECTED0 = null;
-    // let intersected = null;
+    const buttonNames = ['W', 'A', 'S', 'D', 'I', 'J', 'K', 'L'];
+    const buttonMovement = 0.08;
 
-    // function raycast() {
-    // 	raycaster.setFromCamera(mouse, camera);
-    // 	// calculate objects intersecting the picking ray
-    // 	let intersects0 = raycaster.intersectObjects(scene.children);
+    const raycaster = new Raycaster();
+    const mouse = new Vector2();
+    let hoveredButton = null;
+    let pressedButton = null;
 
-    // 	if (INTERSECTED0) {
-    // 		INTERSECTED0.material.color.set(INTERSECTED0.currentColor);
-    // 	}
+    const raycast = () => {
+      raycaster.setFromCamera(mouse, camera);
+      const object = raycaster.intersectObjects(scene.children)[0]?.object;
+      hoveredButton = object && buttonNames.includes(object.name) ? object : null;
+      document.body.style.cursor = hoveredButton || pressedButton ? 'pointer' : null;
+    };
 
-    // 	if (intersected) {
-    // 		// console.log(intersected);
-    // 		intersected.forEach(item => {
-    // 			item.material.color.set(item.currentColor);
-    // 		});
-    // 	}
+    renderer.domElement.addEventListener('pointermove', (event) => {
+      const x = event.offsetX;
+      const y = event.offsetY;
+      const width = event.target.clientWidth;
+      const height = event.target.clientHeight;
 
-    // 	if (intersects0.length > 0) {
-    // 		if (INTERSECTED0 != intersects0) {
-
-    // 			INTERSECTED0 = intersects0[0].object;
-    // 			INTERSECTED0.currentColor = INTERSECTED0.material.color.getHex();
-    // 			// INTERSECTED0.material.color.set("rgb(255, 255, 0)");
-
-    // 			//  intersected = intersects0.map( x => x.object);
-    // 			//  intersected.forEach(item => {
-    // 			//    item.currentColor = item.material.color.getHex();
-    // 			// item.material.color.set("rgb(255, 255, 0)");
-    // 			//  })
-
-    // 		}
-    // 	} else {
-    // 		INTERSECTED0 = null;
-    // 		intersected = null;
-    // 	}
-    // }
-
-    // function onMouseMove(event) {
-    // 	const target = document.body;
-    // 	// const rect = event.target.getBoundingClientRect();
-    // 	const x = event.clientX; // - rect.left; //x position within the element.
-    // 	const y = event.clientY; // - rect.top;  //y position within the element.
-
-    // 	const width = target.clientWidth;
-    // 	const height = target.clientHeight;
-
-    // 	// calculate mouse position in normalized device coordinates
-    // 	// (-1 to +1) for both components
-
-    // 	mouse.x = (x / width) * 2 - 1;
-    // 	mouse.y = - (y / height) * 2 + 1;
-    // }
-
-    // document.body.addEventListener("pointermove", onMouseMove);
-    // document.body.addEventListener("pointerdown", () => {
-    // 	console.log(INTERSECTED0);
-    // 	console.log(intersected);
-    // });
+      // calculate mouse position in normalized device coordinates
+      // (-1 to +1) for both components
+      mouse.x = (x / width) * 2 - 1;
+      mouse.y = -(y / height) * 2 + 1;
+    });
+    renderer.domElement.addEventListener('pointerdown', (event) => {
+      if (!hoveredButton || pressedButton) return;
+      pressedButton = hoveredButton;
+      pressedButton.position.y -= buttonMovement;
+    });
+    document.body.addEventListener('mouseup', () => {
+      if (!pressedButton) return;
+      pressedButton.position.y += buttonMovement;
+      pressedButton = null;
+    });
 
     const animate = () => {
       requestAnimationFrame(animate);
-      // raycast();
       controls.update();
+      raycast();
       renderer.render(scene, camera);
     };
     animate();
