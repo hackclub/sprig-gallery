@@ -414,7 +414,7 @@
     <p>
       Sprig was developed by a team at Hack Club with assistance from Brian Silverman (who helped develop Scratch and
       the precursor to LEGO Mindstorms), Vadim Gerasimov (engineer at Google who helped create Tetris when he was 15),
-      and Quentin Bolseé (researcher at MIT and Vrije University). We're also grateful for amazing open-source projects
+      and Quentin Bolsée (researcher at MIT and Vrije University Brussels). We're also grateful for amazing open-source projects
       that make this possible like <a href="https://kalumajs.org/">Kaluma</a>,
       <a href="https://jerryscript.net/">JerryScript</a>, <a href="https://github.com/WebReflection/uhtml">uhtml</a>,
       and <a href="https://codemirror.net/">CodeMirror</a>.
