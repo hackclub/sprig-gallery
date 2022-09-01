@@ -15,10 +15,6 @@ body { margin: 0; }
 
 a {
   text-decoration: none;
-
-  &:hover {
-    cursor: $cursor-active-override;
-  }
 }
 
 .btn {
@@ -66,7 +62,6 @@ a {
   }
 
   &::after {
-    cursor: $cursor-active-override;
     position: absolute;
     top: -4px;
     left: -4px;
@@ -98,11 +93,6 @@ a {
   transition: cubic-bezier(0.375, 0, 0.675, 1) transform;
   transform-origin: top left;
 
-  &,
-  & * {
-    cursor: $cursor-active-override;
-  }
-
   img {
     width: 112px;
     height: auto;
@@ -122,8 +112,6 @@ a {
     top: 20px;
     width: 6rem;
     z-index: 9999;
-    /* transition-duration: 0.5s; */
-    cursor: $cursor-active-override;
 
     &:hover {
       transform: scale(1.05);
@@ -136,7 +124,6 @@ a {
     left: 30px;
     width: 4rem;
     bottom: -3.8rem;
-    cursor: $cursor-active-override;
     transition: all 0.5s linear;
 
     &:hover {
