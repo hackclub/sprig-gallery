@@ -55,7 +55,6 @@ h6 {
   width: 100%;
   z-index: 99;
   user-select: none;
-  cursor: grab;
 }
 
 .magic-container {
@@ -70,7 +69,7 @@ h6 {
   z-index: 999;
   width: 0px;
   height: 0px;
-  transform: scale(1.2);
+  pointer-events: none;
 }
 
 #m img,
@@ -113,89 +112,73 @@ h6 {
   display: flex;
   flex-direction: column;
   color: #ffffff;
-  background: url(/background.jpg), $base-background;
+  background: url('/background.jpg'), $base-background;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
+}
 
-  .container {
-    padding: 0 $std-horiz-margin;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 40px;
-    flex: 1;
+.fullpage .container {
+  padding: 0 $std-horiz-margin;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 60px;
+  flex: 1;
 
-    > div {
-      flex: 7;
-    }
+  >div {
+    flex: 7;
+  }
 
-    > .slot {
-      flex: 6;
-    }
+  >.slot {
+    flex: 6;
+  }
+
+  .magic {
+    width: 100%;
+    transform: scale(1.45);
+    margin: -400px 0;
+    pointer-events: none;
   }
 }
 
-.fullpage-hero {
-  flex: 1;
+.fullpage .text {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
 
   h1 {
     font-size: 2.625rem;
   }
 
-  .magic {
-    width: 80%;
-    transform: scale(1.4);
-    margin: -400px 0;
+  p {
+    font-family: $pixel-text-font;
+    font-weight: 300;
+    font-size: 1.3em;
   }
-}
-
-.fullpage-footer {
-  padding: 60px 0;
-  background: #00000066;
-}
-
-.fun-facts {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.fun-facts article {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.fun-facts h2 {
-  font-size: 1.25rem;
 }
 
 @media (max-width: 780px) {
   .fullpage {
     height: auto;
-  }
 
-  .fullpage-hero .container {
-    padding: 10px $std-horiz-margin;
-    padding-top: 120px;
-    flex-direction: column-reverse;
-    gap: 10px;
-    text-align: center;
-
-    > .slot {
-      width: 100%;
-      margin: 130px 0;
+    .container {
+      padding: 10px $std-horiz-margin;
+      padding-top: 120px;
+      flex-direction: column-reverse;
+      gap: 10px;
+      text-align: center;
+  
+      >.slot {
+        width: 80%;
+        margin: 20vw 0;
+      }
+  
+      .magic {
+        transform: scale(1.3);
+      }
     }
-
-    .magic {
-      transform: scale(1.2);
-    }
-  }
-
-  .fullpage-footer .slot {
-    display: none;
   }
 }
 
@@ -221,7 +204,8 @@ h6 {
   flex: 1;
   justify-content: flex-end;
   margin: -400px 0;
-  transform: scale(1.2);
+  transform: scale(1.3);
+  pointer-events: none;
 }
 
 .specs {

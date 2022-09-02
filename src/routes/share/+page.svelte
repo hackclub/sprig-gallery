@@ -29,13 +29,12 @@
   <div class="heading-outer">
     <div class="heading-inner">
       <h1>Share your game</h1>
-      <p>
-        After you create your own game, we'd love for
-        you to share it with other makers on the internet!
-      </p>
+      <p>After you create your own game, we'd love for you to share it with other makers on the internet!</p>
 
       <p>
-        If you're looking to submit your game to get a Sprig, make sure to read over the <a href="https://github.com/hackclub/sprig/blob/main/GET_A_SPRIG.md">rules here</a>.
+        If you're looking to submit your game to get a Sprig, make sure to read over the <a
+          href="https://github.com/hackclub/sprig/blob/main/GET_A_SPRIG.md">rules here</a
+        >.
       </p>
     </div>
   </div>

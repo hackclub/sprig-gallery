@@ -13,7 +13,7 @@
   import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment';
   import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
   import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
-  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+  import { OrbitControls } from '../orbitControls';
 
   import Card from '../components/Card.svelte';
   import { onMount } from 'svelte';
@@ -32,111 +32,9 @@
     typeof document !== 'undefined' && (document.documentElement.style.overflowY = selectedStory ? 'hidden' : 'auto');
   }
 
-  const initThree = (m) => {
-    const [width, height] = [1000, 1000];
-
-    const scene = new Scene();
-    scene.environment = RoomEnvironment;
-
-    const renderer = new WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(width, height, false);
-
-    renderer.outputEncoding = sRGBEncoding;
-    renderer.physicallyCorrectLights = true;
-
-    const camera = new PerspectiveCamera(75, width / height, 0.1, 100);
-    scene.add(camera);
-    camera.position.z = 9.8; // meters per second squared
-    camera.position.x = 1;
-
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enablePan = false;
-    controls.enableZoom = false;
-    controls.autoRotateSpeed = -2.5;
-
-    const ambientLight = new AmbientLight(0xffffff, 1);
-    scene.add(ambientLight);
-
-    const dirLight = new DirectionalLight(0xffffff, 0.2);
-    dirLight.position.set(0, 0, 1000);
-    camera.add(dirLight);
-
-    scene.add(new HemisphereLight());
-
-    const dracoLoader = new DRACOLoader().setDecoderPath(`https://threejs.org/examples/js/libs/draco/gltf/`);
-    const loader = new GLTFLoader().setDRACOLoader(dracoLoader);
-
-    loader.load(
-      '/sprig.glb',
-      (gltf) => {
-        console.log('loaded :)');
-        document.getElementById('preview').remove();
-        dracoLoader.dispose();
-
-        gltf.scene.rotation.x = Math.PI / 2;
-        gltf.scene.rotation.y = -Math.PI / 2;
-        gltf.scene.position.y = 9.4;
-
-        scene.add(gltf.scene);
-        controls.autoRotate = true;
-        setTimeout(() => (controls.autoRotate = false), 1000);
-      },
-      undefined,
-      console.error,
-    );
-
-    const buttonNames = ['W', 'A', 'S', 'D', 'I', 'J', 'K', 'L'];
-    const buttonMovement = 0.08;
-
-    const raycaster = new Raycaster();
-    const mouse = new Vector2();
-    let hoveredButton = null;
-    let pressedButton = null;
-
-    const raycast = () => {
-      raycaster.setFromCamera(mouse, camera);
-      const object = raycaster.intersectObjects(scene.children)[0]?.object;
-      hoveredButton = object && buttonNames.includes(object.name) ? object : null;
-      document.body.style.cursor = hoveredButton || pressedButton ? 'pointer' : null;
-    };
-
-    renderer.domElement.addEventListener('pointermove', (event) => {
-      const x = event.offsetX;
-      const y = event.offsetY;
-      const width = event.target.clientWidth;
-      const height = event.target.clientHeight;
-
-      // calculate mouse position in normalized device coordinates
-      // (-1 to +1) for both components
-      mouse.x = (x / width) * 2 - 1;
-      mouse.y = -(y / height) * 2 + 1;
-    });
-    renderer.domElement.addEventListener('pointerdown', (event) => {
-      if (!hoveredButton || pressedButton) return;
-      pressedButton = hoveredButton;
-      pressedButton.position.y -= buttonMovement;
-    });
-    document.body.addEventListener('mouseup', () => {
-      if (!pressedButton) return;
-      pressedButton.position.y += buttonMovement;
-      pressedButton = null;
-    });
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      controls.update();
-      raycast();
-      renderer.render(scene, camera);
-    };
-    animate();
-
-    m.appendChild(renderer.domElement);
-  };
-
   onMount(() => {
     const m = document.getElementById('m');
     const start = document.getElementById('m-start');
-    const shrinker = document.getElementById('m-shrinker');
     const stop = document.getElementById('m-stop');
 
     const lerp = (a, b, t) => a * (1 - t) + b * t;
@@ -145,41 +43,166 @@
 
     const weirdEase = (t) => 1.5 * Math.pow(1 - t, 2) * t + t;
 
+    const initThree = (m) => {
+      const [width, height] = [1000, 1000];
+
+      const scene = new Scene();
+      scene.environment = RoomEnvironment;
+
+      const renderer = new WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height, false);
+
+      renderer.outputEncoding = sRGBEncoding;
+      renderer.physicallyCorrectLights = true;
+
+      const camera = new PerspectiveCamera(75, width / height, 0.1, 100);
+      scene.add(camera);
+      camera.position.z = 9.8; // meters per second squared
+      camera.position.x = 1;
+
+      const raycaster = new Raycaster();
+      const mouse = new Vector2(Infinity, Infinity);
+      const raycasted = {
+        device: null,
+        hoveredButton: null,
+        pressedButton: null,
+      };
+
+      const controls = new OrbitControls(
+        camera,
+        document.documentElement,
+        () => raycasted.device && !raycasted.pressedButton,
+        () => !raycasted.pressedButton,
+      );
+      controls.autoRotateSpeed = -2.5;
+      controls.rotateSpeed = 2.5;
+
+      const ambientLight = new AmbientLight(0xffffff, 1);
+      scene.add(ambientLight);
+
+      const dirLight = new DirectionalLight(0xffffff, 0.2);
+      dirLight.position.set(0, 0, 1000);
+      camera.add(dirLight);
+
+      scene.add(new HemisphereLight());
+
+      const dracoLoader = new DRACOLoader().setDecoderPath(`https://threejs.org/examples/js/libs/draco/gltf/`);
+      const loader = new GLTFLoader().setDRACOLoader(dracoLoader);
+
+      loader.load(
+        '/sprig.glb',
+        (gltf) => {
+          console.log('loaded :)');
+          document.getElementById('preview').remove();
+          dracoLoader.dispose();
+
+          gltf.scene.rotation.x = Math.PI / 2;
+          gltf.scene.rotation.y = -Math.PI / 2;
+          gltf.scene.position.y = 9.4;
+
+          scene.add(gltf.scene);
+          scrollUpdate();
+          controls.autoRotate = true;
+          setTimeout(() => (controls.autoRotate = false), 1000);
+        },
+        undefined,
+        console.error,
+      );
+
+      const buttonNames = ['W', 'A', 'S', 'D', 'I', 'J', 'K', 'L'];
+      const buttonMovement = 0.08;
+
+      const raycast = () => {
+        raycaster.setFromCamera(mouse, camera);
+        const object = raycaster.intersectObjects(scene.children)[0]?.object;
+        raycasted.device = object || null;
+        raycasted.hoveredButton = object && buttonNames.includes(object.name) ? object : null;
+
+        document.documentElement.style.cursor =
+          raycasted.hoveredButton || raycasted.pressedButton
+            ? 'pointer'
+            : controls.isDragging
+            ? 'grabbing'
+            : raycasted.device
+            ? 'grab'
+            : null;
+      };
+
+      const mousePageCoords = { x: Infinity, y: Infinity };
+      const updateNormMouse = () => {
+        // Probably faster than getBoundingClientRect()
+        const width = parseInt(m.style.width);
+        const height = parseInt(m.style.height);
+        const left = parseInt(m.style.left);
+        const top = parseInt(m.style.top);
+
+        const x = mousePageCoords.x - left;
+        const y = mousePageCoords.y - top;
+        if (x < 0 || x > width || y < 0 || y > height) return;
+
+        // calculate mouse position in normalized device coordinates
+        // (-1 to +1) for both components
+        mouse.x = (x / width) * 2 - 1;
+        mouse.y = -(y / height) * 2 + 1;
+      };
+
+      document.documentElement.addEventListener('pointermove', (event) => {
+        mousePageCoords.x = event.pageX;
+        mousePageCoords.y = event.pageY;
+        updateNormMouse();
+      });
+      document.documentElement.addEventListener('pointerdown', () => {
+        if (!raycasted.hoveredButton || raycasted.pressedButton) return;
+        raycasted.pressedButton = raycasted.hoveredButton;
+        raycasted.pressedButton.position.y -= buttonMovement;
+      });
+      document.documentElement.addEventListener('mouseup', () => {
+        if (!raycasted.pressedButton) return;
+        raycasted.pressedButton.position.y += buttonMovement;
+        raycasted.pressedButton = null;
+      });
+
+      const animate = () => {
+        controls.update();
+        raycast();
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      };
+      animate();
+
+      m.appendChild(renderer.domElement);
+      return { updateNormMouse };
+    };
+    const { updateNormMouse } = initThree(m);
+
     let rects = {};
     const scrollUpdate = (needsSecond = false) => {
       const { scrollTop, scrollLeft } = document.documentElement;
 
+      rects = {
+        m: m.getBoundingClientRect(),
+        start: start.getBoundingClientRect(),
+        stop: stop.getBoundingClientRect(),
+      };
+
       if (window.innerWidth <= 780) {
-        rects = { start: start.getBoundingClientRect() };
         m.style.width = `${rects.start.width}px`;
         m.style.height = `${rects.start.height}px`;
         m.style.left = `${rects.start.left + scrollLeft}px`;
         m.style.top = `${rects.start.top + scrollTop}px`;
       } else {
-        rects = {
-          m: m.getBoundingClientRect(),
-          start: start.getBoundingClientRect(),
-          shrinker: shrinker.getBoundingClientRect(),
-          stop: stop.getBoundingClientRect(),
-        };
-
-        const t = clamp(
-          weirdEase(
-            progress(rects.m.top + 50, rects.shrinker.top - 150, rects.shrinker.top + rects.shrinker.height / 2),
-          ),
-          0,
-          1,
-        );
+        const t = clamp(weirdEase(progress(rects.m.top, rects.start.top, rects.stop.top)), 0, 1);
 
         m.style.width = `${lerp(rects.start.width, rects.stop.width, t)}px`;
         m.style.height = `${lerp(rects.start.height, rects.stop.height, t)}px`;
         m.style.left = `${lerp(rects.start.left + scrollLeft, rects.stop.left + scrollLeft, t)}px`;
         m.style.top = `${Math.min(rects.start.top + scrollTop * 2, rects.stop.top + scrollTop)}px`;
-        if (needsSecond) scrollUpdate();
       }
+
+      if (needsSecond) scrollUpdate();
+      updateNormMouse();
     };
 
-    initThree(m);
     window.addEventListener('resize', scrollUpdate);
     window.addEventListener('scroll', scrollUpdate);
     scrollUpdate(true);
@@ -234,19 +257,22 @@
   <img src="/preview.webp" alt="A 3D rendering of the Sprig device." id="preview" />
 </div>
 
-<section class="fullpage">
-  <div class="fullpage-hero wrapper">
-    <div class="container">
-      <div class="slot magic-container">
-        <div class="magic" id="m-start" />
-      </div>
-      <div>
-        <h1>The game console where every player is a creator.</h1>
-      </div>
+<section class="fullpage wrapper">
+  <div class="container">
+    <div class="slot magic-container">
+      <div class="magic" id="m-start" />
+    </div>
+    <div class="text">
+      <h1>The game console where every player is a creator.</h1>
+      <p>
+        Draw, make music, and craft games in our web-based editor. Build an original game and we'll ship you a Sprig
+        kit!
+      </p>
+      <a href="/gallery"><button class="btn active">Get started &raquo;</button></a>
     </div>
   </div>
 
-  <div class="fullpage-footer wrapper" id="m-shrinker">
+  <!-- <div class="fullpage-footer wrapper">
     <div class="container">
       <div class="slot" />
       <div class="fun-facts">
@@ -263,7 +289,7 @@
         </article>
       </div>
     </div>
-  </div>
+  </div> -->
 </section>
 
 <section class="specs-split-wrapper wrapper">
@@ -273,7 +299,7 @@
     </div>
 
     <div class="specs">
-      <h2>Sprig: fantasy console turned real by Hack Club</h2>
+      <h2>Sprig: a fantasy console, turned real</h2>
       <div class="specs-grid">
         <article>
           <img src="/icons/sprites.png" alt="Sprites icon" />
@@ -332,6 +358,11 @@
           </div>
         </article>
       </div>
+
+      <p>
+        Sprig is also hardware development kit! It comes disassembled and every part is reusable for your own projects.
+        It's powered by a Raspberry Pi Pico; reflash the firmware with the touch of a button and run whatever you want.
+      </p>
     </div>
   </div>
 </section>
@@ -375,18 +406,21 @@
 
 <section class="pricing wrapper std-padding">
   <div class="container limit-text">
-    <h2>You ship, we ship.</h2>
+    <h2>So... how much is it?</h2>
 
     <div class="prose">
       <p>
-        Anyone can submit to the gallery, but teenagers (or younger) can get Sprig. Just ship an original game to our
-        gallery and we’ll ship you a Sprig console. It can be your first program, or your thousandth — but we only have
-        430 Sprigs to send out. Read more on how to get a Sprig <a
+        Sprig isn&rsquo;t for sale. Build an original game and we&rsquo;ll personally mail you one &mdash; &ldquo;you
+        ship, we ship!&rdquo;
+      </p>
+      <p>
+        It can be your first program, or your thousandth, but build fast! Only 430 devices will be built and sent out.
+        Oh, and only teenagers (or younger) can receive a free Sprig; everyone else can only submit to the gallery. <a
           href="https://github.com/hackclub/sprig/blob/main/GET_A_SPRIG.md"
           target="_blank"
           rel="noopener"
-          style="color: white; text-decoration: underline">here</a
-        >.
+          style="color: white; text-decoration: underline">Read more about how to earn your Sprig.</a
+        >
       </p>
     </div>
 
@@ -414,8 +448,8 @@
     <p>
       Sprig was developed by a team at Hack Club with assistance from Brian Silverman (who helped develop Scratch and
       the precursor to LEGO Mindstorms), Vadim Gerasimov (engineer at Google who helped create Tetris when he was 15),
-      and Quentin Bolsée (researcher at MIT and Vrije University Brussels). We're also grateful for amazing open-source projects
-      that make this possible like <a href="https://kalumajs.org/">Kaluma</a>,
+      and Quentin Bolsée (researcher at MIT and Vrije Universiteit Brussel). We're also grateful for amazing open-source
+      projects that make this possible like <a href="https://kalumajs.org/">Kaluma</a>,
       <a href="https://jerryscript.net/">JerryScript</a>, <a href="https://github.com/WebReflection/uhtml">uhtml</a>,
       and <a href="https://codemirror.net/">CodeMirror</a>.
     </p>
