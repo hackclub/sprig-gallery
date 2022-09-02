@@ -15,6 +15,10 @@
   import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
   import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
+  import { init as initEngine } from '../engine/webEngine';
+  import { initMaterial, updateUniforms } from '../engine/render';
+  import exampleGame from '../engine/exampleGame';
+
   import Card from '../components/Card.svelte';
   import { onMount } from 'svelte';
 
@@ -34,6 +38,7 @@
 
   const initThree = (m) => {
     const [width, height] = [1000, 1000];
+    const [screenWidth, screenHeight] = [160, 128];
 
     const scene = new Scene();
     scene.environment = RoomEnvironment;
@@ -66,11 +71,22 @@
     const dracoLoader = new DRACOLoader().setDecoderPath(`https://threejs.org/examples/js/libs/draco/gltf/`);
     const loader = new GLTFLoader().setDRACOLoader(dracoLoader);
 
+    const gameCanvas = document.createElement('canvas');
+    gameCanvas.width = screenWidth;
+    gameCanvas.height = screenHeight;
+    const { _gameloop, ...gameFunctions } = initEngine(gameCanvas);
+    exampleGame(gameFunctions);
+
+    gameCanvas.style.background = 'red';
+    gameCanvas.style.position = 'fixed';
+    gameCanvas.style.top = '20px';
+    gameCanvas.style.right = '20px';
+    document.body.appendChild(gameCanvas);
+
     loader.load(
       '/sprig.glb',
       (gltf) => {
         console.log('loaded :)');
-        document.getElementById('preview').remove();
         dracoLoader.dispose();
 
         gltf.scene.rotation.x = Math.PI / 2;
@@ -80,6 +96,13 @@
         scene.add(gltf.scene);
         controls.autoRotate = true;
         setTimeout(() => (controls.autoRotate = false), 1000);
+
+        const screen = gltf.scene.getObjectByName('Screen');
+        const glass = screen.children.find(({ material }) => material?.name === 'Glow Glass');
+        glass.material = initMaterial(glass.material);
+
+        m.appendChild(renderer.domElement);
+        document.getElementById('preview').remove();
       },
       undefined,
       console.error,
@@ -123,14 +146,13 @@
     });
 
     const animate = () => {
-      requestAnimationFrame(animate);
       controls.update();
       raycast();
+      _gameloop();
       renderer.render(scene, camera);
+      requestAnimationFrame(animate);
     };
     animate();
-
-    m.appendChild(renderer.domElement);
   };
 
   onMount(() => {
@@ -414,8 +436,8 @@
     <p>
       Sprig was developed by a team at Hack Club with assistance from Brian Silverman (who helped develop Scratch and
       the precursor to LEGO Mindstorms), Vadim Gerasimov (engineer at Google who helped create Tetris when he was 15),
-      and Quentin Bolsée (researcher at MIT and Vrije University Brussels). We're also grateful for amazing open-source projects
-      that make this possible like <a href="https://kalumajs.org/">Kaluma</a>,
+      and Quentin Bolsée (researcher at MIT and Vrije University Brussels). We're also grateful for amazing open-source
+      projects that make this possible like <a href="https://kalumajs.org/">Kaluma</a>,
       <a href="https://jerryscript.net/">JerryScript</a>, <a href="https://github.com/WebReflection/uhtml">uhtml</a>,
       and <a href="https://codemirror.net/">CodeMirror</a>.
     </p>
