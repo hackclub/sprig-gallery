@@ -196,6 +196,7 @@ class OrbitControls extends EventDispatcher {
 
     function onMouseDown(event) {
       if (event.button === 0) {
+        event.preventDefault();
         handleMouseDownRotate(event);
         state = STATE.ROTATE;
       } else {
@@ -209,8 +210,9 @@ class OrbitControls extends EventDispatcher {
       }
     }
 
-    function onTouchStart() {
+    function onTouchStart(event) {
       if (pointers.length === 1) {
+        event.preventDefault();
         handleTouchStartRotate();
         state = STATE.TOUCH_ROTATE;
       } else {
@@ -238,8 +240,10 @@ class OrbitControls extends EventDispatcher {
       }
     }
 
-    scope.domElement.addEventListener('pointerdown', onPointerDown);
-    scope.domElement.addEventListener('pointercancel', onPointerCancel);
+    this.registerListeners = () => {
+      scope.domElement.addEventListener('pointerdown', onPointerDown);
+      scope.domElement.addEventListener('pointercancel', onPointerCancel);
+    };
 
     // force an update at start
     this.update();

@@ -9,6 +9,7 @@ html, body { height: 100%; }
 
 html {
   overflow-x: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body {
@@ -70,6 +71,7 @@ h6 {
   width: 0px;
   height: 0px;
   pointer-events: none;
+  touch-action: none;
 }
 
 #m img,
@@ -147,6 +149,7 @@ h6 {
   display: flex;
   flex-direction: column;
   gap: 35px;
+  align-items: flex-start;
 
   h1 {
     font-size: 2.625rem;
@@ -156,6 +159,15 @@ h6 {
     font-family: $pixel-text-font;
     font-weight: 300;
     font-size: 1.3em;
+  }
+
+  .cards {
+    position: absolute;
+    top: calc(100% - 280px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
   }
 }
 
@@ -167,6 +179,7 @@ h6 {
       padding: 10px $std-horiz-margin;
       padding-top: 120px;
       flex-direction: column-reverse;
+      align-items: center;
       gap: 10px;
       text-align: center;
   
@@ -180,12 +193,17 @@ h6 {
       }
     }
   }
+
+  .fullpage .text {
+    align-items: center;
+  }
 }
 
 // --- SPECS: ---
 .specs-split-wrapper {
   background: #ffffff;
   padding: 40px $std-horiz-margin;
+  // padding-top: 60px;
 
   ::selection {
     background: #e7eef2;
@@ -391,6 +409,10 @@ h6 {
 .credits {
   font-size: 1.125rem;
   padding: 100px $std-horiz-margin;
+}
+
+.credits a {
+  width: fit-content;
 }
 
 .credits .container {

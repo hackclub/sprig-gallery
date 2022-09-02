@@ -126,6 +126,7 @@
             : raycasted.device
             ? 'grab'
             : null;
+        document.documentElement.style.touchAction = raycasted.pressedButton || controls.isDragging ? 'none' : null;
       };
 
       const mousePageCoords = { x: Infinity, y: Infinity };
@@ -150,13 +151,21 @@
         mousePageCoords.x = event.pageX;
         mousePageCoords.y = event.pageY;
         updateNormMouse();
+        raycast();
       });
-      document.documentElement.addEventListener('pointerdown', () => {
+      document.documentElement.addEventListener('pointerdown', (event) => {
+        if (event.pointerType === 'touch') {
+          mousePageCoords.x = event.pageX;
+          mousePageCoords.y = event.pageY;
+          updateNormMouse();
+          raycast();
+        }
+
         if (!raycasted.hoveredButton || raycasted.pressedButton) return;
         raycasted.pressedButton = raycasted.hoveredButton;
         raycasted.pressedButton.position.y -= buttonMovement;
       });
-      document.documentElement.addEventListener('mouseup', () => {
+      document.documentElement.addEventListener('pointerup', () => {
         if (!raycasted.pressedButton) return;
         raycasted.pressedButton.position.y += buttonMovement;
         raycasted.pressedButton = null;
@@ -164,16 +173,15 @@
 
       const animate = () => {
         controls.update();
-        raycast();
         renderer.render(scene, camera);
         requestAnimationFrame(animate);
       };
       animate();
 
       m.appendChild(renderer.domElement);
-      return { updateNormMouse };
+      return { updateNormMouse, registerListeners: controls.registerListeners };
     };
-    const { updateNormMouse } = initThree(m);
+    const { updateNormMouse, registerListeners } = initThree(m);
 
     let rects = {};
     const scrollUpdate = (needsSecond = false) => {
@@ -206,6 +214,7 @@
     window.addEventListener('resize', scrollUpdate);
     window.addEventListener('scroll', scrollUpdate);
     scrollUpdate(true);
+    registerListeners();
   });
 </script>
 
@@ -269,27 +278,29 @@
         kit!
       </p>
       <a href="/gallery"><button class="btn active">Get started &raquo;</button></a>
+
+      <!-- <div class="cards">
+        <Card
+          name="pyre"
+          author="ced"
+          imgURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAwCAYAAAChS3wfAAAAAXNSR0IArs4c6QAAA1tJREFUaEPtWtt2hCAMhD/3z+1RFg0hlwmCZ9vTvrTuBshM7ticvuVnT3vKKbvqoHLuRkXAPxDcaIoYCg6VA5QSCdhT2nNKuf4G9pkjcgArZrENM0KAsnd3kAb6NTJQcBE5Sipb1xDALa89zzG3ssssL7D2ISRcBHwF+MoJYl1LxlsvEXCcTUmouki5YHk4eF7wBHwBelUc2ANu45QE+XoYeFZlwEz9OAGo5V8joXoArwie5SlqrZJoSdAjYVlp1EBpYSDJc9nA2tOVeUy/nhARUFaC1NZTL1CIVmPZ84ipOYArp4WARoJHgBE6ah8gVYFl2V8jAIxjmtUvw9Q9neSpdoIHWErCVIvzzZAMT9d4Fq8VAWirzXK2zOIeGItttBJ488TnjLX1fKnbzNn8nwCJx23brvg/vt+27c8S1QE7wHPA0mdzHDCwizcfBLZqG0byZAENk+DVclRhqcsDExxyROMB0wiQ6npUacviobK57yllNYRNAighIQ8oCpYqXIZP/5orUhohAg7gpwo5Jfp36xcXARrAMAmS5SLxi4AzZXSwEhEuAZ8qcCZG1wva9vOmunqAB877XpsF7v7XdHei0CUHEVAXBgm4wwvpy2nStFpYlSQ71vuEWOTnEsDjuD57CVDK9BIJkIfUELBqwI17DQHRKoAONx6Rbij0XvI7CIAsfyUIJw+0JMwnYKQKWB4wFXxPUkOA1ffX+WDZXCCFjZUMxRBHE+EtJ84C0t7LgI8mzk5JCTxNiLwbZFUA6Zu/X4YD9p7pCw401lC5KFvovprc4Po2BAY34ViH7xOenj+wvicASTzGQY/uE9CZwfKCoP79mDjAItIqu2202+czP5sUCjIBQRanEzB4/qlH0IvkiwLECwQZbuXwKB3xAkvHgP46AcGJbNp9AmJFD6DnBWQ9ToBzKHKdFsoD3AAeaKmhGn45WhkMKIGAQ2SaOA6c36TIgP5ZfLFouaFiCQScKBMtadLMII3JWhiw9SUEJCXADZAK4Mo8Pf/BepkAzYWMLD3sAZIBoudLXlF11bzj87lNAPp+vrw+694oSS2yOFVqANDzH6zXQ8AaZpQe4Fiijc3mfUIkw2seA1+X8X+Te3o4I4oPQiT+x5suXuKA8qbaT0yClrX/+Hc/5SIjXh86ZjsAAAAASUVORK5CYII="
+          tags={[]}
+        />
+        <Card
+          name="platform_rogue"
+          author="farreltobias"
+          imgURL="data:image/png;base64,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"
+          tags={[]}
+        />
+        <Card
+          name="kindless"
+          author="ishan"
+          imgURL="data:image/png;base64,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"
+          tags={[]}
+        />
+      </div> -->
     </div>
   </div>
-
-  <!-- <div class="fullpage-footer wrapper">
-    <div class="container">
-      <div class="slot" />
-      <div class="fun-facts">
-        <article>
-          <h2>An online microworld</h2>
-          <p>Draw, make music, and craft games in a web-based editor, then see your work realized on real hardware.</p>
-        </article>
-        <article>
-          <h2>Hackable everything</h2>
-          <p>
-            Sprig is a hardware development kit. It comes disassembled with reusable parts. Reflash the
-            controller&rsquo;s firmware with the touch of a button.
-          </p>
-        </article>
-      </div>
-    </div>
-  </div> -->
 </section>
 
 <section class="specs-split-wrapper wrapper">
