@@ -1,4 +1,5 @@
 <script>
+  import * as THREE from 'three';
   import {
     Scene,
     WebGLRenderer,
@@ -15,12 +16,147 @@
   import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
   import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-  import { init as initEngine } from '../engine/webEngine';
+  import { imgdata } from '../engine/out';
+  import { baseEngine } from '../engine/baseEngine';
+  import { bitmapTextToImageData } from "../engine/bitmap.js"
   import { initMaterial, updateUniforms } from '../engine/render';
-  import exampleGame from '../engine/exampleGame';
 
   import Card from '../components/Card.svelte';
   import { onMount } from 'svelte';
+
+  const buttonNames = ['W', 'A', 'S', 'D', 'I', 'J', 'K', 'L'];
+  const buttonMovement = 0.08;
+
+  let game;
+  (async () => {
+    const path = "https://raw.githubusercontent.com/hackclub/sprig/main/games/pyre.js"
+    const code = await (await fetch(path)).text();
+
+    game = {};
+
+
+    let keyHandlers = {
+      w: [],
+      s: [],
+      a: [],
+      d: [],
+      i: [],
+      j: [],
+      k: [],
+      l: [],
+    };
+    let afterInputs = [];
+    game.button = key => {
+      if (!key in keyHandlers) return;
+      key = key.toLowerCase();
+
+      for (const valid_key of Object.keys(keyHandlers))
+        if (key == valid_key)
+          keyHandlers[key].forEach(fn => fn());
+
+      afterInputs.forEach(f => f());
+
+      game.state.sprites.forEach(s => {
+        s.dx = 0;
+        s.dy = 0;
+      })
+    };
+
+
+    let intervals = [];
+    let timeouts = [];
+    game.run = () => {
+      const { api, state } = baseEngine();
+      console.log(api);
+      game.state = state;
+
+      const gameFunctions = game.api = api;
+
+      api.onInput = (type, fn) => {
+        if (!(type in keyHandlers)) throw new Error(
+          `Unknown input key, "${type}": expected one of ${keyHandlers.join(', ')}`
+        )
+        keyHandlers[type].push(fn);
+      };
+      api.afterInput = fn => afterInputs.push(fn);
+      api.setLegend = (...bitmaps) => game.state.legend = bitmaps;
+      api.setBackground = bgTileKind => game.background = bgTileKind;
+
+      timeouts.forEach(clearTimeout);
+      timeouts = [];
+      gameFunctions.setTimeout = (fn, n) => {
+        const t = setTimeout(fn, n);
+        timeouts.push(t);
+        return t;
+      };
+
+      intervals.forEach(clearInterval);
+      intervals = [];
+      gameFunctions.setInterval = (fn, n) => {
+        const i = setInterval(fn, n);
+        intervals.push(i);
+        return i;
+      };
+
+      /* no music from game on splash page */
+      gameFunctions.playTune = () => {};
+
+      /* these two words are not synonyms */
+      const params = Object.keys(gameFunctions);
+      const args = Object.values(gameFunctions);
+      const fn = new Function(...params, code);
+      fn(...args);
+    };
+
+    
+    game.render = () => {
+      const width = () => game.state.dimensions.width;
+      const height = () => game.state.dimensions.height;
+      const tSize = () => 16;
+
+      const sw = width () * tSize();
+      const sh = height() * tSize();
+
+      const out = new ImageData(sw, sh);
+      out.data.fill(255);
+      for (const t of game.api.getGrid().flat()) {
+        const img = bitmapTextToImageData(game.state.legend.find(x => x[0] == t._type)[1]);
+
+        for (let x = 0; x < tSize(); x++)
+          for (let y = 0; y < tSize(); y++) {
+            const tx = t._x * tSize() + x;
+            const ty = t._y * tSize() + y;
+            const src_alpha = img.data[(y * 16 + x) * 4 + 3];
+            if (!src_alpha) continue;
+            out.data[(ty * sw + tx) * 4 + 0] = img.data[(y * 16 + x) * 4 + 0];
+            out.data[(ty * sw + tx) * 4 + 1] = img.data[(y * 16 + x) * 4 + 1];
+            out.data[(ty * sw + tx) * 4 + 2] = img.data[(y * 16 + x) * 4 + 2];
+            out.data[(ty * sw + tx) * 4 + 3] = img.data[(y * 16 + x) * 4 + 3];
+          }
+      }
+
+      // const grid = api.getGrid();
+      // if (width == 0 || height == 0) return new ImageData(1, 1);
+      // const img = new ImageData(width, height);
+
+      // for (let i = 0; i < grid.length; i++) {
+      //   const x = i%width; 
+      //   const y = Math.floor(i/width); 
+
+      //   const sprites = grid[i];
+      //   const zOrder = legend.map(x => x[0]);
+      //   sprites.sort((a, b) => zOrder.indexOf(a.type) - zOrder.indexOf(b.type));
+
+      //   for (let i = 0; i < 4; i++) {
+      //     if (!sprites[i]) continue;
+      //     const { type: t } = sprites[i];
+      //     img.data[(y*dimensions.width + x)*4 + i] = 1+legend.findIndex(f => f[0] == t);
+      //   }
+      // }
+
+      return out;
+    };
+  })();
 
   const stories = [
     { id: 'sprig-front', width: 800, height: 602 },
@@ -71,17 +207,7 @@
     const dracoLoader = new DRACOLoader().setDecoderPath(`https://threejs.org/examples/js/libs/draco/gltf/`);
     const loader = new GLTFLoader().setDRACOLoader(dracoLoader);
 
-    const gameCanvas = document.createElement('canvas');
-    gameCanvas.width = screenWidth;
-    gameCanvas.height = screenHeight;
-    const { _gameloop, ...gameFunctions } = initEngine(gameCanvas);
-    exampleGame(gameFunctions);
-
-    gameCanvas.style.background = 'red';
-    gameCanvas.style.position = 'fixed';
-    gameCanvas.style.top = '20px';
-    gameCanvas.style.right = '20px';
-    document.body.appendChild(gameCanvas);
+    let glass;
 
     loader.load(
       '/sprig.glb',
@@ -98,8 +224,24 @@
         setTimeout(() => (controls.autoRotate = false), 1000);
 
         const screen = gltf.scene.getObjectByName('Screen');
-        const glass = screen.children.find(({ material }) => material?.name === 'Glow Glass');
-        glass.material = initMaterial(glass.material);
+        glass = screen.children.find(({ material }) => material?.name === 'Glow Glass');
+        // const img = new ImageData(16, 16);
+
+        // for (let x = 0; x < 16; x++)
+        //   for (let y = 0; y < 16; y++)
+        //     img.data[((y*16) + x)*4 + 0] = (x+y)%2 * 255,
+        //     img.data[((y*16) + x)*4 + 1] =   0,
+        //     img.data[((y*16) + x)*4 + 2] =   0,
+        //     img.data[((y*16) + x)*4 + 3] = 255;
+
+        game.run();
+        glass.material = new THREE.MeshBasicMaterial({ map: new THREE.Texture(game.render()) });
+
+        // sweet
+        // glass.material.map.matrixAutoUpdate = false;
+        // glass.material.map.matrix.scale(0.5, 0.5);
+
+        // glass.material = initMaterial(glass.material);
 
         m.appendChild(renderer.domElement);
         document.getElementById('preview').remove();
@@ -108,18 +250,26 @@
       console.error,
     );
 
-    const buttonNames = ['W', 'A', 'S', 'D', 'I', 'J', 'K', 'L'];
-    const buttonMovement = 0.08;
-
     const raycaster = new Raycaster();
     const mouse = new Vector2();
     let hoveredButton = null;
     let pressedButton = null;
 
-    const raycast = () => {
+    let clickStage = "up";
+    const raycast = click => {
       raycaster.setFromCamera(mouse, camera);
+
+      hoveredButton = null;
       const object = raycaster.intersectObjects(scene.children)[0]?.object;
-      hoveredButton = object && buttonNames.includes(object.name) ? object : null;
+      if (object) {
+        const name = object.name.trim().toLowerCase();
+
+        if (buttonNames.includes(object.name)) {
+          hoveredButton = object;
+          if (click) game.button(object.name);
+        }
+      }
+
       document.body.style.cursor = hoveredButton || pressedButton ? 'pointer' : null;
     };
 
@@ -135,11 +285,16 @@
       mouse.y = -(y / height) * 2 + 1;
     });
     renderer.domElement.addEventListener('pointerdown', (event) => {
+           if (clickStage == "up"   ) clickStage = "start", raycast(true);
+      else if (clickStage == "start") clickStage = "down";
+
       if (!hoveredButton || pressedButton) return;
       pressedButton = hoveredButton;
       pressedButton.position.y -= buttonMovement;
     });
     document.body.addEventListener('mouseup', () => {
+      clickStage = "up";
+
       if (!pressedButton) return;
       pressedButton.position.y += buttonMovement;
       pressedButton = null;
@@ -148,7 +303,26 @@
     const animate = () => {
       controls.update();
       raycast();
-      _gameloop();
+
+      if (glass) {
+        const frame = game.render();
+
+        if (frame. width != glass.material.map.source. width ||
+            frame.height != glass.material.map.source.height)
+          glass.material = new THREE.MeshBasicMaterial({ map: new THREE.Texture(frame) });
+
+        glass.material.map.source.data = frame;
+        glass.material.map.source.needsUpdate = true;
+        glass.material.map       .needsUpdate = true;
+        glass.material           .needsUpdate = true;
+
+        glass.material  .map.magFilter =
+          glass.material.map.minFilter =
+          THREE.NearestFilter;
+
+        glass.material.map.flipY = false;
+      }
+
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
     };
