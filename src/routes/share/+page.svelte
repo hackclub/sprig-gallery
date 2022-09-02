@@ -122,6 +122,7 @@
           <li>Select "Open Pull Request"</li>
           <li>Click "Create Pull Request"</li>
           <li>Name your pull request with the name of your game</li>
+          <li>Write some description of your game and your experience coding.</li>
           <li>Click "Create Pull Request"</li>
         </ul>
         <p>We'll take a look at your game! Once approved, your game will appear in the gallery :)</p>
