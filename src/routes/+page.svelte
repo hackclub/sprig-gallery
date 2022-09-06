@@ -332,8 +332,14 @@
         if (glass) {
           const frame = game.render();
 
-          if (frame.width != glass.material.map.source.width || frame.height != glass.material.map.source.height)
+          if (frame.width != glass.material.map.source.width || frame.height != glass.material.map.source.height) {
             glass.material = new THREE.MeshBasicMaterial({ map: new THREE.Texture(frame) });
+          }
+
+          glass.material.map.matrix.scale(1, 160/128);
+          const h = 160/128;
+          glass.material.map.matrix.translate(0, (1-h)/2);
+          glass.material.map.matrixAutoUpdate = false;
 
           glass.material.map.source.data = frame;
           glass.material.map.source.needsUpdate = true;
