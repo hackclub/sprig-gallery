@@ -336,9 +336,9 @@
             glass.material = new THREE.MeshBasicMaterial({ map: new THREE.Texture(frame) });
           }
 
-          glass.material.map.matrix.scale(1, 160/128);
-          const h = 160/128;
-          glass.material.map.matrix.translate(0, (1-h)/2);
+          const scale = frame.width/frame.height;
+          glass.material.map.matrix.scale(1, scale);
+          glass.material.map.matrix.translate(0, (1-scale)/2);
           glass.material.map.matrixAutoUpdate = false;
 
           glass.material.map.source.data = frame;
