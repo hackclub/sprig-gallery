@@ -1,16 +1,63 @@
 <script>
-  export let name;
+  import { onMount } from 'svelte';
+  export let title;
   export let tags;
-  export let imgURL;
   export let author;
   export let id;
+
+  const decode = ({ data, width }) => {
+    const decodedString = atob(data);
+    const l = decodedString.length;
+    const buf = new Uint8ClampedArray(l);
+    for (let i = 0; i < l; i++) {
+      const char = decodedString[i];
+      const byte = char.charCodeAt(0);
+      buf[i] = byte;
+    }
+
+    return new ImageData(buf, width);
+  };
+
+  const load = async () => {
+    if (imgURL) return;
+    try {
+      const res = await fetch(`https://editor.sprig.hackclub.com/api/thumbnail/${title}`);
+      const json = await res.json();
+
+      if (json.image.kind === 'png') {
+        imgURL = `data:image/png;base64,${json.image.data}`;
+      } else {
+        // Raw, hopefully
+        const imageData = decode(json.image);
+        const c = document.createElement('canvas');
+        c.width = imageData.width;
+        c.height = imageData.height;
+        c.getContext('2d').putImageData(imageData, 0, 0);
+        c.style['image-rendering'] = 'pixelated';
+        imgURL = c.toDataURL();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  let imgURL;
+  let box;
+  onMount(() => {
+    new IntersectionObserver((update) => {
+      update = update[0] || update;
+      if (!update.isIntersecting) return;
+      load();
+    }).observe(box);
+    setTimeout(load, 500);
+  });
 </script>
 
-<div class="gallery-item" {id}>
+<div class="gallery-item" bind:this={box} {id}>
   <a
     href={id
       ? 'https://editor.sprig.hackclub.com'
-      : `https://editor.sprig.hackclub.com/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${name}.js`}
+      : `https://editor.sprig.hackclub.com/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${title}.js`}
     target="_blank"
     rel="noopener noreferrer"
   >
@@ -19,7 +66,10 @@
         {#if tags.includes('tutorial')}
           <span class="tag">Tutorial</span>
         {/if}
-        <img src={imgURL} class="gallery-image" alt="game preview" />
+
+        {#if imgURL}
+          <img src={imgURL} class="gallery-image" alt="game preview" />
+        {/if}
       {/if}
 
       {#if id}
@@ -30,7 +80,7 @@
     </div>
     <div class="text">
       <h3>
-        {name}<br />
+        {title}<br />
         <span>by {author}</span><br />
         <span>{tags?.map((tag) => `#${tag}`)?.join(', ') || '--'}</span>
       </h3>

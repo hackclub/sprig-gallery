@@ -8,19 +8,6 @@
   let preloader;
   let gallery;
 
-  const decode = ({ data, width }) => {
-    const decodedString = atob(data);
-    const l = decodedString.length;
-    const buf = new Uint8ClampedArray(l);
-    for (let i = 0; i < l; i++) {
-      const char = decodedString[i];
-      const byte = char.charCodeAt(0);
-      buf[i] = byte;
-    }
-
-    return new ImageData(buf, width);
-  };
-
   onMount(async () => {
     // Preloader observes for changes in .gallery-inner childlist
     let observer = new MutationObserver(() => {
@@ -35,41 +22,9 @@
 
     /////////////////////////////////
 
-    const gitFiles = await fetch('https://raw.githubusercontent.com/hackclub/sprig/main/games/metadata.json').then(
-      (res) => res.json(),
+    games = await fetch('https://raw.githubusercontent.com/hackclub/sprig/main/games/metadata.json').then((res) =>
+      res.json(),
     );
-
-    const makeURL = (x) => `https://editor.sprig.hackclub.com/api/thumbnail/${x}`;
-
-    const names = gitFiles.map(async (x) => {
-      try {
-        const res = await fetch(makeURL(x.title));
-        const json = await res.json();
-
-        if (json.image.kind === 'png') {
-          json.imgURL = `data:image/png;base64,${json.image.data}`;
-        } else {
-          // Raw, hopefully
-          const imageData = decode(json.image);
-          const c = document.createElement('canvas');
-          c.width = imageData.width;
-          c.height = imageData.height;
-          c.getContext('2d').putImageData(imageData, 0, 0);
-          c.style['image-rendering'] = 'pixelated';
-          json.imgURL = c.toDataURL();
-        }
-
-        json.author = x.author;
-        json.tags = x.tags;
-
-        return json;
-      } catch (err) {
-        console.log(err);
-      }
-    });
-
-    const result = await Promise.all(names);
-    games = result.filter((x) => x);
     tags = [...new Set(games.reduce((p, c) => [...p, ...c.tags], []))];
   });
 
@@ -162,14 +117,14 @@
       {#each games as game}
         <!-- Tutorials first, or whatever the filter is -->
         {#if game.tags.includes(activeFilter || 'tutorial')}
-          <Card name={game.name} imgURL={game.imgURL} tags={game.tags} author={game.author} />
+          <Card {...game} />
         {/if}
       {/each}
 
       {#each games as game}
         <!-- Everything but tutorials, or nothing if we're filtering -->
         {#if !game.tags.includes('tutorial') && !activeFilter}
-          <Card name={game.name} imgURL={game.imgURL} tags={game.tags} author={game.author} />
+          <Card {...game} />
         {/if}
       {/each}
     </div>
