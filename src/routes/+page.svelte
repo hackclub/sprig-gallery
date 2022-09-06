@@ -22,12 +22,10 @@
   import Card from '../components/Card.svelte';
   import { onMount } from 'svelte';
 
-  const buttonNames = ['W', 'A', 'S', 'D', 'I', 'J', 'K', 'L'];
-  const buttonMovement = 0.08;
-
   let game;
   (async () => {
-    const path = 'https://raw.githubusercontent.com/hackclub/sprig/main/games/pyre.js';
+    const path =
+      'https://gist.githubusercontent.com/kognise/4a3e29a13b5ce0f3e2aaf09882a642fb/raw/14abc8f02f6ffa7da276562b40437a97a6af8e18/exampleGameSprig.js';
     const code = await (await fetch(path)).text();
 
     game = {};
@@ -263,9 +261,6 @@
         raycasted.device = object || null;
         raycasted.hoveredButton = object && buttonNames.includes(object.name) ? object : null;
 
-        // !!!
-        // game.button(object.name);
-
         document.documentElement.style.cursor =
           raycasted.hoveredButton || raycasted.pressedButton
             ? 'pointer'
@@ -274,7 +269,8 @@
             : raycasted.device
             ? 'grab'
             : null;
-        document.documentElement.style.touchAction = raycasted.pressedButton || controls.isDragging ? 'none' : null;
+        document.documentElement.style.touchAction =
+          raycasted.pressedButton || controls.isDragging || raycasted.device ? 'none' : null;
       };
 
       const mousePageCoords = { x: Infinity, y: Infinity };
@@ -287,7 +283,6 @@
 
         const x = mousePageCoords.x - left;
         const y = mousePageCoords.y - top;
-        if (x < 0 || x > width || y < 0 || y > height) return;
 
         // calculate mouse position in normalized device coordinates
         // (-1 to +1) for both components
@@ -299,7 +294,6 @@
         mousePageCoords.x = event.pageX;
         mousePageCoords.y = event.pageY;
         updateNormMouse();
-        raycast();
       });
       document.documentElement.addEventListener('pointerdown', (event) => {
         if (event.pointerType === 'touch') {
@@ -309,25 +303,43 @@
           raycast();
         }
 
-        if (!raycasted.hoveredButton || raycasted.pressedButton) return;
-        raycasted.pressedButton = raycasted.hoveredButton;
-        raycasted.pressedButton.position.y -= buttonMovement;
+        if (raycasted.hoveredButton) {
+          event.preventDefault();
+          if (raycasted.pressedButton) return;
+          raycasted.pressedButton = raycasted.hoveredButton;
+          raycasted.pressedButton.position.y -= buttonMovement;
+          game.button(raycasted.pressedButton.name);
+        }
       });
-      document.documentElement.addEventListener('pointerup', () => {
-        if (!raycasted.pressedButton) return;
-        raycasted.pressedButton.position.y += buttonMovement;
-        raycasted.pressedButton = null;
+      document.documentElement.addEventListener('pointerup', (event) => {
+        if (event.pointerType === 'touch') {
+          mousePageCoords.x = Infinity;
+          mousePageCoords.y = Infinity;
+          updateNormMouse();
+        }
+
+        if (raycasted.pressedButton) {
+          raycasted.pressedButton.position.y += buttonMovement;
+          raycasted.pressedButton = null;
+        }
       });
 
       const animate = () => {
         requestAnimationFrame(animate);
         controls.update();
+        raycast();
 
         if (glass) {
           const frame = game.render();
 
-          if (frame.width != glass.material.map.source.width || frame.height != glass.material.map.source.height)
+          if (frame.width != glass.material.map.source.width || frame.height != glass.material.map.source.height) {
             glass.material = new THREE.MeshBasicMaterial({ map: new THREE.Texture(frame) });
+          }
+
+          const scale = frame.width/frame.height;
+          glass.material.map.matrix.scale(1, scale);
+          glass.material.map.matrix.translate(0, (1-scale)/2);
+          glass.material.map.matrixAutoUpdate = false;
 
           glass.material.map.source.data = frame;
           glass.material.map.source.needsUpdate = true;
