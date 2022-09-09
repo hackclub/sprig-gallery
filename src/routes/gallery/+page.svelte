@@ -29,6 +29,7 @@
       });
     }
     catch (e) {
+      console.log(e)
       games = [
         {
           "filename": "sokoban",
