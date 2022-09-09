@@ -26,7 +26,9 @@
   (async () => {
     const path =
       'https://cloud-f97pymes5-hack-club-bot.vercel.app/0examplegamesprig.js';
-    const code = await (await fetch(path)).text();
+    const code = await (await fetch(path).catch((error) => {
+      console.log(error)
+    })).text();
 
     game = {};
 
