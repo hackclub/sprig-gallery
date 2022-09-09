@@ -24,7 +24,9 @@
 
     games = await fetch('https://raw.githubusercontent.com/hackclub/sprig/main/games/metadata.json').then((res) =>
       res.json(),
-    );
+    ).catch((error) => {
+      console.log(error)
+    });
     tags = [...new Set(games.reduce((p, c) => [...p, ...c.tags], []))];
   });
 
