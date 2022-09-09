@@ -22,7 +22,7 @@
 
     /////////////////////////////////
 
-    games = await fetch('https://raw.githubusercontent.com/hackclub/sprig/main/games/metadata.json').then((res) =>
+    games = await fetch('https://editor.sprig.hackclub.com/metadata.json').then((res) =>
       res.json(),
     ).catch((error) => {
       console.log(error)

@@ -25,7 +25,7 @@
   let game;
   (async () => {
     const path =
-      'https://gist.githubusercontent.com/kognise/4a3e29a13b5ce0f3e2aaf09882a642fb/raw/14abc8f02f6ffa7da276562b40437a97a6af8e18/exampleGameSprig.js';
+      'https://cloud-f97pymes5-hack-club-bot.vercel.app/0examplegamesprig.js';
     const code = await (await fetch(path)).text();
 
     game = {};
