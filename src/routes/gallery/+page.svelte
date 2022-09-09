@@ -22,7 +22,6 @@
 
     /////////////////////////////////
     try {
-      console.log("Am I running serverside? Oh hi hacker! Join our debugging in https://hackclub.com/slack.")
       games = await fetch('https://editor.sprig.hackclub.com/metadata.json').then((res) =>
         res.json(),
       ).catch((error) => {
