@@ -18,17 +18,13 @@
 
   import { baseEngine } from '../engine/baseEngine';
   import { bitmapTextToImageData } from '../engine/bitmap';
+  import {code} from '../lib/example-js'
 
   import Card from '../components/Card.svelte';
   import { onMount } from 'svelte';
 
   let game;
   (async () => {
-    const path =
-      'https://cloud-f97pymes5-hack-club-bot.vercel.app/0examplegamesprig.js';
-    const code = await (await fetch(path).catch((error) => {
-      console.log(error)
-    })).text();
 
     game = {};
 
