@@ -29,6 +29,7 @@
       });
     }
     catch (e) {
+      console.log("Cowabunga! A spicy error:")
       console.log(e)
       games = [
         {
