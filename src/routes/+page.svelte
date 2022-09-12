@@ -18,14 +18,13 @@
 
   import { baseEngine } from '../engine/baseEngine';
   import { bitmapTextToImageData } from '../engine/bitmap';
-  import {code} from '../lib/example-js'
+  import { code } from '../lib/example-js';
 
   import Card from '../components/Card.svelte';
   import { onMount } from 'svelte';
 
   let game;
   (async () => {
-
     game = {};
 
     let keyHandlers = {
@@ -235,7 +234,7 @@
 
           scene.add(gltf.scene);
           scrollUpdate();
-          controls.autoRotate = true;
+          // controls.autoRotate = true;
           setTimeout(() => (controls.autoRotate = false), 1000);
 
           const screen = gltf.scene.getObjectByName('Screen');
@@ -334,9 +333,9 @@
             glass.material = new THREE.MeshBasicMaterial({ map: new THREE.Texture(frame) });
           }
 
-          const scale = frame.width/frame.height;
+          const scale = frame.width / frame.height;
           glass.material.map.matrix.scale(1, scale);
-          glass.material.map.matrix.translate(0, (1-scale)/2);
+          glass.material.map.matrix.translate(0, (1 - scale) / 2);
           glass.material.map.matrixAutoUpdate = false;
 
           glass.material.map.source.data = frame;
