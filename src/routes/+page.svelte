@@ -600,7 +600,7 @@
       <p>
         It can be your first program, or your thousandth, but build fast! Only 430 devices will be built and sent out.
         Oh, and only teenagers (or younger) can receive a free Sprig; everyone else can only submit to the gallery. <a
-          href="https://github.com/hackclub/sprig/blob/main/GET_A_SPRIG.md"
+          href="https://github.com/hackclub/sprig/blob/main/docs/GET_A_SPRIG.md"
           target="_blank"
           rel="noopener"
           style="color: white; text-decoration: underline">Read more about how to earn your Sprig.</a
