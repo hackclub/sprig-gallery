@@ -33,7 +33,7 @@
 
       <p>
         If you're looking to submit your game to get a Sprig, make sure to read over the <a
-          href="https://github.com/hackclub/sprig/blob/main/GET_A_SPRIG.md">rules here</a
+          href="https://github.com/hackclub/sprig/blob/main/docs/GET_A_SPRIG.md">rules here</a
         >.
       </p>
     </div>
