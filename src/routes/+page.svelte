@@ -234,7 +234,7 @@
 
           scene.add(gltf.scene);
           scrollUpdate();
-          // controls.autoRotate = true;
+          controls.autoRotate = true;
           setTimeout(() => (controls.autoRotate = false), 1000);
 
           const screen = gltf.scene.getObjectByName('Screen');
@@ -333,9 +333,15 @@
             glass.material = new THREE.MeshBasicMaterial({ map: new THREE.Texture(frame) });
           }
 
-          const scale = frame.width / frame.height;
-          glass.material.map.matrix.scale(1, scale);
-          glass.material.map.matrix.translate(0, (1 - scale) / 2);
+          const sizeRatio = (frame.width / frame.height) * (4 / 5);
+          console.log(sizeRatio);
+          if (sizeRatio >= 1) {
+            glass.material.map.matrix.scale(1, sizeRatio);
+            glass.material.map.matrix.translate(0, (1 - sizeRatio) / 2);
+          } else {
+            glass.material.map.matrix.scale(1 / sizeRatio, 1);
+            glass.material.map.matrix.translate((1 - 1 / sizeRatio) / 2, 0);
+          }
           glass.material.map.matrixAutoUpdate = false;
 
           glass.material.map.source.data = frame;
