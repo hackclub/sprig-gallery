@@ -5,6 +5,7 @@
   export let author = undefined;
   export let id = undefined;
   export let imgURL = undefined;
+  export let isNew = false;
 
   const decode = ({ data, width }) => {
     const decodedString = atob(data);
@@ -65,6 +66,8 @@
       {#if !id}
         {#if tags.includes('tutorial')}
           <span class="tag">Tutorial</span>
+        {:else if isNew}
+          <span class="tag new">New</span>
         {/if}
 
         {#if imgURL}
@@ -257,6 +260,12 @@
     background: $tag-background;
     box-shadow: 0 0.3em $tag-background, 0 -0.3em $tag-background, 0.3em 0 $tag-background, -0.3em 0 $tag-background,
       0 0.5em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .tag.new {
+    background: $new-tag-background;
+    box-shadow: 0 0.3em $new-tag-background, 0 -0.3em $new-tag-background, 0.3em 0 $new-tag-background,
+      -0.3em 0 $new-tag-background, 0 0.5em 0 rgba(0, 0, 0, 0.2);
   }
 
   @media (max-width: 1050px) {
