@@ -334,7 +334,6 @@
           }
 
           const sizeRatio = (frame.width / frame.height) * (4 / 5);
-          console.log(sizeRatio);
           if (sizeRatio >= 1) {
             glass.material.map.matrix.scale(1, sizeRatio);
             glass.material.map.matrix.translate(0, (1 - sizeRatio) / 2);

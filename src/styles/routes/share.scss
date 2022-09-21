@@ -95,7 +95,7 @@ li {
   width: fit-content;
 }
 
-@media (min-width: $breakpoint-2) {
+@media (min-width: $breakpoint-1) {
   h1 {
     font-size: 42px;
   }
@@ -108,7 +108,7 @@ li {
     width: 80%;
   }
 
-  @media (min-width: $breakpoint-3) {
+  @media (min-width: $breakpoint-2) {
     h1 {
       font-size: 54px;
     }

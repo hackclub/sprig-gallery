@@ -1,9 +1,10 @@
 <script>
   import { onMount } from 'svelte';
-  export let title;
-  export let tags;
-  export let author;
-  export let id;
+  export let title = undefined;
+  export let tags = undefined;
+  export let author = undefined;
+  export let id = undefined;
+  export let imgURL = undefined;
 
   const decode = ({ data, width }) => {
     const decodedString = atob(data);
@@ -41,7 +42,6 @@
     }
   };
 
-  let imgURL;
   let box;
   onMount(() => {
     new IntersectionObserver((update) => {

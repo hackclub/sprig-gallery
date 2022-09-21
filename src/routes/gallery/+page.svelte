@@ -328,35 +328,34 @@
   <p>loading...</p>
 </div>
 
-<div class="wrapper">
+<div class="top-bar">
   <div class="info-outer">
+    <img class="gallery-header" src="/gallery.svg" alt="gallery header" draggable="false" />
     <div class="info-inner">
-      <div class="gallery-title">
-        <img class="gallery-header" src="/gallery.svg" alt="gallery header" draggable="false" />
-        <p>
-          The best way to learn is by making things that you care about and sharing them with other people.
-          <br /><br />
-          Check out games by other Hack Clubbers! Click to play each game and to hack on the code.
-        </p>
-      </div>
-
       <div class="tag-container">
-        <fieldset>
-          <legend>Filter By Tag</legend>
-          {#each tags as tag}
-            <button
-              id={tag}
-              class={activeFilter === tag ? 'btn-tag btn active' : 'btn-tag btn'}
-              on:click={() => (activeFilter = activeFilter === tag ? null : tag)}
-            >
-              {tag}
-            </button>
-          {/each}
-        </fieldset>
+        <p>
+          The best way to learn is by making things that you care about and sharing them with other people. Check out
+          games by other Hack Clubbers!
+        </p>
+        <div class="btn select-btn">
+          <select
+            on:input={(event) => {
+              activeFilter = event.target.value || null;
+            }}
+            value={activeFilter || ''}
+          >
+            <option value="">filter by tag...</option>
+            {#each tags as tag}
+              <option value={tag}>
+                #{tag}
+              </option>
+            {/each}
+          </select>
+        </div>
       </div>
 
       <div class="btn-container">
-        <p>Want to join in on the fun? If you have a Sprig game to share with the community, click here!</p>
+        <p>Have a Sprig game to share with the community? Join the fun!</p>
         <a href="/share">
           <button class="btn active">Add Your Game</button>
         </a>
@@ -370,6 +369,9 @@
   <a href="/">
     <img src="./spriglogotext-white.png" alt="sprig logo" class="sprig-logo" />
   </a>
+</div>
+
+<div class="wrapper">
   <img src="/SPRIGDINO.svg" alt="sprig dino" class="sprig-dino" />
 
   <div class="gallery-outer">
@@ -379,14 +381,14 @@
       {#each games as game}
         <!-- Tutorials first, or whatever the filter is -->
         {#if game.tags.includes(activeFilter || 'tutorial')}
-          <Card {...game} />
+          <Card title={game.title} tags={game.tags} author={game.author} />
         {/if}
       {/each}
 
       {#each games as game}
         <!-- Everything but tutorials, or nothing if we're filtering -->
         {#if !game.tags.includes('tutorial') && !activeFilter}
-          <Card {...game} />
+          <Card title={game.title} tags={game.tags} author={game.author} />
         {/if}
       {/each}
     </div>

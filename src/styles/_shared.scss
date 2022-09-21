@@ -88,6 +88,25 @@ a {
   }
 }
 
+.select-btn {
+  padding: 0;
+  isolation: isolate;  
+
+  select {
+    width: 100%;
+    outline: none;
+    z-index: 1;
+    text-align: left;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+    padding: 6px 12px;
+  }
+}
+
 .logo {
   position: absolute;
   top: 0;
@@ -182,7 +201,7 @@ nav {
   }
 }
 
-@media (max-width: $breakpoint-3) {
+@media (max-width: $breakpoint-2) {
   .sprig-dino {
     display: none;
   }
@@ -197,7 +216,7 @@ nav {
   }
 }
 
-@media (max-width: $breakpoint-2) {
+@media (max-width: $breakpoint-1) {
   .btn {
     font-size: 1.4rem;
   }
