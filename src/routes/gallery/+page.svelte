@@ -21,13 +21,13 @@
       observer.disconnect();
     });
     observer.observe(gallery, { childList: true });
-
     games = await fetch('https://editor.sprig.hackclub.com/metadata.json').then((res) => res.json());
     [...games]
       .sort((a, b) => new Date(b.addedOn) - new Date(a.addedOn))
       .slice(0, 9)
       .forEach((game) => (game.isNew = true));
-    tags = [...new Set(games.reduce((p, c) => [...p, ...c.tags], []))];
+    tags = [...new Set(games.reduce((p, c) => [...p, ...c.tags], []))].filter((x) => x !== "");
+    console.log(tags);
   });
 
   let activeFilter = null;
@@ -122,14 +122,14 @@
       {#each games as game}
         <!-- Tutorials first, or whatever the filter is -->
         {#if (activeFilter === '_new' && game.isNew) || game.tags.includes(activeFilter || 'tutorial')}
-          <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} />
+          <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} filename={game.filename} />
         {/if}
       {/each}
 
       {#each games as game}
         <!-- Everything but tutorials, or nothing if we're filtering -->
         {#if !game.tags.includes('tutorial') && !activeFilter}
-          <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} />
+          <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} filename={game.filename} />
         {/if}
       {/each}
     </div>
