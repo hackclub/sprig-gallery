@@ -125,7 +125,7 @@
 
       {#each games as game}
         <!-- Tutorials first, or whatever the filter is -->
-        {#if (activeFilter === '_new' && game.isNew) || (game.tags.includes(activeFilter || 'tutorial') && !searchQuery) || (game.title.indexOf(searchQuery) !== -1 && searchQuery)}
+        {#if (activeFilter === '_new' && game.isNew) || (game.tags.includes(activeFilter || 'tutorial') && !searchQuery) || (game.title.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 && searchQuery)}
           <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} filename={game.filename} />
         {/if}
       {/each}
