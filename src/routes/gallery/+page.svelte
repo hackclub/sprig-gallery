@@ -31,7 +31,7 @@
   });
 
   let activeFilter = null;
-  let searchQuery = null;
+  let searchQuery = "";
 </script>
 
 <svelte:head>
@@ -95,7 +95,7 @@
           </select>
         </div>
         <input class="btn" id="searchbar" on:input={(event) => {
-          searchQuery = event.target.value || null;
+          searchQuery = event.target.value || "";
         }}>
       </div>
 
@@ -125,14 +125,14 @@
 
       {#each games as game}
         <!-- Tutorials first, or whatever the filter is -->
-        {#if (activeFilter === '_new' && game.isNew) || (game.tags.includes(activeFilter || 'tutorial') && !searchQuery) || (game.title.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 && searchQuery)}
+        {#if (activeFilter === '_new' && game.isNew) || (game.tags.includes(activeFilter || 'tutorial') && searchQuery === "") || (game.title.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 && searchQuery !== "")}
           <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} filename={game.filename} />
         {/if}
       {/each}
 
       {#each games as game}
         <!-- Everything but tutorials, or nothing if we're filtering -->
-        {#if !game.tags.includes('tutorial') && !activeFilter && !searchQuery}
+        {#if !game.tags.includes('tutorial') && !activeFilter && searchQuery === ""}
           <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} filename={game.filename} />
         {/if}
       {/each}
