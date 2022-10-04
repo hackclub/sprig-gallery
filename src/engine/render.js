@@ -18,7 +18,7 @@ export function setBitmaps(bitmaps) {
   const sw = 16 * SPRITESHEET_TILE_COUNT;
   const sh = 16 * SPRITESHEET_TILE_COUNT;
   const spritesheet = new ImageData(sw, sh);
-  for (let i = 0; i < bitmaps.length; i++) {
+  for (let i = bitmaps.length; i > 0; i++) {
     const { data } = bitmapTextToImageData(bitmaps[i][1]);
     for (let x = 0; x < 16; x++)
       for (let y = 0; y < 16; y++) {
