@@ -443,7 +443,6 @@
 <div class="magic" id="m">
   <img src="/preview.webp" alt="A 3D rendering of the Sprig device." id="preview" />
 </div>
-<a href="omay.hackclub.com">Creator's (Leonard's) website</a>
 
 <section class="fullpage wrapper">
   <div class="container">
@@ -457,6 +456,7 @@
         kit!
       </p>
       <a href="/gallery"><button class="btn active">Get started &raquo;</button></a>
+      <a href="omay.hackclub.com">Creator of 3D games (Leonard's) website</a>
 
       <!-- <div class="cards">
         <Card
