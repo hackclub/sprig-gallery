@@ -456,7 +456,7 @@
         kit!
       </p>
       <a href="/gallery"><button class="btn active">Get started &raquo;</button></a>
-      <a href="omay.hackclub.com"><button class="btn active">Game over there &laquo;</button></a>
+      <a href="omay.hackclub.com"><button class="btn active">&laquo; Game over there</button></a>
 
       <!-- <div class="cards">
         <Card
