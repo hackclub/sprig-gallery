@@ -594,6 +594,7 @@
     </div>
 
     <a href="/gallery"><button class="btn big active">Check out the gallery &raquo;</button></a>
+    <a href="https://editor.sprig.hackclub.com/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/sokoban_plus.js">3D demo above</a>
   </div>
 </section>
 
