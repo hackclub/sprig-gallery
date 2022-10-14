@@ -78,25 +78,28 @@
           The best way to learn is by making things that you care about and sharing them with other people. Check out
           games by other Hack Clubbers!
         </p>
-        <div class="btn select-btn">
-          <select
-            on:input={(event) => {
-              activeFilter = event.target.value || null;
-            }}
-            value={activeFilter || ''}
-          >
-            <option value="">filter by tag...</option>
-            {#each tags as tag}
-              <option value={tag}>
-                #{tag.toLowerCase()}
-              </option>
-            {/each}
-            <option value="_new">recently added</option>
-          </select>
+      
+        <div class="filtering">
+          <div class="btn select-btn">
+            <select
+              on:input={(event) => {
+                activeFilter = event.target.value || null;
+              }}
+              value={activeFilter || ''}
+            >
+              <option value="">filter by tag...</option>
+              {#each tags as tag}
+                <option value={tag}>
+                  #{tag.toLowerCase()}
+                </option>
+              {/each}
+              <option value="_new">recently added</option>
+            </select>
+          </div>
+          <input class="btn searchbar" placeholder="search gallery" on:input={(event) => {
+            searchQuery = event.target.value || "";
+          }}>
         </div>
-        <input class="btn" id="searchbar" on:input={(event) => {
-          searchQuery = event.target.value || "";
-        }}>
       </div>
 
       <div class="btn-container">
