@@ -104,18 +104,21 @@ a {
     border: none;
     background: none;
     font-size: inherit;
+    z-index: 1;
+  }
+
+  &::after {
+    z-index: -1;
   }
 }
 
 .select-btn select, .searchbar {
   outline: none;
-  z-index: 1;
   text-align: left;
   font-family: inherit;
   color: inherit;
   line-height: inherit;
   padding: 6px 12px;
-  background-color: #767E8F;
 }
 
 .searchbar {
