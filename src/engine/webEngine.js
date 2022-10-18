@@ -79,7 +79,7 @@ export function init(canvas) {
 
       const sprites = grid[i];
       const zOrder = legend.map((x) => x[0]);
-      sprites.sort((a, b) => zOrder.indexOf(b.type) - zOrder.indexOf(a.type));
+      sprites.sort((a, b) => zOrder.indexOf(a.type) - zOrder.indexOf(b.type)).reverse();
 
       for (let i = 0; i < 4; i++) {
         if (!sprites[i]) continue;
