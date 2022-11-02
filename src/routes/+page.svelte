@@ -287,12 +287,12 @@
         mouse.y = -(y / height) * 2 + 1;
       };
 
-      document.documentElement.addEventListener('pointermove', (event) => {
+      const pointermove = (event) => {
         mousePageCoords.x = event.pageX;
         mousePageCoords.y = event.pageY;
         updateNormMouse();
-      });
-      document.documentElement.addEventListener('pointerdown', (event) => {
+      };
+      const pointerdown = (event) => {
         if (event.pointerType === 'touch') {
           mousePageCoords.x = event.pageX;
           mousePageCoords.y = event.pageY;
@@ -307,19 +307,24 @@
           raycasted.pressedButton.position.y -= buttonMovement;
           game.button(raycasted.pressedButton.name);
         }
-      });
-      document.documentElement.addEventListener('pointerup', (event) => {
-        if (event.pointerType === 'touch') {
-          mousePageCoords.x = Infinity;
-          mousePageCoords.y = Infinity;
-          updateNormMouse();
-        }
-
+      };
+      const pointerup = (event) => {
         if (raycasted.pressedButton) {
           raycasted.pressedButton.position.y += buttonMovement;
           raycasted.pressedButton = null;
         }
-      });
+      };
+
+      document.documentElement.addEventListener('pointermove', pointermove);
+      document.documentElement.addEventListener('pointerdown', pointerdown);
+      document.documentElement.addEventListener('pointerup', pointerup);
+      const prevCleanup = window._cleanup
+      window._cleanup = () => {
+        prevCleanup?.()
+        document.documentElement.removeEventListener('pointermove', pointermove);
+        document.documentElement.removeEventListener('pointerdown', pointerdown);
+        document.documentElement.removeEventListener('pointerup', pointerup);
+      }
 
       const animate = () => {
         requestAnimationFrame(animate);
@@ -391,6 +396,12 @@
 
     window.addEventListener('resize', scrollUpdate);
     window.addEventListener('scroll', scrollUpdate);
+    const prevCleanup = window._cleanup
+    window._cleanup = () => {
+      prevCleanup?.()
+      window.removeEventListener('resize', scrollUpdate);
+      window.removeEventListener('scroll', scrollUpdate);
+    };
     scrollUpdate(true);
     registerListeners();
   });
