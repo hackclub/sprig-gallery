@@ -27,6 +27,11 @@
       .sort((a, b) => new Date(b.addedOn) - new Date(a.addedOn))
       .slice(0, 9)
       .forEach((game) => (game.isNew = true));
+    games.forEach((game) => {
+      let file = await fetch('https://raw.githubusercontent.com/hackclub/sprig/main/games/'+game.filename+".js").then((res) => res.text());
+      game.title = file.split('@title: ').pop().split('\n')[0];
+      game.author = file.split('@author: ').pop().split('\n')[0];
+    });
     tags = [...new Set(games.reduce((p, c) => [...p, ...c.tags], []))];
   });
 
@@ -129,14 +134,14 @@
       {#each games as game}
         <!-- Tutorials first, or whatever the filter is -->
         {#if (activeFilter === '_new' && game.isNew) || (game.tags.includes(activeFilter || 'tutorial') && searchQuery === "") || ((game.title.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 || game.author.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1) && searchQuery !== "")}
-          <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} />
+          <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} title={game.title} />
         {/if}
       {/each}
 
       {#each games as game}
         <!-- Everything but tutorials, or nothing if we're filtering -->
         {#if !game.tags.includes('tutorial') && !activeFilter && searchQuery === ""}
-          <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} />
+          <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} title={game.title} />
         {/if}
       {/each}
     </div>
