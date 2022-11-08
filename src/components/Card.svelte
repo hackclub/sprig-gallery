@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  export let filename = undefined;
   export let title = undefined;
   export let tags = undefined;
   export let author = undefined;
@@ -23,7 +24,7 @@
   const load = async () => {
     if (imgURL) return;
     try {
-      const res = await fetch(`https://editor.sprig.hackclub.com/api/thumbnail/${title}`);
+      const res = await fetch(`https://editor.sprig.hackclub.com/api/thumbnail/${filename}`);
       const json = await res.json();
 
       if (json.image.kind === 'png') {
@@ -58,7 +59,7 @@
   <a
     href={id
       ? 'https://editor.sprig.hackclub.com'
-      : `https://editor.sprig.hackclub.com/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${title}.js`}
+      : `https://editor.sprig.hackclub.com/?file=https://raw.githubusercontent.com/hackclub/sprig/main/games/${filename}.js`}
     target="_blank"
     rel="noopener noreferrer"
   >
