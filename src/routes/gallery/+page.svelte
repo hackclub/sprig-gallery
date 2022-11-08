@@ -3,7 +3,7 @@
   import { browser } from '$app/environment';
   import { onMount } from 'svelte';
 
-  let games = [];
+  let games = []; 
   let tags = [];
 
   let preloader;
