@@ -129,14 +129,14 @@
       {#each games as game}
         <!-- Tutorials first, or whatever the filter is -->
         {#if (activeFilter === '_new' && game.isNew) || (game.tags.includes(activeFilter || 'tutorial') && searchQuery === "") || ((game.title.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 || game.author.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1) && searchQuery !== "")}
-          <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} filename={game.filename} />
+          <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} />
         {/if}
       {/each}
 
       {#each games as game}
         <!-- Everything but tutorials, or nothing if we're filtering -->
         {#if !game.tags.includes('tutorial') && !activeFilter && searchQuery === ""}
-          <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} filename={game.filename} />
+          <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} />
         {/if}
       {/each}
     </div>
