@@ -30,18 +30,18 @@ export function init(canvas) {
   }
 
   let tileInputs = {
-    w: [],
-    s: [],
-    a: [],
-    d: [],
     i: [],
     j: [],
     k: [],
     l: [],
+    w: [],
+    s: [],
+    a: [],
+    d: [],
   };
   let afterInputs = [];
 
-  const VALID_INPUTS = ['w', 'a', 's', 'd', 'i', 'j', 'k', 'l'];
+  const VALID_INPUTS = ['i', 'j', 'k', 'l', 'w', 'a', 's', 'd'];
   canvas.addEventListener('keydown', (e) => {
     const key = e.key;
 

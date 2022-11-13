@@ -28,14 +28,14 @@
     game = {};
 
     let keyHandlers = {
-      w: [],
-      s: [],
-      a: [],
-      d: [],
       i: [],
       j: [],
       k: [],
       l: [],
+      w: [],
+      s: [],
+      a: [],
+      d: [],
     };
     let afterInputs = [];
     game.button = (key) => {
