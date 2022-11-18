@@ -505,7 +505,7 @@
           <img src="/icons/sprites.png" alt="Sprites icon" />
           <div>
             <h3>Sprites</h3>
-            <p>16&times;16, 10 colors</p>
+            <p>16&times;16, 16 colors</p>
           </div>
         </article>
         <article>
