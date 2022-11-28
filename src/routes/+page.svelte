@@ -436,7 +436,8 @@
   <meta property="og:url" content="https://sprig.hackclub.com" />
   <meta name="twitter:site" content="https://sprig.hackclub.com" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://sprig.hackclub.com/SPRIGDINO.png" />
+  <meta property="og:image" content="https://sprig.hackclub.com/stories-tiny/sprig-front.jpeg" />
+  <meta property="twitter:image" content="https://sprig.hackclub.com/stories-tiny/sprig-front.jpeg" />
   <meta name="twitter:card" content="summary" />
 </svelte:head>
 
