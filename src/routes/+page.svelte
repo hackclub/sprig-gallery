@@ -438,6 +438,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://sprig.hackclub.com/stories-tiny/sprig-front.jpeg" />
   <meta property="twitter:image" content="https://sprig.hackclub.com/stories-tiny/sprig-front.jpeg" />
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:card" content="summary" />
 </svelte:head>
 
