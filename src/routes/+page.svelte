@@ -549,7 +549,7 @@
           <img src="/icons/language.png" alt="Language icon" />
           <div>
             <h3>Language</h3>
-            <p>JavaScript (Kaluma+)</p>
+            <p>JerryScript</p>
           </div>
         </article>
         <article>
