@@ -218,7 +218,7 @@
 
       scene.add(new HemisphereLight());
 
-      const dracoLoader = new DRACOLoader().setDecoderPath(`https://threejs.org/examples/js/libs/draco/gltf/`);
+      const dracoLoader = new DRACOLoader().setDecoderPath(`https://cdn.jsdelivr.net/npm/three@0.148.0/examples/jsm/libs/draco/gltf/`);
       const loader = new GLTFLoader().setDRACOLoader(dracoLoader);
 
       let glass;
