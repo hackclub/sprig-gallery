@@ -164,6 +164,21 @@
     typeof document !== 'undefined' && (document.documentElement.style.overflowY = selectedStory ? 'hidden' : 'auto');
   }
 
+
+  async function getConsolesRemaining() {
+    const data = await fetch('https://airbridge.hackclub.com/v0.1/Sprig%20Waitlist/Requests').then(r => r.json())
+    if (!data) {
+      throw "Failed to Fetch"
+    }
+    const consoleCount = data.filter(console => {
+      let status = console.fields.Status
+      return (status === 'Pending' || status === 'Approved')
+    }).length;
+
+    return 420 - consoleCount
+  }
+  const remainingConsolesPromise = getConsolesRemaining();
+
   onMount(() => {
     const m = document.getElementById('m');
     const start = document.getElementById('m-start');
@@ -643,7 +658,15 @@
       <div class="arrow">&raquo;</div>
       <article>
         <h3>3</h3>
-        <p>Check your mailbox :)</p>
+        {#await remainingConsolesPromise}
+          <p>Check your mailbox for a Sprig device :)</p>
+        {:then numRemainingConsoles}
+          <p>Check your mailbox for a Sprig device :)</p>
+          <p>(<span id="remainingConsoles">{numRemainingConsoles}</span> remaining)</p>
+        {:catch error}
+          <p>One of the remaining devices are sent to you</p>
+          <p style="color: red">Unable to fetch number of remaining devices.</p>
+        {/await}
       </article>
     </div>
   </div>
