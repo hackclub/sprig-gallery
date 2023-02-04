@@ -251,7 +251,12 @@ h6 {
     image-rendering: pixelated;
     user-select: none;
   }
-
+  @-moz-document url-prefix() {
+    /* Hack to support Firefox 91 (ESR in use on debian) */
+    img{
+      image-rendering: crisp-edges;
+    }
+  }
   > div {
     display: flex;
     flex-direction: column;
