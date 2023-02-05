@@ -3,12 +3,12 @@
 - [x] Add NES cursor
 - [x] Add preloader that lets you in after it's done fetching from gh
 - [x] Add sprig logo
-- [X] Get rid of the first card animation somehow
+- [x] Get rid of the first card animation somehow
 - [x] Revamp cards
 - [x] Add filter by tag section
   - [x] Display "Good for beginners", other tags (?) on the actual cards
   - [x] Make functional
-- [X] Fetch game authors from gh
+- [x] Fetch game authors from gh
 - [x] Fix the card width
 - [x] Add "Start from scratch" card
 - [x] Make responsive (w/ dynamic sizing variables)

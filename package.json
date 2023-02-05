@@ -1,28 +1,28 @@
 {
-	"name": "my-app",
-	"version": "0.0.1",
-	"license": "MIT",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"package": "svelte-kit package",
-		"preview": "vite preview",
-		"lint": "prettier --check --plugin-search-dir=. .",
-		"format": "prettier --write --plugin-search-dir=. ."
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/kit": "next",
-		"prettier": "^2.7.1",
-		"prettier-plugin-svelte": "^2.7.0",
-		"sass": "^1.54.0",
-		"svelte": "^3.49.0",
-		"svelte-preprocess": "^4.10.7",
-		"vite": "^3.1.0"
-	},
-	"type": "module",
-	"dependencies": {
-		"marked": "^4.0.18",
-		"three": "^0.143.0"
-	}
+  "name": "my-app",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "package": "svelte-kit package",
+    "preview": "vite preview",
+    "lint": "prettier --check --plugin-search-dir=. .",
+    "format": "prettier --write --plugin-search-dir=. ."
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "next",
+    "@sveltejs/kit": "next",
+    "prettier": "^2.7.1",
+    "prettier-plugin-svelte": "^2.7.0",
+    "sass": "^1.54.0",
+    "svelte": "^3.49.0",
+    "svelte-preprocess": "^4.10.7",
+    "vite": "^3.1.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "marked": "^4.0.18",
+    "three": "^0.143.0"
+  }
 }
