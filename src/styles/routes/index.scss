@@ -395,9 +395,13 @@ h6 {
     align-self: center;
     user-select: none;
   }
+
+  #remainingConsoles {
+    font-weight: bold;
+  }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
   .pricing .steps {
     flex-direction: column;
     gap: 20px;
