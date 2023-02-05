@@ -711,7 +711,7 @@
 </section>
 
 <footer class="wrapper">
-  <div class="container">&copy; 2022 Hack Club. 501(c)(3) nonprofit (EIN: 81-2908499)</div>
+  <div class="container">&copy; 2023 Hack Club. 501(c)(3) nonprofit (EIN: 81-2908499)</div>
 </footer>
 
 <a class="logo" href="https://hackclub.com">
