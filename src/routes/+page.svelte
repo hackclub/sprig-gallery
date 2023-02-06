@@ -564,7 +564,7 @@
           <img src="/icons/language.png" alt="Language icon" />
           <div>
             <h3>Language</h3>
-            <p>JavaScript (JerryScript)</p>
+            <p>JavaScript (Spade)</p>
           </div>
         </article>
         <article>
