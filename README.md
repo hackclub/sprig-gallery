@@ -1,3 +1,5 @@
+> **This repo is archived!** The gallery and marketing pages have been moved to [the main Sprig repository](https://github.com/hackclub/sprig/).
+
 # The Sprig Gallery
 
 To learn more about Sprig check out the [main repo](https://github.com/hackclub/sprig).
