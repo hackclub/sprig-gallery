@@ -4,8 +4,13 @@
 
 $std-horiz-margin: 15px;
 
-* { margin: 0; }
-html, body { height: 100%; }
+* {
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+}
 
 html {
   overflow-x: hidden;
@@ -128,11 +133,11 @@ h6 {
   gap: 60px;
   flex: 1;
 
-  >div {
+  > div {
     flex: 7;
   }
 
-  >.slot {
+  > .slot {
     flex: 6;
   }
 
@@ -181,12 +186,12 @@ h6 {
       align-items: center;
       gap: 10px;
       text-align: center;
-  
-      >.slot {
+
+      > .slot {
         width: 80%;
         margin: 20vw 0;
       }
-  
+
       .magic {
         transform: scale(1.3);
       }
@@ -253,7 +258,7 @@ h6 {
   }
   @-moz-document url-prefix() {
     /* Hack to support Firefox 91 (ESR in use on debian) */
-    img{
+    img {
       image-rendering: crisp-edges;
     }
   }
@@ -339,7 +344,12 @@ h6 {
   color: #ffffff;
   font-size: 1.125rem;
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: #66eb83;
   }
 
@@ -461,7 +471,7 @@ footer {
   padding: 0 10px;
   font-size: 0.85rem;
   padding-bottom: 50px;
-      font-variant-ligatures: no-common-ligatures;
+  font-variant-ligatures: no-common-ligatures;
 }
 
 @media (max-width: 780px) {

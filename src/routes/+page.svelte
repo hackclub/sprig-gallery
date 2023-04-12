@@ -164,18 +164,17 @@
     typeof document !== 'undefined' && (document.documentElement.style.overflowY = selectedStory ? 'hidden' : 'auto');
   }
 
-
   async function getConsolesRemaining() {
-    const data = await fetch('https://airbridge.hackclub.com/v0.1/Sprig%20Waitlist/Requests').then(r => r.json())
+    const data = await fetch('https://airbridge.hackclub.com/v0.1/Sprig%20Waitlist/Requests').then((r) => r.json());
     if (!data) {
-      throw "Failed to Fetch"
+      throw 'Failed to Fetch';
     }
-    const consoleCount = data.filter(console => {
-      let status = console.fields.Status
-      return (status === 'Pending' || status === 'Approved')
+    const consoleCount = data.filter((console) => {
+      let status = console.fields.Status;
+      return status === 'Pending' || status === 'Approved';
     }).length;
 
-    return 420 - consoleCount
+    return 420 - consoleCount;
   }
   const remainingConsolesPromise = getConsolesRemaining();
 
@@ -233,7 +232,9 @@
 
       scene.add(new HemisphereLight());
 
-      const dracoLoader = new DRACOLoader().setDecoderPath(`https://cdn.jsdelivr.net/npm/three@0.148.0/examples/jsm/libs/draco/gltf/`);
+      const dracoLoader = new DRACOLoader().setDecoderPath(
+        `https://cdn.jsdelivr.net/npm/three@0.148.0/examples/jsm/libs/draco/gltf/`,
+      );
       const loader = new GLTFLoader().setDRACOLoader(dracoLoader);
 
       let glass;
@@ -333,13 +334,13 @@
       document.documentElement.addEventListener('pointermove', pointermove);
       document.documentElement.addEventListener('pointerdown', pointerdown);
       document.documentElement.addEventListener('pointerup', pointerup);
-      const prevCleanup = window._cleanup
+      const prevCleanup = window._cleanup;
       window._cleanup = () => {
-        prevCleanup?.()
+        prevCleanup?.();
         document.documentElement.removeEventListener('pointermove', pointermove);
         document.documentElement.removeEventListener('pointerdown', pointerdown);
         document.documentElement.removeEventListener('pointerup', pointerup);
-      }
+      };
 
       const animate = () => {
         requestAnimationFrame(animate);
@@ -411,9 +412,9 @@
 
     window.addEventListener('resize', scrollUpdate);
     window.addEventListener('scroll', scrollUpdate);
-    const prevCleanup = window._cleanup
+    const prevCleanup = window._cleanup;
     window._cleanup = () => {
-      prevCleanup?.()
+      prevCleanup?.();
       window.removeEventListener('resize', scrollUpdate);
       window.removeEventListener('scroll', scrollUpdate);
     };
@@ -453,7 +454,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://sprig.hackclub.com/stories-tiny/sprig-front.jpeg" />
   <meta property="twitter:image" content="https://sprig.hackclub.com/stories-tiny/sprig-front.jpeg" />
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:card" content="summary" />
 </svelte:head>
 

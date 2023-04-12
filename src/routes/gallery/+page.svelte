@@ -31,7 +31,7 @@
   });
 
   let activeFilter = null;
-  let searchQuery = "";
+  let searchQuery = '';
 </script>
 
 <svelte:head>
@@ -78,7 +78,7 @@
           The best way to learn is by making things that you care about and sharing them with other people. Check out
           games by other Hack Clubbers!
         </p>
-      
+
         <div class="filtering">
           <div class="btn select-btn">
             <select
@@ -96,9 +96,13 @@
               <option value="_new">recently added</option>
             </select>
           </div>
-          <input class="btn searchbar" placeholder="search gallery" on:input={(event) => {
-            searchQuery = event.target.value || "";
-          }}>
+          <input
+            class="btn searchbar"
+            placeholder="search gallery"
+            on:input={(event) => {
+              searchQuery = event.target.value || '';
+            }}
+          />
         </div>
       </div>
 
@@ -128,14 +132,18 @@
 
       {#each games as game}
         <!-- Tutorials first, or whatever the filter is -->
-        {#if (activeFilter === '_new' && game.isNew) || (game.tags.includes(activeFilter || 'tutorial') && searchQuery === "") || ((game.title.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1 || game.author.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1) && searchQuery !== "")}
+        {#if (activeFilter === '_new' && game.isNew) || (game.tags.includes(activeFilter || 'tutorial') && searchQuery === '') || ((game.title
+            .toLowerCase()
+            .indexOf(searchQuery.toLowerCase()) !== -1 || game.author
+              .toLowerCase()
+              .indexOf(searchQuery.toLowerCase()) !== -1) && searchQuery !== '')}
           <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} filename={game.filename} />
         {/if}
       {/each}
 
       {#each games as game}
         <!-- Everything but tutorials, or nothing if we're filtering -->
-        {#if !game.tags.includes('tutorial') && !activeFilter && searchQuery === ""}
+        {#if !game.tags.includes('tutorial') && !activeFilter && searchQuery === ''}
           <Card isNew={game.isNew} title={game.title} tags={game.tags} author={game.author} filename={game.filename} />
         {/if}
       {/each}

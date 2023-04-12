@@ -1,5 +1,9 @@
-html { box-sizing: border-box; }
-body { margin: 0; }
+html {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
 
 *,
 *::before,
@@ -40,8 +44,9 @@ a {
   border-image-source: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8" ?><svg version="1.1" width="5" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2 1 h1 v1 h-1 z M1 2 h1 v1 h-1 z M3 2 h1 v1 h-1 z M2 3 h1 v1 h-1 z" fill="' + $button-text-border + '" /></svg>');
   border-image-outset: 2;
 
-  &, * {
-    cursor: pointer;    
+  &,
+  * {
+    cursor: pointer;
   }
 
   &.big {
@@ -97,7 +102,7 @@ a {
 .select-btn {
   padding: 0;
   isolation: isolate;
-  display: block; 
+  display: block;
 
   select {
     width: 100%;
@@ -112,14 +117,15 @@ a {
   }
 }
 
-.select-btn select, .searchbar {
+.select-btn select,
+.searchbar {
   outline: none;
   text-align: left;
   font-family: inherit;
   color: inherit;
   line-height: inherit;
   padding: 6px 12px;
-  background-color: #767E8F;
+  background-color: #767e8f;
 }
 
 .searchbar {
@@ -221,7 +227,9 @@ nav {
 }
 
 @media (max-width: 650px) {
-  .logo { display: none; }
+  .logo {
+    display: none;
+  }
 }
 
 @media (max-width: 450px) {
